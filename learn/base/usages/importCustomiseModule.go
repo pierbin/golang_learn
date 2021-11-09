@@ -8,7 +8,12 @@ package main
 	Turn on GO111MODULE, using "export GO111MODULE=on"
 */
 
-import "apps/greetings"
+//below is used for local greetings module work.
+//import "apps/greetings"
+
+import (
+	"github.com/ramseyjiang/golang_learn/greetings"
+)
 
 func main() {
 	greetings.Hi()

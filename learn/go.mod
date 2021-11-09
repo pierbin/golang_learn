@@ -24,6 +24,10 @@ require (
 	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9 // indirect
 	golang.org/x/sys v0.0.0-20200116001909-b77594299b42 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
+	github.com/ramseyjiang/golang_learn/greetings v0.0.0-20211109004149-270f1ee03f37 // indirect, replace github module to local module
 )
 
-replace greetings => /Users/jiangdawei/go/src/apps/greetings
+replace github.com/ramseyjiang/golang_learn/greetings v0.0.0-20211109004149-270f1ee03f37 => /Users/jiangdawei/go/src/apps/greetings
+
+//below is used for local greetings module work.
+//replace greetings => /Users/jiangdawei/go/src/apps/greetings
