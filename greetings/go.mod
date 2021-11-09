@@ -1,3 +1,3 @@
-module greetings
+module apps/greetings
 
 go 1.17
