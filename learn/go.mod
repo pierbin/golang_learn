@@ -22,12 +22,20 @@ require (
 	github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742 // indirect
 	github.com/ugorji/go/codec v1.1.7 // indirect
 	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9 // indirect
-	golang.org/x/sys v0.0.0-20200116001909-b77594299b42 // indirect
+	golang.org/x/sys v0.0.0-20210809222454-d867a43fc93e // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
-	github.com/ramseyjiang/golang_learn/greetings v0.0.0-20211109004149-270f1ee03f37 // indirect, replace github module to local module
 )
 
-replace github.com/ramseyjiang/golang_learn/greetings v0.0.0-20211109004149-270f1ee03f37 => /Users/jiangdawei/go/src/apps/greetings
+require (
+	github.com/ramseyjiang/golang_learn/greetings v0.0.0-20211109004149-270f1ee03f37 // indirect, replace github module to local module
+	github.com/ramseyjiang/golang_learn/keyboard v0.0.0-20211109034547-af1efbb27cd5 // indirect
+)
+
+replace (
+	github.com/ramseyjiang/golang_learn/greetings v0.0.0-20211109004149-270f1ee03f37 => /Users/jiangdawei/go/src/apps/greetings
+	github.com/ramseyjiang/golang_learn/keyboard v0.0.0-20211109034547-af1efbb27cd5 => /Users/jiangdawei/go/src/apps/keyboard
+)
 
 //below is used for local greetings module work.
 //replace greetings => /Users/jiangdawei/go/src/apps/greetings
+//replace keyboard => /Users/jiangdawei/go/src/apps/keyboard
