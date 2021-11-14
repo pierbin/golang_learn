@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strconv"
 )
 
-func main() {
+//[]string means return a slice of strings
+func readFile() ([]string, error) {
 	//Getwd() returns a rooted path name corresponding to the current directory
 	p, _ := os.Getwd()
-	println(p)
+	fmt.Println(p)
 
 	/*
 		In Go, the readFile path should use the absolute path, if not, when run it, the path should the same with
@@ -20,7 +20,7 @@ func main() {
 
 		The file path can become a variable, then it will easy to read more files.
 	*/
-	file, err := os.Open("./base/usages/data.txt")
+	file, err := os.Open("./practices/votes.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -33,38 +33,35 @@ func main() {
 		data to be read. Once the end of the file is reached (or there’s an error), Scan will return false, and
 		the loop will exit.
 	*/
-	var numbers []float64
 	scanner := bufio.NewScanner(file)
+	var lines []string
 	for scanner.Scan() {
-		fmt.Println(scanner.Text())
+		line := scanner.Text()
 
-		//Convert the string to a float64 and assign it to a temporary variable.
-		number, err := strconv.ParseFloat(scanner.Text(), 64)
-
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		//Append a number to the slice.
-		numbers = append(numbers, number)
+		//Append a line to the slice.
+		lines = append(lines, line)
 	}
 
-	/*
-		Keeping files open consumes resources from the operating system, so files should always be closed when
-		a program is done with them. Calling the Close method on the os.File will accomplish this.
-	*/
-	err = file.Close()
+	//fmt.Println(lines)
+	return lines, nil
+}
+
+func main() {
+	//The readFile method can be improved as a package on github.
+	lines, err := readFile()
+
 	if err != nil {
 		log.Fatal(err)
 	}
+	//fmt.Println(lines)
 
-	/*
-		It’s also possible that the bufio.Scanner encountered an error while scanning through the file.
-		If it did, calling the Err method on the scanner will return that error, which we log before exiting.
-	*/
-	if scanner.Err() != nil {
-		log.Fatal(scanner.Err())
+	//Declare a map that will use candidate names as keys, and vote counts as values.
+	counts := make(map[string]int)
+	for _, line := range lines {
+		counts[line]++
 	}
 
-	fmt.Println(numbers)
+	for name, count := range counts {
+		fmt.Printf("Votes for %s: %d\n", name, count)
+	}
 }

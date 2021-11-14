@@ -7,15 +7,22 @@ import (
 func firstWayDefineSlice() {
 	var notes []string
 	//When create a slice, it always needs to call make function to make the type of the slice you want to create.
+	//The number 7 means the slice length is 7.
 	notes = make([]string, 7)
 
 	notes[0] = "a"
 	notes[1] = "b"
 	fmt.Println(notes) //[a b     ]
+
+	//make([]int, 5, 10) allocates an underlying array of size 10 and returns a slice of length 5 and capacity 10.
+	//The slice has an initial length of 5 and has a capacity of 10.
+	letters := make([]int, 5, 10)
+	fmt.Println(len(letters))
 }
 
 func secWayDefineSlice() {
 	//When create a slice, it always needs to call make function to make the type of the slice you want to create.
+	//The number 5 means the slice length is 5.
 	primes := make([]int, 5)
 
 	primes[1] = 2
