@@ -44,7 +44,7 @@ func main() {
 	fmt.Println(<-reportChannel, "second block")
 }
 /**
-go run practices/reportNap.go, Result:
+go run practices/reportNapGoroutine.go, Result:
 From 54 to 58, sending and receiving goroutine are asleep.
 From 59 to 60, the sending goroutine wakes yp and sends a value.
 From 61 to 62, the receiving goroutine is still sleeping.
