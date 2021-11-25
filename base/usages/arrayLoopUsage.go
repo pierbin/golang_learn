@@ -6,17 +6,19 @@ import (
 )
 
 func main() {
-	arrayDefine()
+	x := arrayDefine()
+	fmt.Println(x)
 	floatArrayCalculate()
 	forRangeArrayLoop() //Highly recommend using this way
 	timeValueArray()
 	printArrayDifferentEffects()
 }
 
-func arrayDefine() {
+func arrayDefine() [5]int {
 	var x [5]int
 	x[4] = 100
-	fmt.Println(x)
+	//fmt.Println(x)
+	return x
 }
 
 /*
