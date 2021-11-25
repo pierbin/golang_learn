@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 type OrderStatus int
 
@@ -9,12 +12,12 @@ func main() {
 		OrderStatus_Unknown OrderStatus = iota //0
 		OrderStatus_NotActive
 		OrderStatus_Untriggered
-		OrderStatus_Triggered = 3
-		OrderStatus_Active    = 3
-		OrderStatus_Created   = 4
-		OrderStatus_Rejected  = iota
+		OrderStatus_Triggered
+		OrderStatus_Active = iota - 1
+		OrderStatus_Created
+		OrderStatus_Rejected
 		OrderStatus_Tested
 	)
-	fmt.Println(OrderStatus_Unknown, OrderStatus_NotActive, OrderStatus_Untriggered, OrderStatus_Triggered,
+	fmt.Println(OrderStatus_Unknown, reflect.TypeOf(OrderStatus_NotActive), OrderStatus_NotActive, OrderStatus_Untriggered, OrderStatus_Triggered,
 		OrderStatus_Active, OrderStatus_Created, OrderStatus_Rejected, OrderStatus_Tested)
 }
