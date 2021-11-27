@@ -18,6 +18,7 @@ func main() {
 		OrderStatus_Rejected
 		OrderStatus_Tested
 	)
+
 	fmt.Println(OrderStatus_Unknown, reflect.TypeOf(OrderStatus_NotActive), OrderStatus_NotActive, OrderStatus_Untriggered, OrderStatus_Triggered,
 		OrderStatus_Active, OrderStatus_Created, OrderStatus_Rejected, OrderStatus_Tested)
 }

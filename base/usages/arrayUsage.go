@@ -12,6 +12,9 @@ func main() {
 	forRangeArrayLoop() //Highly recommend using this way
 	timeValueArray()
 	printArrayDifferentEffects()
+	flexibleArrayDefine()   //about array define which using "..."
+	arrayCompare()          //An example of array compare, the value, type, and element order must all the same.
+	multiDimensionalArray() //When array elements of an array are arrays, then it’s called a multi-dimensional array.
 }
 
 func arrayDefine() [5]int {
@@ -84,4 +87,46 @@ func printArrayDifferentEffects() {
 	fmt.Printf("%#v\n", notes)  //[3]string{"do", "re", "mi"}
 	fmt.Println(primes)         //[2 3 5 7 11]
 	fmt.Printf("%#v\n", primes) //[5]int{2, 3, 5, 7, 11}
+}
+
+//When define an array using "...", behind each element, it must have a "," in each line.
+func flexibleArrayDefine() {
+	greetings := [...]string{
+		"Good morning",
+		"Good afternoon",
+		"Good evening",
+		"Good night",
+	}
+
+	fmt.Println(greetings, len(greetings))
+}
+
+//For an array to be the equal or the same as the second array, both array should be of the same type, must have
+//the same elements in them and all elements must be in the same order.
+func arrayCompare() {
+	a := [3]int{1, 2, 3}
+	b := [3]int{1, 3, 2}
+	c := [3]int{1, 2, 1}
+	d := [3]int{1, 2, 3}
+
+	fmt.Println("a == b ", a == b)
+	fmt.Println("a == c ", a == c)
+	fmt.Println("a == d ", a == d)
+}
+
+//[[1 2] [3 4] [0 0]]
+//The array inside should have the same length
+func multiDimensionalArray() {
+	a := [3][2]int{
+		[2]int{1, 2},
+		[2]int{3, 4},
+	}
+
+	b := [...][2]int{
+		[...]int{1, 2},
+		[...]int{3, 4},
+		[...]int{5, 6},
+	}
+
+	fmt.Println(a, b, b[0])
 }

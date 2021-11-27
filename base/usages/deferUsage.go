@@ -26,6 +26,29 @@ func Socialize() error {
 	return nil
 }
 
+func greet(message string) {
+	fmt.Println("Greeting: " + message)
+}
+
+/**
+Call one
+Call two
+Call three
+Greeting: Greet three
+Greeting: Greet two
+Greeting: Greet one
+*/
+func deferSort() {
+	fmt.Println("Call one")
+	defer greet("Greet one")
+
+	fmt.Println("Call two")
+	defer greet("Greet two")
+
+	fmt.Println("Call three")
+	defer greet("Greet three")
+}
+
 /**
 The output is as below
 Hello
@@ -33,6 +56,8 @@ The middle not the last output, after defer.
 Test defer.	//The first output is deferred until after Socialize() exits.
 */
 func main() {
+	deferSort()
+
 	err := Socialize()
 	if err != nil {
 		log.Fatal(err)

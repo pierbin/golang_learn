@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/ramseyjiang/golang_learn/keyboard"
+	"learnGo/keyboard"
 	"log"
 	"reflect"
 )
