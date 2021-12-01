@@ -56,6 +56,7 @@ func TryOut(player Player) {
 
 }
 
+//The interface can be used as embed.
 func main() {
 	mixType := []string{"Mamba forever", "Kobe R.I.P", "8 to 24"}
 	var player Player = TapePlayer("a")

@@ -44,7 +44,8 @@ func printStructDefaultValue() {
 	//struct { number float64; word string; toggle bool; index int }{number:0, word:"", toggle:false, index:0}
 
 	//Access struct fields using the dot operator
-	fmt.Println(myStruct.index, myStruct.word, myStruct.toggle, myStruct.number) //0 "" false 0
+	fmt.Printf("myStruct.index is %v, myStruct.word is %v, myStruct.toggle is %v, myStruct.number is %v\n",
+		myStruct.index, myStruct.word, myStruct.toggle, myStruct.number) //0 "" false 0
 }
 
 //Use defined type as the variable types.
@@ -92,6 +93,11 @@ func setAddressValue(addressStruct *address) {
 func setEmployeeValue(employeeStruct *employee) {
 	employeeStruct.name = "Davy"
 	employeeStruct.salary = 12000
+}
+
+type Vertex struct {
+	X int
+	Y int
 }
 
 func main() {

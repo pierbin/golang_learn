@@ -16,22 +16,21 @@ Because it is just declare a map, but don't assign a value to it. At that time, 
 That is the reason why that error come out.
 */
 func mapDefineFirstWay() {
-	//Declare a map variable
-	var ranks map[string]int
+	var nilMap map[string]int	//Declare a nip map.
+	fmt.Println("nilMap == nil is", nilMap == nil, nilMap)
 
 	//ranks["a"] = 2
 	//fmt.Println(ranks)
 	//panic: assignment to entry in nil map
 
-	//Create the map
-	ranks = make(map[string]int)
+	//Create an empty map
+	ranks := make(map[string]int)
 
 	ranks["gold"] = 1
 	ranks["silver"] = 2
 	ranks["bronze"] = 3
-	fmt.Println(ranks["bronze"]) //3
-	fmt.Println(ranks["gold"])   //1
-	fmt.Println(ranks)           //map[bronze:3 gold:1 silver:2]
+	fmt.Printf("bronze is %v, gold is %v, ranks content is %v\n", ranks["bronze"], ranks["gold"], ranks)
+	//bronze is 3, gold is 1, ranks content is map[bronze:3 gold:1 silver:2]
 
 	colors := make(map[int]string)
 	colors[1] = "green"
@@ -49,21 +48,24 @@ func mapDefineSecWay() {
 	//Create a map and declare a variable to hold it, and set the content for map..
 	myMap := map[string]float64{"a": 1.2, "b": 5.6}
 
-	fmt.Println(myMap) //map[a:1.2 b:5.6]
+	fmt.Printf("myMap content is %v\n", myMap) //map[a:1.2 b:5.6]
 }
 
 func createEmptyMap() {
 	//As with slice literals, leaving the curly braces empty creates a map that starts empty.
 	emptyFloatValueMap := map[string]float64{}
 
-	//As with arrays and slices, if you access a map key that hasn’t been assigned to, you’ll get a zero value back.
-	fmt.Println(emptyFloatValueMap, emptyFloatValueMap["a"]) //0
+	//As with arrays and slices, if you access a map key it hasn’t been assigned to, you’ll get a zero value back.
+	fmt.Printf("emptyFloatValueMap content is %v, a undefined element a value is %v\n",
+		emptyFloatValueMap, emptyFloatValueMap["a"]) //emptyFloatValueMap content is map[], a undefined element value is 0
 
 	emptyIntValueMap := map[string]int{}
-	fmt.Println(emptyIntValueMap, emptyIntValueMap["c"]) //0
+	fmt.Printf("emptyIntValueMap content is %v, a undefined element a value is %v\n",
+		emptyIntValueMap, emptyIntValueMap["c"]) //emptyIntValueMap content is map[], a undefined element value is 0
 
 	emptyStringValueMap := map[string]string{}
-	fmt.Println(emptyStringValueMap, emptyStringValueMap["d"]) //"", it is an empty string
+	fmt.Printf("emptyStringValueMap content is %v, a undefined element a value is %v\n",
+		emptyStringValueMap, emptyStringValueMap["d"]) //emptyStringValueMap content is map[], a undefined element a value is ""
 }
 
 /**
@@ -106,12 +108,12 @@ func mapForRange() {
 
 	//Loop only keys
 	for name := range grades {
-		fmt.Println(name)
+		fmt.Printf("key name is %v\n", name)
 	}
 
 	//Loop only values
 	for _, value := range grades {
-		fmt.Println(value)
+		fmt.Printf("the map value is %v\n", value)
 	}
 }
 

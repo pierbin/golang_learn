@@ -72,7 +72,7 @@ func doubleSomeNumber() {
 	*/
 	number := Number(3)
 	fmt.Println("Original value of number:", number)
-	number.Double()                                            //We don't have to update the method call, we just invoke the Double() method.
+	number.Double()   //We don't have to update the method call, we just invoke the Double() method.
 	fmt.Println("number after calling Double method:", number) //Value at pointer was updated.
 }
 

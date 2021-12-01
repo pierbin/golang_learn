@@ -89,7 +89,7 @@ func printArrayDifferentEffects() {
 	fmt.Printf("%#v\n", primes) //[5]int{2, 3, 5, 7, 11}
 }
 
-//When define an array using "...", behind each element, it must have a "," in each line.
+//When define an array using "...", the array's length is flexible.
 func flexibleArrayDefine() {
 	greetings := [...]string{
 		"Good morning",
