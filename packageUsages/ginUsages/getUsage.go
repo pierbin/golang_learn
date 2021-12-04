@@ -12,6 +12,9 @@ type ResponseParams struct {
 	Gender string `json:"gender" uri:"gender"`
 }
 
+//gin is a go framework, get request usage are under below.
+//In command line, go run packageUsages/ginUsages/getUsage.go.
+//It will monitor all requests from browser.
 // r means router
 func main() {
 	r := gin.Default()
@@ -57,6 +60,7 @@ func jsonResponseParamAndQuery(router *gin.Engine) {
 	})
 }
 
+//http://localhost:8888/user/23, it will have a download confirm page.
 // "c.String" will output string, but it always download a file.
 func getResponseString(router *gin.Engine) {
 	// However, this one will match /user/{id}/ and also /user/{id}/send
@@ -70,6 +74,7 @@ func getResponseString(router *gin.Engine) {
 	})
 }
 
+//http://localhost:8888/user/groups, it will show the whole route path.
 func jsonResponseFullPath(router *gin.Engine) {
 	// For each matched request Context will hold the route definition
 	router.GET("/user/groups", func(c *gin.Context) {
@@ -79,6 +84,7 @@ func jsonResponseFullPath(router *gin.Engine) {
 	})
 }
 
+//http://localhost:8888/testBind, it will show json response.
 func jsonResponseBind(router *gin.Engine) {
 	router.GET("/testBind", func(c *gin.Context) {
 		p := ResponseParams{}

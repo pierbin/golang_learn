@@ -6,6 +6,10 @@ import (
 	"net/http"
 )
 
+//This is post usage in the gin framework.
+//In command line, execute: go run packageUsages/ginUsages/postUsage.go
+//After that, please use postman or Thunder Client in Visual Studio Code to send post requests to the server.
+//In the command line, it will record all post requests info.
 func main() {
 	r := gin.Default()
 
@@ -17,7 +21,7 @@ func main() {
 }
 
 /*
-	Post response: http://localhost:8888/post
+	Post request: http://localhost:8888/post
 	c.DefaultPostForm will get key value first, if it doesn't have, it will use the default value.
 */
 func postJsonResponse(router *gin.Engine) {
@@ -32,7 +36,7 @@ func postJsonResponse(router *gin.Engine) {
 	})
 }
 
-//Post response: http://localhost:8888/form_post
+//Post request: http://localhost:8888/form_post
 func multiParamsFormResponse(router *gin.Engine) {
 	router.POST("/form_post", func(c *gin.Context) {
 		message := c.PostForm("message")
@@ -47,7 +51,7 @@ func multiParamsFormResponse(router *gin.Engine) {
 }
 
 /*
-	Post response: http://localhost:8888/query_form_post
+	Post request: http://localhost:8888/query_form_post
 	c.Query is used to get arguments before "?".
 	c.PostForm is used to get arguments from post form.
 */
