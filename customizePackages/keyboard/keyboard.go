@@ -1,7 +1,7 @@
 package keyboard
 
 import (
-	"bufio"	//When read the input from keyboard, will be used.
+	"bufio" //When read the input from keyboard, will be used.
 	"fmt"
 	"log"
 	"os"
@@ -28,7 +28,7 @@ func GetFloat() (float64, error) {
 		ReadString will return the user typed, as a string. The ReadString method requires an argument with a rune (character) that marks the end of the input.
 		'\n' means everything up until the newline rune will be read.
 		It should not be named error, because it is the go keyword. That's why named err.
-	 */
+	*/
 	input, err := reader.ReadString('\n') //err can be replaced by '_', then the error will be ignored.
 	if err != nil {
 		//Report the error and stop the program
