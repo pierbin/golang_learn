@@ -10,7 +10,8 @@ import "fmt"
 	The empty interface does not require any methods to satisfy it, so it is satisfied by all types.
 */
 
-//Do not try to call any methods on an empty interface value. If call, it will have an error.
+//Do not try to call any methods on an empty interface value. If you want to call, it will have an error.
+//You can try to uncomment all codes in the main and AcceptAnything method, then run it, you will see errors.
 
 type Anything interface {
 }

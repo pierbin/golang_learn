@@ -41,27 +41,27 @@ func GetFloats(fileName string) ([]float64, error) {
 }
 
 /**
-	Using this command to run correct result.
-    go run base/usages/readFileDeferUsage.go base/usages/data.txt
-	The correct result is as below:
+Using this command to run correct result.
+go run base/usages/fileUsage/readFileDeferUsage.go base/usages/fileUsage/data.txt
+The correct result is as below:
 
-	/Users/jiangdawei/go/src/apps/learn
-	Opening base/usages/data.txt
-	Closing file
-	Sum: 252.80
+/Users/jiangdawei/go/src/learnGo
+Opening base/usages/fileUsage/data.txt
+Closing file
+Sum: 252.80
 
 
-	Using this command to run incorrect result.
-	go run base/usages/readFileDeferUsage.go base/usages/badData.txt
-	The incorrect result is as below:
+Using this command to run incorrect result.
+go run base/usages/fileUsage/readFileDeferUsage.go base/usages/fileUsage/badData.txt
+The incorrect result is as below:
 
-	/Users/jiangdawei/go/src/apps/learn
-	Opening base/usages/badData.txt
-	Closing file
-	2021/11/19 12:50:21 strconv.ParseFloat: parsing "hello": invalid syntax
-	exit status 1
+/Users/jiangdawei/go/src/learnGo
+Opening base/usages/fileUsage/badData.txt
+Closing file
+2021/12/05 23:22:24 strconv.ParseFloat: parsing "hello": invalid syntax
+exit status 1
 
-	The file is closed by both of them, because the incorrect one is used defer to trigger it.
+The file is closed by both of them, because the incorrect one is used defer to trigger it.
 */
 func main() {
 	//Getwd() returns a rooted path name corresponding to the current directory

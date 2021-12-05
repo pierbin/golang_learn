@@ -15,7 +15,7 @@ func firstWayDefineSlice() {
 	fmt.Println(notes) //[a b     ]
 
 	letters := make([]int, 5, 10)
-	var testNil []int	//An empty slice default value is nil, so it is a nil slice, it won't have any elements in it.
+	var testNil []int                                    //An empty slice default value is nil, so it is a nil slice, it won't have any elements in it.
 	fmt.Println(letters == nil, testNil == nil, letters) //false true [0 0 0 0 0] All default is 0.
 }
 
@@ -30,7 +30,7 @@ func secWayDefineSlice() {
 
 	//This way, it uses slice literal to define a slice directly.
 	letters := []string{"a", "b", "c"}
-	fmt.Println(letters)	//[a b c]
+	fmt.Println(letters) //[a b c]
 }
 
 func sliceLoop() {
@@ -38,7 +38,7 @@ func sliceLoop() {
 	letters := []string{"a", "e", "i", "o", "u"}
 	fmt.Println("The first way loop a slice.")
 	for i := 0; i < len(letters); i++ {
-		fmt.Printf("%v ",letters[i])
+		fmt.Printf("%v ", letters[i])
 	}
 	fmt.Println("")
 
@@ -85,7 +85,7 @@ func appendUsage() {
 	fmt.Printf("letters capacity is %v, length is %v, content is %v.\n", cap(letters), len(letters), letters)
 
 	frontSlice := []int{-1, -2}
-	letters = append(frontSlice, letters...)	//insert slice in the front of a slice.
+	letters = append(frontSlice, letters...) //insert slice in the front of a slice.
 	fmt.Printf("letters capacity is %v, length is %v, content is %v.\n", cap(letters), len(letters), letters)
 
 	//If the next two lines won't comment, it will have an error.
@@ -99,19 +99,19 @@ func appendUsage() {
 
 //When a copy happens, it always replace elements from the start position.
 func copyUsage() {
-	var s1 []int //Define a nil slice. Nothing can be copied into a nil slice.
-	s2 := []int{1, 2, 3}//During a copy happens, it won't over the capacity of the first slice.
+	var s1 []int         //Define a nil slice. Nothing can be copied into a nil slice.
+	s2 := []int{1, 2, 3} //During a copy happens, it won't over the capacity of the first slice.
 	s3 := []int{4, 5, 6, 7, 8}
 	s4 := []int{9, 10}
 
 	n1 := copy(s1, s2)
-	fmt.Printf("n1=%d, s1=%v, s2=%v\n", n1, s1, s2)	//n1=0, s1=[], s2=[1 2 3]
+	fmt.Printf("n1=%d, s1=%v, s2=%v\n", n1, s1, s2) //n1=0, s1=[], s2=[1 2 3]
 
 	n2 := copy(s2, s3)
-	fmt.Printf("n2=%d, s2=%v, s3=%v\n", n2, s2, s3)	//n2=3, s2=[4 5 6], s3=[4 5 6 7 8]
+	fmt.Printf("n2=%d, s2=%v, s3=%v\n", n2, s2, s3) //n2=3, s2=[4 5 6], s3=[4 5 6 7 8]
 
 	n3 := copy(s3, s4)
-	fmt.Printf("n3=%d, s3=%v, s4=%v\n", n3, s3, s4)	//n3=2, s3=[9 10 6 7 8], s4=[9 10]
+	fmt.Printf("n3=%d, s3=%v, s4=%v\n", n3, s3, s4) //n3=2, s3=[9 10 6 7 8], s4=[9 10]
 }
 
 func main() {

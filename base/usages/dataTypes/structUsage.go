@@ -8,7 +8,7 @@ import (
 //You can access the fields of an embedded struct as if they belong to the outer struct.
 //Define a type named "subscriber".
 //Defined types also work for function parameters and return values.
-//If the type subscriber will use outside this package, must remember each name exported should be capitalized.
+//If the type subscriber use outside this package, must remember each name exported should be capitalized.
 type subscriber struct {
 	name        string
 	number      float64
@@ -71,13 +71,13 @@ func setSubscriberValue() {
 //The function name is a way to use defined type as a parameter.
 //user subscriber, the user is declared the subscriber type.
 //The return value is another way to use defined type as a return value. The return is the subscriber type.
-//The subscriber after the "(user subscriber)", it declare the return value should be the subscriber type.
+//The subscriber after the "(user subscriber)", it declares the return value should be the subscriber type.
 func showSubscriberInfo(user subscriber) subscriber {
 	//fmt.Println(user)
 	return user
 }
 
-//It is a easy way to change a value in struct and don't need a return.
+//It is an easy way to change a value in struct and don't need a return.
 //Using this way, it will take up computer's memory. So if lots of fields, using this way not a good choice.
 func applyDiscount(testSubscriber *subscriber) {
 	//Assign to the struct field through the pointer.
@@ -93,11 +93,6 @@ func setAddressValue(addressStruct *address) {
 func setEmployeeValue(employeeStruct *employee) {
 	employeeStruct.name = "Davy"
 	employeeStruct.salary = 12000
-}
-
-type Vertex struct {
-	X int
-	Y int
 }
 
 func main() {

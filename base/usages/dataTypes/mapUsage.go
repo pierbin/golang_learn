@@ -16,7 +16,7 @@ Because it is just declare a map, but don't assign a value to it. At that time, 
 That is the reason why that error come out.
 */
 func mapDefineFirstWay() {
-	var nilMap map[string]int	//Declare a nip map.
+	var nilMap map[string]int //Declare a nip map.
 	fmt.Println("nilMap == nil is", nilMap == nil, nilMap)
 
 	//ranks["a"] = 2

@@ -47,11 +47,11 @@ func play(n NoiseMaker) {
 }
 
 //An interface has two types. They are the static type and the dynamic type.
-//The static type of an interface is the interface itself.
+//The static type of interface is the interface itself.
 
 //An interface does not have a static value, rather it points to a dynamic value.
 //A variable of an interface type can hold a value of a type that implements the interface.
-//he value of that type becomes the dynamic value of the interface and that type becomes the dynamic type of the interface.
+//Its value of that type becomes the dynamic value of the interface and that type becomes the dynamic type of the interface.
 
 //Must implement all the methods declared by the interface with exact signatures
 
@@ -64,7 +64,7 @@ type NilInterface interface {
 
 //Here, "i interface{}" is an empty interface. We can pass any argument to it.
 //Using "i.(type)" to control which part will go in the switch.
-//In the explain, i receives its dynamic value and dynamic type.
+//In the explain method, it receives its dynamic value and dynamic type.
 //This is the principle how the TypeAssert works.
 func explain(i interface{}) {
 	switch i.(type) {
@@ -80,15 +80,15 @@ func explain(i interface{}) {
 func main() {
 	//The comment codes are the basic way.
 	//var toy NoiseMaker
-	//toy = Whistle("Toyco Canary")	//implicitly implemented.
+	//toy = Whistle("Toy Canary")	//implicitly implemented.
 	//toy.MakeSound()
 	//
-	//toy = Horn("Toyco Blaster")	////implicitly implemented.
+	//toy = Horn("Toy Blaster")	////implicitly implemented.
 	//toy.MakeSound()
 
 	//The below way is that declare function parameters with interface types.
-	play(Whistle("Toyco Canary"))
-	play(Horn("Toyco Blaster"))
+	play(Whistle("Toy Canary"))
+	play(Horn("Toy Blaster"))
 
 	//we can see that zero value and type of the interface is nil. This is because, at this moment, we have
 	//declared the variable s of type Shape but did not assign any value.

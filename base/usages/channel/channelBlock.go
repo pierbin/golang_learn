@@ -15,7 +15,7 @@ func def(channel chan string) {
 }
 
 /**
-go run base/usages/channelBlock.go, result is: "adbecf".
+go run base/usages/channel/channelBlock.go, result is: "adbecf".
 
 It is not abcdef, because the channel block is used in this case.
 
@@ -31,7 +31,7 @@ func main() {
 	channel1 := make(chan string)
 	channel2 := make(chan string)
 	go abc(channel1)
-	fmt.Print("test") //In go, it will run fmt.Print("test") before go channel run.
+	fmt.Println("----channel block line-------") //In go, it will run fmt.Print("test") before go channel run.
 	go def(channel2)
 
 	fmt.Print(<-channel1)

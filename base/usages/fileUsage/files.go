@@ -37,7 +37,6 @@ Using the below command to run this file.
 go run base/usages/files.go base/usages
 go run base/usages/files.go base
 */
-
 func main() {
 	err := scanDir(os.Args[1])
 	if err != nil {

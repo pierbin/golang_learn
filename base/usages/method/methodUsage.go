@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//When you call a method that requires a pointer receiver on a variable with a nonpointer type,
+//When you call a method that requires a pointer receiver on a variable with a none pointer type,
 //Go will automatically convert the receiver to a pointer for you.
 //The same is true for variables with pointer types; if you call a method requiring a value
 //receiver, Go will automatically get the value at the pointer for you and pass that to the method.
@@ -14,7 +14,6 @@ import (
 type nameType string
 type ExampleType string
 type Number int
-type StrType string
 
 //To define a method, provide a receiver parameter in parentheses before the method name.
 //(n nameType) is the receiver parameter.
@@ -46,6 +45,7 @@ func compareTwoTypeValues() {
 }
 
 //An example includes define method parameters and multiple returns.
+
 func (e ExampleType) MethodWithParametersAndReturn(number int, flag bool) (int, bool) {
 	fmt.Printf("Receiver name is \"%s\", int parameter value is %v, bool parameter value is %v\n",
 		e, number, flag)
@@ -72,7 +72,7 @@ func doubleSomeNumber() {
 	*/
 	number := Number(3)
 	fmt.Println("Original value of number:", number)
-	number.Double()   //We don't have to update the method call, we just invoke the Double() method.
+	number.Double()                                            //We don't have to update the method call, we just invoke the Double() method.
 	fmt.Println("number after calling Double method:", number) //Value at pointer was updated.
 }
 

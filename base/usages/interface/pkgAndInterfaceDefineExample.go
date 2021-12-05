@@ -45,5 +45,7 @@ func main() {
 	test.MethodWithoutParameters()
 	test.MethodWithParameters(2.4)
 	fmt.Println(test.MethodWithReturnValue())
+
+	//If you want to invoke a method not in an interface, you should use interface type assert.
 	//test.MethodNotInInterface()
 }

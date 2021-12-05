@@ -23,9 +23,8 @@ func (o OverheatError) Error() string {
 	return fmt.Sprintf("Overheating by %0.2f degrees!", o)
 }
 
-func checkTemprature(actual float64, safe float64) error {
-	excess := actual - safe
-	if excess > 0 {
+func checkTemperature(actual float64, safe float64) error {
+	if excess := actual - safe; excess > 0 {
 		return OverheatError(excess)
 	}
 
@@ -40,7 +39,7 @@ func main() {
 	err = ComedyError("What's a programmer's favorite beer? Logger!")
 	fmt.Println(err)
 
-	err = checkTemprature(121.379, 100)
+	err = checkTemperature(121.379, 100)
 	if err != nil {
 		log.Fatal(err)
 	}
