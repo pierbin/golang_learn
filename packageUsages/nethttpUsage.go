@@ -6,7 +6,14 @@ import (
 	"net/http"
 )
 
+//It is the net/http package usage.
+//Access http://localhost:9000/
 func main() {
+	baseUsage()
+}
+
+//http://localhost:9000/
+func baseUsage() {
 	// The "HandleFunc" method accepts a path and a function as arguments
 	http.HandleFunc("/", handler)
 
@@ -25,6 +32,7 @@ func main() {
 
 	Second, Registering a request handler to the default HTTP Server is as simple as this: "http.HandleFunc"
 */
+//http://localhost:9000/test
 func handler(writer http.ResponseWriter, request *http.Request) {
 	message := []byte("Hello world\n")
 	_, err := writer.Write(message)

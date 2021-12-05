@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -12,18 +13,25 @@ type ResponseParams struct {
 	Gender string `json:"gender" uri:"gender"`
 }
 
-//gin is a go framework, get request usage are under below.
-//In command line, go run packageUsages/ginUsages/getUsage.go.
+//gin is a go framework, response of all get and post requests usage are under below.
+//In command line, go run packageUsages/ginUsage.go.
 //It will monitor all requests from browser.
 // r means router
 func main() {
 	r := gin.Default()
+
+	//Response for all get requests
 	jsonResponse(r)
 	jsonResponseParamAndQuery(r)
 	jsonResponseFullPath(r)
 	jsonResponseBind(r)
 	jsonResponseBindUri(r)
 	getResponseString(r)
+
+	//Reponse for all post requests
+	postJsonResponse(r)
+	multiParamsFormResponse(r)
+	queryAndFormPostResponse(r)
 
 	r.Run(":8888") //All requests will access port:8888.
 }
@@ -60,7 +68,8 @@ func jsonResponseParamAndQuery(router *gin.Engine) {
 	})
 }
 
-//http://localhost:8888/user/23, it will have a download confirm page.
+//http://localhost:8888/user/23, it will have a download confirm page after you add any string after the 23.
+//You should add any string after http://localhost:8888/user/23/string, it will trigger download.
 // "c.String" will output string, but it always download a file.
 func getResponseString(router *gin.Engine) {
 	// However, this one will match /user/{id}/ and also /user/{id}/send
@@ -122,5 +131,61 @@ func jsonResponseBindUri(router *gin.Engine) {
 				"data": p,
 			})
 		}
+	})
+}
+
+/*
+	Post request: http://localhost:8888/post
+	c.DefaultPostForm will get key value first, if it doesn't have, it will use the default value.
+*/
+func postJsonResponse(router *gin.Engine) {
+	router.POST("/post", func(c *gin.Context) {
+		user := c.DefaultPostForm("user", "jeff")
+		pwd := c.DefaultPostForm("pwd", "pwd")
+		c.JSON(http.StatusOK, gin.H{
+			"message": "hell gyy",
+			"user":    user,
+			"pwd":     pwd,
+		})
+	})
+}
+
+//Post request: http://localhost:8888/form_post
+func multiParamsFormResponse(router *gin.Engine) {
+	router.POST("/form_post", func(c *gin.Context) {
+		message := c.PostForm("message")
+		nick := c.DefaultPostForm("nick", "anonymous")
+
+		c.JSON(http.StatusOK, gin.H{
+			"status":  "posted",
+			"message": message,
+			"nick":    nick,
+		})
+	})
+}
+
+/*
+	Post request: http://localhost:8888/query_form_post
+	c.Query is used to get arguments before "?".
+	c.PostForm is used to get arguments from post form.
+*/
+func queryAndFormPostResponse(router *gin.Engine) {
+	router.POST("/query_form_post", func(c *gin.Context) {
+
+		id := c.Query("id")
+		page := c.DefaultQuery("page", "0")
+		name := c.PostForm("name")
+		message := c.PostForm("message")
+
+		//During output Using fmt.Printf does not need convert string to int.
+		//Using fmt.Printf, it won't have an output on browser, but it will have the output on command line.
+		fmt.Printf("id: %s; page: %s; name: %s; message: %s", id, page, name, message)
+
+		c.JSON(http.StatusOK, gin.H{
+			"id":      id,
+			"page":    page,
+			"name":    name,
+			"message": message,
+		})
 	})
 }
