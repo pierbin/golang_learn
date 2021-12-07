@@ -1,9 +1,19 @@
 package joinStr
 
-import (
-	"fmt"
-	"testing"
-)
+import "testing"
+
+/**
+joinStr % go test -cover
+PASS
+coverage: 100.0% of statements
+ok      learnGo/customizePackages/joinStr       0.007s
+*/
+
+/**
+joinStr % go test
+PASS
+ok      learnGo/customizePackages/joinStr       0.006s
+*/
 
 //If the tests in the same package with codes, please run tests "click run button."
 //If not, you can run tests using any of the following ways.
@@ -51,9 +61,9 @@ func TestJoinStr(t *testing.T) {
 	for _, test := range tests {
 		got := JoinWithCommas(test.list)
 		if got != test.want {
-			t.Errorf(fmt.Sprintf("JoinWithCommas(%#v) = \"%s\", want \"%s\"", test.list, got, test.want))
+			t.Errorf("JoinWithCommas(%#v) = \"%s\", want \"%s\"", test.list, got, test.want)
 		} else {
-			t.Logf(fmt.Sprintf("Success, JoinStr(%#v), want \"%s\", got \"%s\", it passed", test.list, test.want, got))
+			t.Logf("Success, JoinStr(%#v), want \"%s\", got \"%s\", it passed", test.list, test.want, got)
 		}
 	}
 }
