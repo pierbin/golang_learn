@@ -6,14 +6,28 @@
 
 package main
 
+import (
+	"context"
+	"learnGo/patterns/dependencyInjection/foobarbaz"
+	"learnGo/patterns/dependencyInjection/greeter"
+)
+
 // Injectors from wire.go:
 
-func InitializeEvent(phrase string) (Event, error) {
-	message := NewMessage(phrase)
-	greeter := NewGreeter(message)
-	event, err := NewEvent(greeter)
+func InitializeEvent(phrase string) (greeter.Event, error) {
+	event, err := greeter.ProvideEvent(phrase)
 	if err != nil {
-		return Event{}, err
+		return greeter.Event{}, err
 	}
 	return event, nil
+}
+
+func InitializeBaz(ctx context.Context) (foobarbaz.Baz, error) {
+	foo := foobarbaz.ProvideFoo()
+	bar := foobarbaz.ProvideBar(foo)
+	baz, err := foobarbaz.ProvideBaz(bar)
+	if err != nil {
+		return foobarbaz.Baz{}, err
+	}
+	return baz, nil
 }
