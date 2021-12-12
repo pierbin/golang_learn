@@ -27,11 +27,19 @@ The abc goroutine blocks each time it sends a value to a channel until the main 
 def goroutine does the same. The main goroutine becomes the orchestrator of the abc and def goroutines, allowing
 them to proceed only when it’s ready to read the values they’re sending.
 */
+
+/**
+If you are trying to read data from a channel but channel does not have a value available with it,
+it blocks the current goroutine and unblocks other in a hope that some goroutine will push a value to the channel.
+Hence, this read operation will be blocking. Similarly, if you are to send data to a channel,
+it will block current goroutine and unblock others until some goroutine reads the data from it. Hence,
+this sends operation will be blocking.
+*/
 func main() {
 	channel1 := make(chan string)
 	channel2 := make(chan string)
 	go abc(channel1)
-	fmt.Println("----channel block line-------") //In go, it will run fmt.Print("test") before go channel run.
+	fmt.Println("---channel block line---") //It will run fmt.Print("channel block line") before go channel run.
 	go def(channel2)
 
 	fmt.Print(<-channel1)

@@ -11,10 +11,9 @@ import "fmt"
 //before we attempt to use it.
 
 //The only practical way to use a channel is to communicate from one goroutine to another goroutine.
-//Not only do channels allow you to send values from one goroutine to another, they ensure the sending goroutine
+//Not only does channel allow you to send values from one goroutine to another, they ensure the sending goroutine
 //has sent the value before the receiving goroutine attempts to use it.
 
-//Channels ensure the sending goroutine has sent the value before the receiving channel attempts to use it.
 //Channels do this by blocking—by pausing all further operations in the current goroutine.
 //A send operation blocks the sending goroutine until a goroutine executes a received operation on the same channel.
 
@@ -22,11 +21,14 @@ import "fmt"
 //use the <- operator to receive values from a channel.  "<- myChannel", receive values from myChannel.
 
 //Go programs end when the main goroutine stops, even if other goroutines have not completed their work yet.
-//Send values to channels using the <- operator: myChannel <- "a value"
-//The <- operator is also used to receive values from a channel: value := <-myChannel
 
+//A channel can be closed so that no more data can be sent through it.
+
+//The greeting will include third, fifth and seventh outputs.
 func greeting(exampleChannel chan string, content string) { //Take a channel as a parameter
 	exampleChannel <- content //Send a value to the channel
+
+	fmt.Println(exampleChannel, content)
 }
 
 func firstWayCreateChannel() chan string {
@@ -42,14 +44,54 @@ func secondWayCreateChannel() chan string {
 	return secondWayChannel
 }
 
+//Check the output sort, you will know during the channel read and write, how the channel block works.
 func main() {
 	firstWayChannel := firstWayCreateChannel()
 	secondWayChannel := secondWayCreateChannel()
 
+	//This output is the fifth.
 	go greeting(firstWayChannel, "firstWayChannel") //Pass the channel to function running in a new goroutine
-	receiveFirstValue := <-firstWayChannel          //Store the received value in a variable
-	fmt.Println(receiveFirstValue)                  //Receive a value from the channel
+
+	/**
+	When write or read data from a channel, that goroutine is blocked and control is passed to available goroutines.
+	What if there are no other goroutines available, imagine all of them are sleeping.
+	That’s where deadlock error occurs crashing the whole program.
+
+	Receiver goroutine can find out the state of the channel using val,
+	ok := <- channel syntax where ok is true if the channel is open or read operations can be performed
+	and false if the channel is closed and no more read operations can be performed.
+	A channel can be closed using close built-in function with syntax close(channel).
+	*/
+	fmt.Println(firstWayChannel, "first print")
+	receiveFirstValue, ok := <-firstWayChannel //Store the received value in a receiveFirstValue, and store the status in ok.
+	fmt.Println(receiveFirstValue, ok)         //second print
 
 	go greeting(secondWayChannel, "secondWayChannel")
-	fmt.Println(<-secondWayChannel) //Receive a value from the channel
+	receiveSecValue, ok := <-secondWayChannel
+	fmt.Println(receiveSecValue, ok, "fourth print") //Receive a value from the channel
+
+	//Channels by default are pointers. It is the sixth output.
+	thirdChannel := make(chan string)
+	fmt.Printf("type of channel is %T, value of it is %v\n", thirdChannel, thirdChannel)
+
+	go greeting(thirdChannel, "test close channel")
+	fmt.Println(<-thirdChannel) //It is the eighth output
+
+	//close the channel. If not close, only after write into/read from the channel, the channel will asleep.
+	//Closing the channel does not block the current goroutine unlike reading or writing a value to the channel.
+	close(thirdChannel)
+
+	/**
+	If the below code run without close on the above, it will have the below error.
+	After the value write into the channel, the channel will be asleep.
+	So below codes will have an error. 	"fatal error: all goroutines are asleep - deadlock!"
+
+	If the below code run with close on the above, it will have the error as following:
+	goroutine 1 [running]:
+	main.main()
+	        /Users/jiangdawei/go/src/learnGo/base/usages/channel/goroutineChannelUsage.go:86 +0x486
+	exit status 2
+	*/
+	thirdChannel <- "close"
+	//fmt.Println(thirdChannel)
 }
