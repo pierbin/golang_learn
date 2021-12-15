@@ -6,6 +6,8 @@ import (
 	"github.com/google/wire"
 )
 
+//In DI, only the providers need to be specified, the rest is abstracted away.
+
 type Foo struct {
 	X int
 }

@@ -5,6 +5,7 @@ import (
 
 	"learnGo/patterns/dependencyInjection/foobarbaz"
 	"learnGo/patterns/dependencyInjection/greeter"
+	"learnGo/patterns/dependencyInjection/shapes"
 
 	"github.com/google/wire"
 )
@@ -57,3 +58,7 @@ Finally, another point worth considering is how easy it is to add new dependenci
 As long as we tell Wire how to provide (i.e., initialize) a component,
 we may add that component anywhere in the dependency graph and Wire will handle the rest.
 */
+
+func ProvideShape() float64 {
+	panic(wire.Build(shapes.ShapeSet, shapes.ProvideArea))
+}

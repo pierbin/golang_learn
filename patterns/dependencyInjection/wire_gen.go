@@ -10,6 +10,7 @@ import (
 	"context"
 	"learnGo/patterns/dependencyInjection/foobarbaz"
 	"learnGo/patterns/dependencyInjection/greeter"
+	"learnGo/patterns/dependencyInjection/shapes"
 )
 
 // Injectors from wire.go:
@@ -30,4 +31,10 @@ func InitializeBaz(ctx context.Context) (foobarbaz.Baz, error) {
 		return foobarbaz.Baz{}, err
 	}
 	return baz, nil
+}
+
+func ProvideShape() float64 {
+	square := shapes.ProvideSquare()
+	float64_2 := shapes.ProvideArea(square)
+	return float64_2
 }
