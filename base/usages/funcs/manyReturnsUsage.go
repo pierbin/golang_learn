@@ -24,10 +24,10 @@ func floatParts(number float64) (intergerPart int, fractionalPart float64) {
 }
 
 func main() {
-	//Store each return value in a variable.
+	// Store each return value in a variable.
 	myInt, myBool, myString := manyReturns()
 	fmt.Println(myInt, myBool, myString) //1 true hello
 
 	cans, reminder := floatParts(1.26)
-	fmt.Println(cans, reminder) //1 0.26
+	fmt.Println(cans, reminder) // 1 0.26
 }

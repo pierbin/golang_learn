@@ -18,12 +18,12 @@ func severalInts(numbers ...int) {
 	fmt.Println(numbers)
 }
 
-//Here uses "...", so it can get a maximum number in unlimited numbers.
+// Here uses "...", so it can get a maximum number in unlimited numbers.
 func maximum(numbers ...float64) float64 {
 	//start with a very low value
 	max := math.Inf(-1)
 
-	//for ... range, is similar with PHP foreach.
+	// for ... range, is similar with PHP foreach.
 	for _, number := range numbers {
 		if number > max {
 			max = number
@@ -49,19 +49,19 @@ func mix(num int, flag bool, strings ...string) {
 }
 
 func main() {
-	severalInts()        //[]
-	severalInts(1)       //[1]
-	severalInts(1, 2, 3) //[1 2 3]
+	severalInts()        // []
+	severalInts(1)       // [1]
+	severalInts(1, 2, 3) // [1 2 3]
 
 	/*
 		When calling a variadic function, you can use a slice in place of the variadic arguments by typing
 		an ellipsis after the slice. If not, it will have an error.
 	*/
-	intSlice := []int{1, 2, 3}
+	intSlice := []int{1, 2, 3} // it is the same as php define an int array
 	severalInts(intSlice...)
-	stringSlice := []string{"a", "b", "c", "d"}
+	stringSlice := []string{"a", "b", "c", "d"} // it is the same as php define a string array.
 	mix(1, true, stringSlice...)
 
 	fmt.Println(maximum(82, 91, 65, 72))
-	fmt.Println(inRange(1, 100, -12.5, 3.2, 0, 50, 103.5)) //[3.2 50]
+	fmt.Println(inRange(1, 100, -12.5, 3.2, 0, 50, 103.5)) // [3.2 50]
 }
