@@ -2,29 +2,35 @@ package main
 
 import "fmt"
 
-//In Go, concurrent tasks are called goroutines. Other programming languages have a similar concept called threads.
-//goroutines require less memory than threads, less time to start up and stop, so it will run more goroutines at once.
+// In Go, concurrent tasks are called goroutines. Other programming languages have a similar concept called threads.
+// goroutines require less memory than threads, less time to start up and stop, so it will run more goroutines at once.
 
-//Goroutines allow for concurrency: pausing one task to work on others. And in some situations they allow parallelism.
+// Goroutines allow for concurrency: pausing one task to work on others. And in some situations they allow parallelism.
 
-//Go statements can’t be used with return values, because there’s no guarantee the return value will be ready
-//before we attempt to use it.
+// Channel two features are below.
+// 1.Channels can be sent as parameters to different goroutines
+// 2.Channels work as both a publisher and subscriber model.
+// There is a one-to-one relationship between the sender and the receiver of the data.
+// If there’s no receiver, a message is stuck with the sender.
 
-//The only practical way to use a channel is to communicate from one goroutine to another goroutine.
-//Not only does channel allow you to send values from one goroutine to another, they ensure the sending goroutine
-//has sent the value before the receiving goroutine attempts to use it.
+// Go statements can’t be used with return values, because there’s no guarantee the return value will be ready
+// before we attempt to use it.
 
-//Channels do this by blocking—by pausing all further operations in the current goroutine.
-//A send operation blocks the sending goroutine until a goroutine executes a received operation on the same channel.
+// The only practical way to use a channel is to communicate from one goroutine to another goroutine.
+// Not only does channel allow you to send values from one goroutine to another, they ensure the sending goroutine
+// has sent the value before the receiving goroutine attempts to use it.
 
-//To send a value on a channel, use the <- operator.  "myChannel <- 3.14", send 3.14 to myChannel.
-//use the <- operator to receive values from a channel.  "<- myChannel", receive values from myChannel.
+// Channels do this by blocking—by pausing all further operations in the current goroutine.
+// A send operation blocks the sending goroutine until a goroutine executes a received operation on the same channel.
 
-//Go programs end when the main goroutine stops, even if other goroutines have not completed their work yet.
+// To send a value on a channel, use the <- operator.  "myChannel <- 3.14", send 3.14 to myChannel.
+// use the <- operator to receive values from a channel.  "<- myChannel", receive values from myChannel.
 
-//A channel can be closed so that no more data can be sent through it.
+// Go programs end when the main goroutine stops, even if other goroutines have not completed their work yet.
 
-//The greeting will include third, fifth and seventh outputs.
+// A channel can be closed so that no more data can be sent through it.
+
+// The greeting will include third, fifth and seventh outputs.
 func greeting(exampleChannel chan string, content string) { //Take a channel as a parameter
 	exampleChannel <- content //Send a value to the channel
 
@@ -32,25 +38,29 @@ func greeting(exampleChannel chan string, content string) { //Take a channel as 
 }
 
 func firstWayCreateChannel() chan string {
-	firstWayChannel := make(chan string) //Create a new channel and declare a variable at once.
+	firstWayChannel := make(chan string) // Create a new channel and declare a variable at once.
 
 	return firstWayChannel
 }
 
 func secondWayCreateChannel() chan string {
-	var secondWayChannel chan string     //Declare a variable to hold a channel
-	secondWayChannel = make(chan string) //Actually create the channel
+	var secondWayChannel chan string // Declare a variable to hold a channel
+
+	// created an object of type channel that can be used to transfer string data within the goroutines.
+	secondWayChannel = make(chan string)
 
 	return secondWayChannel
 }
 
-//Check the output sort, you will know during the channel read and write, how the channel block works.
+// Check the output sort, you will know during the channel read and write, how the channel block works.
 func main() {
 	firstWayChannel := firstWayCreateChannel()
-	secondWayChannel := secondWayCreateChannel()
 
-	//This output is the fifth.
-	go greeting(firstWayChannel, "firstWayChannel") //Pass the channel to function running in a new goroutine
+	// This output is the fifth. Pass the channel to function running in a new goroutine
+	go greeting(firstWayChannel, "firstWayChannel")
+
+	// Telling the main function to keep waiting until the channel receives the data.
+	fmt.Println(firstWayChannel, "first print")
 
 	/**
 	When write or read data from a channel, that goroutine is blocked and control is passed to available goroutines.
@@ -62,23 +72,27 @@ func main() {
 	and false if the channel is closed and no more read operations can be performed.
 	A channel can be closed using close built-in function with syntax close(channel).
 	*/
-	fmt.Println(firstWayChannel, "first print")
-	receiveFirstValue, ok := <-firstWayChannel //Store the received value in a receiveFirstValue, and store the status in ok.
-	fmt.Println(receiveFirstValue, ok)         //second print
+
+	secondWayChannel := secondWayCreateChannel()
+
+	// Store the received value in a receiveFirstValue, and store the status in ok.
+	receiveFirstValue, ok := <-firstWayChannel
+
+	fmt.Println(receiveFirstValue, ok) // second print
 
 	go greeting(secondWayChannel, "secondWayChannel")
 	receiveSecValue, ok := <-secondWayChannel
-	fmt.Println(receiveSecValue, ok, "fourth print") //Receive a value from the channel
+	fmt.Println(receiveSecValue, ok, "fourth print") // Receive a value from the channel
 
-	//Channels by default are pointers. It is the sixth output.
+	// Channels by default are pointers. It is the sixth output.
 	thirdChannel := make(chan string)
-	fmt.Printf("type of channel is %T, value of it is %v\n", thirdChannel, thirdChannel)
+	fmt.Printf("type of third channel is %T, value of it is %v\n", thirdChannel, thirdChannel)
 
 	go greeting(thirdChannel, "test close channel")
 	fmt.Println(<-thirdChannel) //It is the eighth output
 
-	//close the channel. If not close, only after write into/read from the channel, the channel will asleep.
-	//Closing the channel does not block the current goroutine unlike reading or writing a value to the channel.
+	// Close the channel. If not close, only after write into/read from the channel, the channel will asleep.
+	// Closing the channel does not block the current goroutine unlike reading or writing a value to the channel.
 	close(thirdChannel)
 
 	/**
@@ -93,5 +107,5 @@ func main() {
 	exit status 2
 	*/
 	thirdChannel <- "close"
-	//fmt.Println(thirdChannel)
+	// fmt.Println(thirdChannel)
 }
