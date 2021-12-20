@@ -7,6 +7,7 @@ import (
 
 //There may be multiple channels that a function is waiting on. For this, we can use a select statement.
 //speed1 sleep longer than speed2, that's why speed2 is the first arrive.
+
 /**
 The first to arrive is:
 speed 2
