@@ -7,20 +7,31 @@ import (
 
 func main() {
 	x := arrayDefine()
-	fmt.Println(x)
-	floatArrayCalculate()
-	forRangeArrayLoop() //Highly recommend using this way
-	timeValueArray()
-	printArrayDifferentEffects()
-	flexibleArrayDefine()   //about array define which using "..."
-	arrayCompare()          //An example of array compare, the value, type, and element order must all the same.
-	multiDimensionalArray() //When array elements of an array are arrays, then it’s called a multi-dimensional array.
+	fmt.Println("define an int array and return it", x) // [0 0 0 0 100]
+
+	floatArrayCalculate() // The first way is used to calculate a float array, not highly recommend.
+	totalFloat64 := forRangeArrayLoop()
+	fmt.Println("Highly recommend this way to calculate a float array", totalFloat64)
+
+	date1, dateArr := timeValueArray()
+	fmt.Println("define an time.Time array and return it", date1, dateArr[0])
+
+	notes, primes := returnMultipleArrayTypes()
+	fmt.Println(notes)          //[do re mi]
+	fmt.Printf("%#v\n", notes)  //[3]string{"do", "re", "mi"}
+	fmt.Println(primes)         //[2 3 5 7 11]
+	fmt.Printf("%#v\n", primes) //[5]int{2, 3, 5, 7, 11}
+
+	arrayCompare() //An example of array compare, the value, type, and element order must all the same.
+
+	a, b := multiDimensionalArray() //When array elements of an array are arrays, then it’s called a multi-dimensional array.
+	fmt.Println(a, b, b[0])         //Please observe the different array length when they are defined.
 }
 
 func arrayDefine() [5]int {
 	var x [5]int
 	x[4] = 100
-	//fmt.Println(x)
+
 	return x
 }
 
@@ -38,7 +49,7 @@ func arrayDefine() [5]int {
 
 	Using for...range, it will make loop an array safely.
 */
-func forRangeArrayLoop() {
+func forRangeArrayLoop() float64 {
 	/*
 		It is always an array type at the beginning.
 		And then with the number of elements it will hold in square brackets, followed by the type of its elements.
@@ -52,7 +63,7 @@ func forRangeArrayLoop() {
 		total += value
 	}
 
-	fmt.Println(total / float64(len(x)))
+	return total / float64(len(x))
 }
 
 func floatArrayCalculate() {
@@ -69,36 +80,22 @@ func floatArrayCalculate() {
 	fmt.Println(total / 5)
 }
 
-func timeValueArray() {
+func timeValueArray() (time.Time, [3]time.Time) {
 	var dates [3]time.Time //Create an array of three Time values. In go, Time is a type of value.
 
 	dates[0] = time.Unix(1257894000, 0) //Assign a value to an element.
 	dates[1] = time.Unix(1447920000, 0)
 	dates[2] = time.Unix(1508632200, 0)
-	fmt.Println(dates[1])
+
+	return dates[1], dates
 }
 
 //Using "%#v" in Printf(), it will formats values as they'd appear in Go code.
-func printArrayDifferentEffects() {
+func returnMultipleArrayTypes() ([3]string, [5]int) {
 	var notes = [3]string{"do", "re", "mi"}
 	primes := [5]int{2, 3, 5, 7, 11}
 
-	fmt.Println(notes)          //[do re mi]
-	fmt.Printf("%#v\n", notes)  //[3]string{"do", "re", "mi"}
-	fmt.Println(primes)         //[2 3 5 7 11]
-	fmt.Printf("%#v\n", primes) //[5]int{2, 3, 5, 7, 11}
-}
-
-//When define an array using "...", the array's length is flexible.
-func flexibleArrayDefine() {
-	greetings := [...]string{
-		"Good morning",
-		"Good afternoon",
-		"Good evening",
-		"Good night",
-	}
-
-	fmt.Println(greetings, len(greetings))
+	return notes, primes
 }
 
 //For an array to be the equal or the same as the second array, both array should be of the same type, must have
@@ -114,9 +111,12 @@ func arrayCompare() {
 	fmt.Println("a == d ", a == d)
 }
 
-//[[1 2] [3 4] [0 0]]
-//The array inside should have the same length
-func multiDimensionalArray() {
+// [[1 2] [3 4] [0 0]]
+// When define an array using "...", the array's length is flexible.
+// The array inside should have the same length
+// You define a dynamic array, but when you return an array it must be a stable length.
+// Otherwise, you can use interface to define a type by yourself.
+func multiDimensionalArray() ([3][2]int, [3][2]int) {
 	a := [3][2]int{
 		[2]int{1, 2},
 		[2]int{3, 4},
@@ -128,5 +128,5 @@ func multiDimensionalArray() {
 		[...]int{5, 6},
 	}
 
-	fmt.Println(a, b, b[0])
+	return a, b
 }
