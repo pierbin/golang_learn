@@ -1,9 +1,10 @@
 # golang_learn
 It is a personal learn golang lab.
 
-Golang has 4 differences with other Object-Oriented languages.
+Golang has 5 differences with other Object-Oriented languages.
+1. The first things is you should take care of types in Go.
 
-1. The biggest difference is that GO does not provide Classes, it has Structs. They are basically stripped down classes, 
+2. The biggest difference is that GO does not provide Classes, it has Structs. They are basically stripped down classes, 
 bundles of data with methods. 
 
 Struct can have many attributes, and you can attach methods that any instances of that struct can call. 
@@ -15,7 +16,7 @@ They do not have inherent constructors as classes do and that interfaces are imp
 which mean that you do not have to specify that a class implements an interface, if it implements the methods
 of the interface, it implies it implements the interface as well.
 
-2.Golang does not quite really supports Inheritance, you could use inheritance but what you would be using deep down is
+3. Golang does not quite really supports Inheritance, you could use inheritance but what you would be using deep down is
 Composition, which is the recommended way. 
 
 Composition is basically using a class that uses some other classes, 
@@ -25,13 +26,13 @@ in which you pass the dependencies or components to a class instead of letting t
 This can make the code much cleaner since you can track the dependencies to a common source instead of having them all
 over the place. It also helps you to build unit tests since you it’s easier to mock the dependencies.
 
-3. GO is missing many of the main data structures common in other languages like built-in trees and sets.
+4. GO is missing many of the main data structures common in other languages like built-in trees and sets.
 
 First, you’ve got arrays and slices who behave in a very similar way with the main difference being that arrays are
 immutable. Second, you have structs. Finally, there’s the map, the map is pretty much like any other map or dictionary 
 in any other language, you have a key-value data structure.
 
-4. Error handling is also really different in GO.
+5. Error handling is also really different in GO.
 
 First, because GO lacks one key component in most programming languages: the try-catch statement. 
 So GO does not let you wrap your entire code into a single try-catch to screw up as much as you’d like.

@@ -1,20 +1,25 @@
 package mysqlGoSuite
 
 import (
-	"learnGo/projects/mysqlGoSuite/config"
-	"learnGo/projects/mysqlGoSuite/controllers"
-	"learnGo/projects/mysqlGoSuite/migrations"
 	"net/http"
 	"os"
 
+	"learnGo/projects/mysqlGoSuite/config"
+	"learnGo/projects/mysqlGoSuite/controllers"
+	"learnGo/projects/mysqlGoSuite/migrations"
+
+	"github.com/Valgard/godotenv"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 )
 
 var defaultPort = "8080"
+var path = "./projects/mysqlGoSuite/.env"
 
 func init() {
-	godotenv.Load()
+	dotenv := godotenv.New()
+	if err := dotenv.Load(path); err != nil {
+		panic(err)
+	}
 }
 
 func main() {

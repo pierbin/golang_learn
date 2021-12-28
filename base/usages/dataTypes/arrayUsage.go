@@ -17,15 +17,15 @@ func main() {
 	fmt.Println("define an time.Time array and return it", date1, dateArr[0])
 
 	notes, primes := returnMultipleArrayTypes()
-	fmt.Println(notes)          //[do re mi]
-	fmt.Printf("%#v\n", notes)  //[3]string{"do", "re", "mi"}
-	fmt.Println(primes)         //[2 3 5 7 11]
-	fmt.Printf("%#v\n", primes) //[5]int{2, 3, 5, 7, 11}
+	fmt.Println(notes)          // [do re mi]
+	fmt.Printf("%#v\n", notes)  // [3]string{"do", "re", "mi"}
+	fmt.Println(primes)         // [2 3 5 7 11]
+	fmt.Printf("%#v\n", primes) // [5]int{2, 3, 5, 7, 11}
 
-	arrayCompare() //An example of array compare, the value, type, and element order must all the same.
+	arrayCompare() // An example of array compare, the value, type, and element order must all the same.
 
-	a, b := multiDimensionalArray() //When array elements of an array are arrays, then it’s called a multi-dimensional array.
-	fmt.Println(a, b, b[0])         //Please observe the different array length when they are defined.
+	a, b := multiDimensionalArray() // When array elements of an array are arrays, then it’s called a multi-dimensional array.
+	fmt.Println(a, b, b[0])         // Please observe the different array length when they are defined.
 }
 
 func arrayDefine() [5]int {
@@ -58,7 +58,7 @@ func forRangeArrayLoop() float64 {
 	x := [5]float64{98, 93, 77, 82, 83} //This way defines an array called Array literals
 	var total float64
 
-	//_ it will hold the array index, if you want to use index, then using index to replace the _.
+	// _ it will hold the array index, if you want to use index, then using index to replace the _.
 	for _, value := range x {
 		total += value
 	}
@@ -90,7 +90,7 @@ func timeValueArray() (time.Time, [3]time.Time) {
 	return dates[1], dates
 }
 
-//Using "%#v" in Printf(), it will formats values as they'd appear in Go code.
+// Using "%#v" in Printf(), it will formats values as they'd appear in Go code.
 func returnMultipleArrayTypes() ([3]string, [5]int) {
 	var notes = [3]string{"do", "re", "mi"}
 	primes := [5]int{2, 3, 5, 7, 11}
@@ -98,8 +98,8 @@ func returnMultipleArrayTypes() ([3]string, [5]int) {
 	return notes, primes
 }
 
-//For an array to be the equal or the same as the second array, both array should be of the same type, must have
-//the same elements in them and all elements must be in the same order.
+// For an array to be the equal or the same as the second array, both array should be of the same type, must have
+// the same elements in them and all elements must be in the same order.
 func arrayCompare() {
 	a := [3]int{1, 2, 3}
 	b := [3]int{1, 3, 2}

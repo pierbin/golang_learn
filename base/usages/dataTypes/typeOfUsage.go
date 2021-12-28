@@ -5,6 +5,7 @@ import (
 	"reflect"
 )
 
+// cannot use shorthand notation with constant define. "const a := 1" is always wrong.
 func main() {
 	var quantity = 32
 	var length, width = 1.2, 2.4

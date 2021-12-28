@@ -21,6 +21,12 @@ To satisfy an interface, a type must have all the methods the interface specifie
 If you’ve assigned a value of a concrete type to a variable with an interface type, you can use a type assertion
 to get the concrete type value back. Only then can you call methods that are defined on the concrete type
 (but not the interface).
+
+When you might use interface.
+1. If there are certain methods you want to access without rewriting a lot of code, then you might need an interface.
+2. If you need to mock up databases or external APIs in unit tests, then you might need an interface.
+3. If you need to quickly plug different packages in and out of the code (like a logger) without a complete logic
+	rewrite, then you might need an interface.
 */
 
 type Whistle string
