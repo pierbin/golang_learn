@@ -4,6 +4,8 @@ import "fmt"
 
 // In Go, concurrent tasks are called goroutines. Other programming languages have a similar concept called threads.
 // goroutines require less memory than threads, less time to start up and stop, so it will run more goroutines at once.
+// A goroutine is a function that is capable of running concurrently with other functions.
+// To create a goroutine we use the keyword go followed by a function invocation
 
 // Goroutines allow for concurrency: pausing one task to work on others. And in some situations they allow parallelism.
 
