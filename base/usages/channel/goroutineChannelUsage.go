@@ -33,8 +33,8 @@ import "fmt"
 // A channel can be closed so that no more data can be sent through it.
 
 // The greeting will include third, fifth and seventh outputs.
-func greeting(exampleChannel chan string, content string) { //Take a channel as a parameter
-	exampleChannel <- content //Send a value to the channel
+func greeting(exampleChannel chan string, content string) { // Take a channel as a parameter
+	exampleChannel <- content // Send a value to the channel
 
 	fmt.Println(exampleChannel, content)
 }
@@ -91,7 +91,7 @@ func main() {
 	fmt.Printf("type of third channel is %T, value of it is %v\n", thirdChannel, thirdChannel)
 
 	go greeting(thirdChannel, "test close channel")
-	fmt.Println(<-thirdChannel) //It is the eighth output
+	fmt.Println(<-thirdChannel) // It is the eighth output
 
 	// Close the channel. If not close, only after write into/read from the channel, the channel will asleep.
 	// Closing the channel does not block the current goroutine unlike reading or writing a value to the channel.

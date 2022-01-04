@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	//Use the make keyword to create a new object. Specify what type of data is returned from the channel using string.
+	// Use the make keyword to create a new object. Specify what type of data is returned from the channel using string.
 	dataChannel := make(chan string)
 
-	//Telling the main function to keep waiting until the channel receives the data.
+	// Telling the main function to keep waiting until the channel receives the data.
 	fmt.Println(<-dataChannel)
 
 	/**

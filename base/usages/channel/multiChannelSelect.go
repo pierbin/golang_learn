@@ -5,8 +5,8 @@ import (
 	"time"
 )
 
-//There may be multiple channels that a function is waiting on. For this, we can use a select statement.
-//speed1 sleep longer than speed2, that's why speed2 is the first arrive.
+// There may be multiple channels that a function is waiting on. For this, we can use a select statement.
+// speed1 sleep longer than speed2, that's why speed2 is the first arrive.
 
 /**
 The first to arrive is:
@@ -27,7 +27,7 @@ func main() {
 }
 
 func speed1(ch chan string) {
-	time.Sleep(2 * time.Second) //speed1 sleep longer than speed2, that's why speed2 is the first arrive.
+	time.Sleep(2 * time.Second) // speed1 sleep longer than speed2, that's why speed2 is the first arrive.
 	ch <- "speed 1"
 }
 

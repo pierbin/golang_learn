@@ -39,7 +39,7 @@ func main() {
 	channel1 := make(chan string)
 	channel2 := make(chan string)
 	go abc(channel1)
-	fmt.Println("---channel block line---") //It will run fmt.Print("channel block line") before go channel run.
+	fmt.Println("---channel block line---") // It will run fmt.Print("channel block line") before go channel run.
 	go def(channel2)
 
 	fmt.Print(<-channel1)
@@ -48,5 +48,5 @@ func main() {
 	fmt.Print(<-channel2)
 	fmt.Print(<-channel1)
 	fmt.Print(<-channel2)
-	fmt.Println() //If not has the last fmt.Println(), the result will be "adbecf%". After has it, result is "adbecf"
+	fmt.Println() // If not has the last fmt.Println(), the result will be "adbecf%". After has it, result is "adbecf"
 }
