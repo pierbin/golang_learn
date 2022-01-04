@@ -17,6 +17,7 @@ require (
 	github.com/nsf/termbox-go v1.1.1
 	github.com/stretchr/testify v1.7.0
 	github.com/tristangoossens/snake-go v0.0.0-20200815121646-d2a2cfaf6353
+	github.com/williaminfante/go_test_starter v0.0.0-20210508003133-3eeaf075c343
 	google.golang.org/grpc v1.43.0
 	google.golang.org/protobuf v1.27.1
 	gorm.io/driver/mysql v1.2.1

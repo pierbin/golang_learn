@@ -2,12 +2,46 @@ package main
 
 import (
 	"bytes"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 // run "go test -v"
+/**
+go test -v -run <Test Function Name>
+
+go test -v -run TestCheckHealth
+=== RUN   TestCheckHealth
+=== RUN   TestCheckHealth/Check_health_status
+--- PASS: TestCheckHealth (0.00s)
+    --- PASS: TestCheckHealth/Check_health_status (0.00s)
+PASS
+ok      learnGo/projects/goRestfulTests 0.011s
+
+go test -v -run TestGetEntryByID
+=== RUN   TestGetEntryByID
+--- PASS: TestGetEntryByID (0.00s)
+=== RUN   TestGetEntryByIDNotFound
+--- PASS: TestGetEntryByIDNotFound (0.00s)
+PASS
+ok      learnGo/projects/goRestfulTests 0.014s
+*/
+func TestCheckHealth(t *testing.T) {
+	t.Run("Check health status", func(t *testing.T) {
+		req := httptest.NewRequest("GET", "http://mysite.com/example", nil)
+		writer := httptest.NewRecorder()
+		CheckHealth(writer, req)
+		response := writer.Result()
+		body, _ := io.ReadAll(response.Body)
+
+		assert.Equal(t, "health check passed", string(body))
+	})
+}
+
 func TestGetEntries(t *testing.T) {
 	req, err := http.NewRequest("GET", "/entries", nil)
 	if err != nil {

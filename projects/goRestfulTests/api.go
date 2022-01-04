@@ -23,7 +23,8 @@ func main() {
 
 	var router *mux.Router
 	router = mux.NewRouter().StrictSlash(true)
-	apiRouter := router.PathPrefix("/api").Subrouter()                        // /api will give access to all the API endpoints
+	apiRouter := router.PathPrefix("/api").Subrouter() // /api will give access to all the API endpoints
+	apiRouter.PathPrefix("/health").HandlerFunc(CheckHealth).Methods("GET")
 	apiRouter.PathPrefix("/entries").HandlerFunc(GetEntries).Methods("GET")   // /api/entries returns listing all the entries
 	apiRouter.PathPrefix("/entry").HandlerFunc(GetEntryByID).Methods("GET")   // GET /api/entry?id=1 returns the entry with id 1.
 	apiRouter.PathPrefix("/entry").HandlerFunc(CreateEntry).Methods("POST")   // POST /api/entry creates an entry
@@ -34,6 +35,10 @@ func main() {
 	fmt.Println("Listening on port :12345")
 	http.ListenAndServe(":"+port, router)
 
+}
+
+func CheckHealth(writer http.ResponseWriter, req *http.Request) {
+	fmt.Fprintf(writer, "health check passed")
 }
 
 // GetEntries : Get All Entries
