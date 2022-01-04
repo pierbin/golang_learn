@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -36,7 +37,12 @@ func responseSize(url string, channel chan Page) {
 		log.Fatal(err)
 	}
 
-	defer response.Body.Close()                // Release the network connection once the main func exits.
+	defer func(Body io.ReadCloser) {
+		err1 := Body.Close()
+		if err1 != nil {
+			fmt.Println(err1)
+		}
+	}(response.Body) // Release the network connection once the main func exits.
 	body, err := ioutil.ReadAll(response.Body) // Read all the data in the response.
 	if err != nil {
 		log.Fatal(err)
