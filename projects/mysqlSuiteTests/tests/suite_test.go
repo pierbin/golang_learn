@@ -1,8 +1,8 @@
 package tests
 
 import (
-	"learnGo/projects/mysqlGoSuite/config"
-	"learnGo/projects/mysqlGoSuite/entity"
+	"learnGo/projects/mysqlSuiteTests/config"
+	"learnGo/projects/mysqlSuiteTests/entity"
 	"os"
 	"testing"
 
@@ -19,8 +19,8 @@ func TestSuite(t *testing.T) {
 	os.Setenv("DB_HOST", "127.0.0.1")
 	os.Setenv("DB_PORT", "3306")
 	os.Setenv("DB_USER", "root")
-	os.Setenv("DB_PASS", "")
-	os.Setenv("DB_DATABASE", "go_mysql_suite_test")
+	os.Setenv("DB_PASSWORD", "123456")
+	os.Setenv("DB_DATABASE", "mysqlGoSuite")
 	defer os.Unsetenv("DB_HOST")
 	defer os.Unsetenv("DB_PORT")
 	defer os.Unsetenv("DB_USER")

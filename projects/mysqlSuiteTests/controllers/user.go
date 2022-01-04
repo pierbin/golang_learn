@@ -4,8 +4,8 @@ import (
 	"errors"
 	"net/http"
 
-	"learnGo/projects/mysqlGoSuite/entity"
-	"learnGo/projects/mysqlGoSuite/service"
+	"learnGo/projects/mysqlSuiteTests/entity"
+	"learnGo/projects/mysqlSuiteTests/service"
 
 	"github.com/gin-gonic/gin"
 )

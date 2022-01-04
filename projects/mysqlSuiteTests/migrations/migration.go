@@ -1,8 +1,8 @@
 package migrations
 
 import (
-	"learnGo/projects/mysqlGoSuite/config"
-	"learnGo/projects/mysqlGoSuite/entity"
+	"learnGo/projects/mysqlSuiteTests/config"
+	"learnGo/projects/mysqlSuiteTests/entity"
 )
 
 func getModels() []interface{} {

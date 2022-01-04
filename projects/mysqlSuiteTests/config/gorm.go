@@ -20,7 +20,7 @@ func GetDB() *gorm.DB {
 	return db
 }
 
-//ConnectGorm Database Connection to Gorm V2
+// ConnectGorm Database Connection to Gorm V2
 func ConnectGorm() {
 	databaseConfig := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?multiStatements=true&parseTime=true",
 		os.Getenv("DB_USER"),
@@ -29,7 +29,7 @@ func ConnectGorm() {
 		os.Getenv("DB_PORT"),
 		os.Getenv("DB_DATABASE"),
 	)
-
+	fmt.Println(databaseConfig)
 	var err error
 	db, err = gorm.Open(mysql.Open(databaseConfig), initConfig())
 
@@ -43,7 +43,7 @@ func ConnectGorm() {
 	sqlDB.SetMaxOpenConns(20)
 }
 
-//initConfig Initialize Config
+// initConfig Initialize Config
 func initConfig() *gorm.Config {
 	return &gorm.Config{
 		Logger:         initLog(),
@@ -51,7 +51,7 @@ func initConfig() *gorm.Config {
 	}
 }
 
-//initLog Connection Log Configuration
+// initLog Connection Log Configuration
 func initLog() logger.Interface {
 	newLogger := logger.New(log.New(os.Stdout, "\r\n", log.LstdFlags), logger.Config{
 		Colorful:      true,
@@ -61,7 +61,7 @@ func initLog() logger.Interface {
 	return newLogger
 }
 
-//initNamingStrategy Init NamingStrategy
+// initNamingStrategy Init NamingStrategy
 func initNamingStrategy() *schema.NamingStrategy {
 	return &schema.NamingStrategy{
 		SingularTable: false,
