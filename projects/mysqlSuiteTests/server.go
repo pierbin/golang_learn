@@ -27,6 +27,9 @@ func init() {
 /**
 	In mysqlSuiteTests folder, run.
 
+	% go test ./tests
+	ok      learnGo/projects/mysqlSuiteTests/tests  0.122s
+
 	% go test -v ./tests
 	...
 	--- PASS: TestSuite (0.11s)
