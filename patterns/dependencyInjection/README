@@ -1,0 +1,25 @@
+Dependency Injection means to inject your dependencies. A dependency can be anything that effects the behavior
+or outcome of your logic. Some common examples are:
+
+1. Other services. Making your code more modular, less duplicate code and more testable.
+
+2. Configuration. Such as a database passwords, API URL endpoints, etc.
+
+3. System or environment state.
+Such as the clock or file system. This comes in extremely important when writing tests that depend on time or random data.
+
+4. Stubs of external APIs.
+So that API requests can be mocked within the system during tests to keep things stable and quick.
+
+
+Some terminology:
+1. A service is an instance of a class.
+It’s called a service because its often referred to by name rather than type.
+For example Emailer is the name of a service, but it is an instance of a SendEmail.
+We can change the underlying implementation of a service.
+As long as it has the same interface we need not rename the service.
+
+2. A container is a collection of services.
+Services are lazy-loaded and only initialized when they are requested from the container.
+
+3. A singleton is an instance that is initialised once, but can be reused many times.
