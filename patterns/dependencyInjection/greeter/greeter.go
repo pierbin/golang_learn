@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-//In Wire, initializers are known as "providers," functions which provide a particular type.
+// In Wire, initializers are known as "providers," functions which provide a particular type.
 
 type Message string
 
@@ -51,18 +51,18 @@ func (e Event) Start() {
 	fmt.Println(msg)
 }
 
-//In Wire, initializers are known as "providers," functions which provide a particular type.
-//We add a zero value for Event as a return value to satisfy the compiler.
-//Note that even if we add values to Event, Wire will ignore them.
+// In Wire, initializers are known as "providers," functions which provide a particular type.
+// We add a zero value for Event as a return value to satisfy the compiler.
+// Note that even if we add values to Event, Wire will ignore them.
 
-//First create a message,
-//then we create a greeter with that message,
-//and finally we create an event with that greeter.
-//With all the initialization done, we're ready to start our event.
+// First create a message,
+// then we create a greeter with that message,
+// and finally we create an event with that greeter.
+// With all the initialization done, we're ready to start our event.
 
 func ProvideEvent(phrase string) (Event, error) {
 	wire.Build(NewEvent, NewGreeter, NewMessage)
-	return Event{}, nil //The injector's purpose is to provide information about which providers to use to construct an Event.
+	return Event{}, nil // The injector's purpose is to provide information about which providers to use to construct an Event.
 }
 
 var SuperSet = wire.NewSet(ProvideEvent)

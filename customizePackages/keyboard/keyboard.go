@@ -1,7 +1,7 @@
 package keyboard
 
 import (
-	"bufio" //When read the input from keyboard, will be used.
+	"bufio" // When read the input from keyboard, will be used.
 	"fmt"
 	"log"
 	"os"
@@ -29,20 +29,20 @@ func GetFloat() (float64, error) {
 		'\n' means everything up until the newline rune will be read.
 		It should not be named error, because it is the go keyword. That's why named err.
 	*/
-	input, err := reader.ReadString('\n') //err can be replaced by '_', then the error will be ignored.
+	input, err := reader.ReadString('\n') // err can be replaced by '_', then the error will be ignored.
 	if err != nil {
-		//Report the error and stop the program
+		// Report the error and stop the program
 		// log.Fatal(err)
 		return 0, err
 	}
 
 	fmt.Println(reflect.TypeOf(input), input)
 
-	//TrimSpace is used to remove all whitespace characters (newlines, tabs, and regular spaces) from the start and end of a string. from the input string
+	// TrimSpace is used to remove all whitespace characters (newlines, tabs, and regular spaces) from the start and end of a string. from the input string
 	input = strings.TrimSpace(input)
 
-	//Convert the string to a float64 value
-	//ParseFloat is used to convert the string to a number, and returns it as a float64 value.
+	// Convert the string to a float64 value
+	// ParseFloat is used to convert the string to a number, and returns it as a float64 value.
 
 	/*
 		When the same variable name is declared twice in the same scope, we will get a compile error.

@@ -2,9 +2,9 @@ package main
 
 import "fmt"
 
-//Here define a type named Books. When use books in this file, it can use Books type directly.
-//Each defined type uses a struct as its underlying type. Define a type, it is defined at the top is better.
-//In struct, it does not have any restrict with data type. In array and slice, both of them have only one type data.
+// Here define a type named Books. When use books in this file, it can use Books type directly.
+// Each defined type uses a struct as its underlying type. Define a type, it is defined at the top is better.
+// In struct, it does not have any restrict with data type. In array and slice, both of them have only one type data.
 type Books struct {
 	title   string
 	author  string
@@ -13,7 +13,7 @@ type Books struct {
 }
 
 func main() {
-	//Here Books is the type of Book1
+	// Here Books is the type of Book1
 	var Book1 Books
 	var Book2 Books
 

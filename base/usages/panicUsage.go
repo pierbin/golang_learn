@@ -1,9 +1,9 @@
 package main
 
-//The panic function expects a single argument that satisfies the empty interface.
-//That argument is converted to a string (if necessary) and printed as part of the panic’s log message.
+// The panic function expects a single argument that satisfies the empty interface.
+// That argument is converted to a string (if necessary) and printed as part of the panic’s log message.
 
-//When a program panics, a stack trace, or listing of the call stack, is included in the panic output.
+// When a program panics, a stack trace, or listing of the call stack, is included in the panic output.
 func main() {
 	one()
 }

@@ -59,7 +59,7 @@ func ExampleClient(ctx context.Context, rdb *redis.Client) {
 	// key2 does not exist
 }
 
-//In go redis, it has lots of similar commands as NewStringCmd can be used to create new commands.
+// In go redis, it has lots of similar commands as NewStringCmd can be used to create new commands.
 
 func CustomCmd(ctx context.Context, rdb *redis.Client, key string) *redis.StringCmd {
 	cmd := redis.NewStringCmd(ctx, "get", key)
@@ -72,11 +72,11 @@ func CustomCmd(ctx context.Context, rdb *redis.Client, key string) *redis.String
 }
 
 func main() {
-	//NewClient returns a client to the Redis Server specified by Options.
+	// NewClient returns a client to the Redis Server specified by Options.
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",    // use default Addr
-		Password: "", // no password set
-		DB:       0,  // use default DB
+		Addr:     "localhost:6379", // use default Addr
+		Password: "",               // no password set
+		DB:       0,                // use default DB
 	})
 
 	ExampleClient(ctx, rdb)

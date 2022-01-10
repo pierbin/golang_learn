@@ -11,7 +11,7 @@ func sayBye() {
 }
 
 // This twiceFunc accepts another function as a parameter.
-func twiceFunc(theFunction func()) { //It uses "func()" as a type declare for "theFunction".
+func twiceFunc(theFunction func()) { // It uses "func()" as a type declare for "theFunction".
 	theFunction() // Call the passed-in function.
 	theFunction() // Call the passed-in function again.
 }

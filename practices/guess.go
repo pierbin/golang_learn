@@ -29,8 +29,8 @@ func main() {
 		But if we keep giving it the same seed value, it will keep giving us the same random values,
 	*/
 
-	//Seed the random number generator.
-	rand.Seed(seconds) //If not seed the random number, we always get the same value.
+	// Seed the random number generator.
+	rand.Seed(seconds) // If not seed the random number, we always get the same value.
 
 	/*
 		Generate a random num from 0 to 100.
@@ -40,7 +40,7 @@ func main() {
 	randomNum, times := rand.Intn(100)+1, 10
 	fmt.Println("Computer has generated a random number between 1 and 100. Can you guess it?")
 
-	//Create a bufio.Reader which lets us read keyboard input
+	// Create a bufio.Reader which lets us read keyboard input
 	reader := bufio.NewReader(os.Stdin)
 
 	for times > 0 {
@@ -53,13 +53,13 @@ func main() {
 
 		input = strings.TrimSpace(input)
 
-		//Convert the input string to an integer.
+		// Convert the input string to an integer.
 		guess, err := strconv.Atoi(input)
 		if err != nil {
 			log.Fatal(err)
 		}
 		// fmt.Println(guess, reflect.TypeOf(guess), randomNum, guess > randomNum)
-		times-- //'--', they can only be put in at the back of the variable, if put them in front, it will have errors.
+		times-- // '--', they can only be put in at the back of the variable, if put them in front, it will have errors.
 		if guess > randomNum {
 			fmt.Println("Your guess number was gather than the target, you have", times, "left.")
 			continue

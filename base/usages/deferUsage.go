@@ -19,9 +19,9 @@ func Socialize() error {
 	defer fmt.Println("Test defer")
 
 	fmt.Println("Hello")
-	return fmt.Errorf("Test return error after defer, what will happen.") //return an error
+	return fmt.Errorf("Test return error after defer, what will happen.") // return an error
 
-	//The below codes won't run.
+	// The below codes won't run.
 	fmt.Println("The middle not the last output, after the defer.")
 	return nil
 }

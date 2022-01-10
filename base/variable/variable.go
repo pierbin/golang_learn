@@ -1,4 +1,3 @@
-
 package main
 
 import "fmt"
@@ -39,6 +38,6 @@ func main() {
 	HTTP := "https://google.com"
 	fmt.Println(HTTP)
 
-	var r rune = 'a' //rune is a special data type in go, it almost the same with int32
+	var r rune = 'a' // rune is a special data type in go, it almost the same with int32
 	fmt.Printf("%v, %T\n", r, r)
 }

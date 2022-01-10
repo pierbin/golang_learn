@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	//Prompt the user to enter a number
+	// Prompt the user to enter a number
 	fmt.Print("Enter a number: ")
 
 	var input float64

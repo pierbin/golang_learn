@@ -21,15 +21,15 @@ func main() {
 			%T  means Type of the supplied value.
 			%%  means A lateral percent sign. It will output '%'
 	*/
-	fmt.Printf("The %s cost %d cents each.\n", "gumballs", 23) //The gumballs cost 23 cents each.
+	fmt.Printf("The %s cost %d cents each.\n", "gumballs", 23) // The gumballs cost 23 cents each.
 
 	fmt.Printf("A float: %f\n", 3.141)
 	fmt.Printf("An integer: %d\n", 24)
 	fmt.Printf("A String: %s\n", "hello world")
 	fmt.Printf("A boolean: %t\n", true)
 	fmt.Printf("Values: %v %v %v %v\n", 1.5, "\t", "\n", false)
-	fmt.Printf("Values: %#v %#v %#v %#v\n", 1.8, "\t", "\n", true) //Values: 1.8 "\t" "\n" true
-	fmt.Printf("Types: %T %T %T\n", 2.3, "\t", true)               //Types: float64 string bool
+	fmt.Printf("Values: %#v %#v %#v %#v\n", 1.8, "\t", "\n", true) // Values: 1.8 "\t" "\n" true
+	fmt.Printf("Types: %T %T %T\n", 2.3, "\t", true)               // Types: float64 string bool
 	fmt.Printf("Percent sign: %%\n")
 
 	// Using %f in go to format the amount of paint needed.
@@ -62,10 +62,10 @@ func main() {
 		The f means formatting verb type
 	*/
 
-	fmt.Printf("%%7.3f: %7.3f\n", 12.3456) //12.346
-	fmt.Printf("%%7.3f: %7.3f\n", 12.3453) //12.345
-	fmt.Printf("%%7.3f: %7.2f\n", 12.3456) //12.35
-	fmt.Printf("%%7.3f: %7.1f\n", 12.3456) //12.3
-	fmt.Printf("%%.1f: %.1f\n", 12.3456)   //12.3, ".f means left all int part."
-	fmt.Printf("%%.2f: %.2f\n", 12.3456)   //12.35, ".f means left all int part."
+	fmt.Printf("%%7.3f: %7.3f\n", 12.3456) // 12.346
+	fmt.Printf("%%7.3f: %7.3f\n", 12.3453) // 12.345
+	fmt.Printf("%%7.3f: %7.2f\n", 12.3456) // 12.35
+	fmt.Printf("%%7.3f: %7.1f\n", 12.3456) // 12.3
+	fmt.Printf("%%.1f: %.1f\n", 12.3456)   // 12.3, ".f means left all int part."
+	fmt.Printf("%%.2f: %.2f\n", 12.3456)   // 12.35, ".f means left all int part."
 }

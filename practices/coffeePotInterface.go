@@ -29,5 +29,5 @@ func main() {
 	device.TurnOn()
 	device = CoffeePot("LuxBrew")
 	device.TurnOn()
-	//device.Brew() // It will has an error, because Brew() didn't define in the interface Appliance.
+	// device.Brew() // It will has an error, because Brew() didn't define in the interface Appliance.
 }

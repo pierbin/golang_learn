@@ -9,7 +9,7 @@ type OrderStatus int
 
 func main() {
 	const (
-		OrderStatus_Unknown OrderStatus = iota //0
+		OrderStatus_Unknown OrderStatus = iota // 0
 		OrderStatus_NotActive
 		OrderStatus_Untriggered
 		OrderStatus_Triggered

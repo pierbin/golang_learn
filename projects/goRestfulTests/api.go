@@ -269,7 +269,7 @@ func DeleteEntry(w http.ResponseWriter, r *http.Request) {
 
 // UploadEntriesThroughCSV - Reads CSV, Parses the CSV and creates all the entries in the database
 func UploadEntriesThroughCSV(w http.ResponseWriter, r *http.Request) {
-	//var buf bytes.Buffer
+	// var buf bytes.Buffer
 	file, _, err := r.FormFile("csvFile")
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, "Something went wrong while opening the CSV.")
@@ -331,7 +331,7 @@ func UploadEntriesThroughCSV(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, map[string]string{"success": "Upload successful"})
 }
 
-//DownloadEntriesToCSV - GetAllEntries, creates a CSV and downloads the CSV.
+// DownloadEntriesToCSV - GetAllEntries, creates a CSV and downloads the CSV.
 func DownloadEntriesToCSV(w http.ResponseWriter, r *http.Request) {
 	response, err := http.Get(host + ":" + port + "/api/entries")
 	if err != nil {
@@ -375,7 +375,7 @@ func respondWithError(w http.ResponseWriter, code int, message string) {
 
 // Called for responses to encode and send json data
 func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
-	//encode payload to json
+	// encode payload to json
 	response, _ := json.Marshal(payload)
 
 	// set headers and write response

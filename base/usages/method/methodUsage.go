@@ -36,8 +36,8 @@ func (n nameType) sayHi() {
 
 // Create two different nameType values
 func compareTwoTypeValues() {
-	//The receiver is value.
-	//The receiver parameter is nameType.
+	// The receiver is value.
+	// The receiver parameter is nameType.
 	value := nameType("a nameType value")
 	value.sayHi()
 

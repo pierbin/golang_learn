@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"strconv" //if does not import strconv, when using strconv.Itoa(i), it will have an error
+	"strconv" // if does not import strconv, when using strconv.Itoa(i), it will have an error
 )
 
 func main() {

@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	//Getwd() returns a rooted path name corresponding to the current directory
+	// Getwd() returns a rooted path name corresponding to the current directory
 	p, _ := os.Getwd()
 	println(p)
 
@@ -38,14 +38,14 @@ func main() {
 	for scanner.Scan() {
 		fmt.Println(scanner.Text())
 
-		//Convert the string to a float64 and assign it to a temporary variable.
+		// Convert the string to a float64 and assign it to a temporary variable.
 		number, err := strconv.ParseFloat(scanner.Text(), 64)
 
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		//Append a number to the slice.
+		// Append a number to the slice.
 		numbers = append(numbers, number)
 	}
 

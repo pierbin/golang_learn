@@ -25,10 +25,10 @@ func GetFloats(fileName string) ([]float64, error) {
 		return nil, err
 	}
 
-	defer CloseFile(file) //Close the file even if it has an error.
+	defer CloseFile(file) // Close the file even if it has an error.
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		number, err := strconv.ParseFloat(scanner.Text(), 64) //convert string to float64
+		number, err := strconv.ParseFloat(scanner.Text(), 64) // convert string to float64
 		if err != nil {
 			return nil, err
 		}
@@ -64,7 +64,7 @@ exit status 1
 The file is closed by both of them, because the incorrect one is used defer to trigger it.
 */
 func main() {
-	//Getwd() returns a rooted path name corresponding to the current directory
+	// Getwd() returns a rooted path name corresponding to the current directory
 	p, _ := os.Getwd()
 	println(p)
 

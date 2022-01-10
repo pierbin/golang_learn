@@ -16,7 +16,7 @@ func reportNap(name string, delay int) {
 func send(reportChannel chan string) {
 	reportNap("sending goroutine", 2)
 	fmt.Println("***Sending value***")
-	reportChannel <- "a" //Will block on this send while "main" is still asleep.
+	reportChannel <- "a" // Will block on this send while "main" is still asleep.
 	fmt.Println("***Sending value***")
 	reportChannel <- "b"
 }
@@ -39,7 +39,7 @@ unblocked. After that, it can send its second value.
 func main() {
 	reportChannel := make(chan string)
 	go send(reportChannel)
-	reportNap("Receiving goroutine", 5) //In go, it will run this func before go channel run.
+	reportNap("Receiving goroutine", 5) // In go, it will run this func before go channel run.
 	fmt.Println(<-reportChannel, "first block")
 	fmt.Println(<-reportChannel, "second block")
 }

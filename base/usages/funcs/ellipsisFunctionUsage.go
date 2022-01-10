@@ -20,7 +20,7 @@ func severalInts(numbers ...int) {
 
 // Here uses "...", so it can get a maximum number in unlimited numbers.
 func maximum(numbers ...float64) float64 {
-	//start with a very low value
+	// start with a very low value
 	max := math.Inf(-1)
 
 	// for ... range, is similar with PHP foreach.

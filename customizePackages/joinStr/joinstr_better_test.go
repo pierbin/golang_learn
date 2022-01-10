@@ -15,12 +15,12 @@ PASS
 ok      learnGo/customizePackages/joinStr       0.006s
 */
 
-//If the tests in the same package with codes, please run tests "click run button."
-//If not, you can run tests using any of the following ways.
+// If the tests in the same package with codes, please run tests "click run button."
+// If not, you can run tests using any of the following ways.
 
-//This test is better than joinstr_usual_test.go, because it moves common check parts in three different tests outside
-//in a same function. Then it will use less time to run all tests anf faster than joinstr_usual_test.go.
-//The compare result is as following:
+// This test is better than joinstr_usual_test.go, because it moves common check parts in three different tests outside
+// in a same function. Then it will use less time to run all tests anf faster than joinstr_usual_test.go.
+// The compare result is as following:
 /**
 % go test base/tests/joinstr_usual_test.go
 ok      command-line-arguments  0.007s
@@ -28,9 +28,9 @@ ok      command-line-arguments  0.007s
 ok      command-line-arguments  0.006s
 */
 
-//The way in this file it is called Table-driven tests.
-//Table-driven tests are tests that process “tables” of inputs and expected outputs. They pass each set of input to
-//the code being tested, and check that the code’s output matches the expected values.
+// The way in this file it is called Table-driven tests.
+// Table-driven tests are tests that process “tables” of inputs and expected outputs. They pass each set of input to
+// the code being tested, and check that the code’s output matches the expected values.
 
 /**	The upgrade
  go test base/tests/joinstr_better_test.go -v
@@ -46,8 +46,8 @@ ok      command-line-arguments  0.011s
 */
 
 type testData struct {
-	list []string //The slice we'll pass to target method.
-	want string   //The string we expect return.
+	list []string // The slice we'll pass to target method.
+	want string   // The string we expect return.
 }
 
 func TestJoinStr(t *testing.T) {

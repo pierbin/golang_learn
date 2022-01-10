@@ -26,8 +26,8 @@ import (
 */
 func main() {
 	arr := [3]float64{1, 2, 3}
-	x := arr[0:2]  //It means x includes the first 5 elements in arr.
-	fmt.Println(x) //[1 2]
+	x := arr[0:2]  // It means x includes the first 5 elements in arr.
+	fmt.Println(x) // [1 2]
 
 	slice := appendSlice(x)
 	fmt.Println("append alice results: ", slice)
@@ -56,9 +56,9 @@ func appendSlice(slice []float64) []float64 {
 */
 func copySlice() ([]int, []int, int) {
 	slice1 := []int{1, 2, 3, 4}
-	slice2 := make([]int, 3) //It means slice2 maximum length is 2.
+	slice2 := make([]int, 3) // It means slice2 maximum length is 2.
 
-	//copy() returns the number of elements copied, which will be the minimum of len(src) and len(dst).
+	// copy() returns the number of elements copied, which will be the minimum of len(src) and len(dst).
 	slice3 := copy(slice2, slice1)
 	fmt.Println(slice1, slice2, slice3)
 

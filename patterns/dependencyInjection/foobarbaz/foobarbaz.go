@@ -6,7 +6,7 @@ import (
 	"github.com/google/wire"
 )
 
-//In DI, only the providers need to be specified, the rest is abstracted away.
+// In DI, only the providers need to be specified, the rest is abstracted away.
 
 type Foo struct {
 	X int
@@ -17,7 +17,7 @@ func ProvideFoo() Foo {
 	return Foo{X: 42}
 }
 
-//Provider functions must be exported in order to be used from other packages, just like ordinary functions.
+// Provider functions must be exported in order to be used from other packages, just like ordinary functions.
 
 type Bar struct {
 	X int

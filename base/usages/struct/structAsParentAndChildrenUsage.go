@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//The whole file has several examples about parents and children as other languages.
+// The whole file has several examples about parents and children as other languages.
 
 // The struct in Go, it is similar as other languages define a class.
 // The address, in the subscriber and employee, belongs to an embedded struct.
@@ -48,13 +48,13 @@ func printStructDefaultValue() {
 
 	// Access struct fields using the dot operator
 	fmt.Printf("myStruct.index is %v, myStruct.word is %v, myStruct.toggle is %v, myStruct.number is %v\n",
-		myStruct.index, myStruct.word, myStruct.toggle, myStruct.number) //0 "" false 0
+		myStruct.index, myStruct.word, myStruct.toggle, myStruct.number) // 0 "" false 0
 }
 
 // Use defined type as the variable types.
 // It includes two different ways to define a struct and then assign values.
 func setSubscriberValue() {
-	//The first way, declare a variable of type "subscriber".
+	// The first way, declare a variable of type "subscriber".
 	var subscriber1, subscriber2 subscriber
 
 	subscriber1.name = "Alice"
@@ -76,7 +76,7 @@ func setSubscriberValue() {
 // The return value is another way to use defined type as a return value. The return is the subscriber type.
 // The subscriber after the "(user subscriber)", it declares the return value should be the subscriber type.
 func showSubscriberInfo(user subscriber) subscriber {
-	//fmt.Println(user)
+	// fmt.Println(user)
 	return user
 }
 
@@ -103,7 +103,7 @@ func main() {
 	setSubscriberValue()
 
 	var testSubscriber subscriber
-	//Using the pointer way to change the struct. In the applyDiscount func, it does not need return.
+	// Using the pointer way to change the struct. In the applyDiscount func, it does not need return.
 	applyDiscount(&testSubscriber)
 	fmt.Println(testSubscriber)
 
@@ -111,14 +111,14 @@ func main() {
 	setAddressValue(&addressStruct)
 	fmt.Println(addressStruct)
 
-	//If it is the explicit, it uses the name directly.
+	// If it is the explicit, it uses the name directly.
 	testSubscriber.homeAddress = addressStruct
 	fmt.Println(testSubscriber, testSubscriber.homeAddress.city)
 
 	var employeeStruct employee
 	setEmployeeValue(&employeeStruct)
 
-	//If it is the anonymous fields, it uses an anonymous field to make our inner struct easier to access.
+	// If it is the anonymous fields, it uses an anonymous field to make our inner struct easier to access.
 	employeeStruct.address = addressStruct
 	fmt.Println(employeeStruct, employeeStruct.address.postCode)
 }

@@ -7,9 +7,9 @@ import (
 	"os"
 )
 
-//[]string means return a slice of strings
+// []string means return a slice of strings
 func readFile() ([]string, error) {
-	//Getwd() returns a rooted path name corresponding to the current directory
+	// Getwd() returns a rooted path name corresponding to the current directory
 	p, _ := os.Getwd()
 	fmt.Println(p)
 
@@ -38,24 +38,24 @@ func readFile() ([]string, error) {
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		//Append a line to the slice.
+		// Append a line to the slice.
 		lines = append(lines, line)
 	}
 
-	//fmt.Println(lines)
+	// fmt.Println(lines)
 	return lines, nil
 }
 
 func main() {
-	//The readFile method can be improved as a package on github.
+	// The readFile method can be improved as a package on github.
 	lines, err := readFile()
 
 	if err != nil {
 		log.Fatal(err)
 	}
-	//fmt.Println(lines)
+	// fmt.Println(lines)
 
-	//Declare a map that will use candidate names as keys, and vote counts as values.
+	// Declare a map that will use candidate names as keys, and vote counts as values.
 	counts := make(map[string]int)
 	for _, line := range lines {
 		counts[line]++

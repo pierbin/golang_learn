@@ -55,7 +55,7 @@ func forRangeArrayLoop() float64 {
 		And then with the number of elements it will hold in square brackets, followed by the type of its elements.
 		After that, it will be followed by a list in curly braces and the initial values each element should have.
 	*/
-	x := [5]float64{98, 93, 77, 82, 83} //This way defines an array called Array literals
+	x := [5]float64{98, 93, 77, 82, 83} // This way defines an array called Array literals
 	var total float64
 
 	// _ it will hold the array index, if you want to use index, then using index to replace the _.
@@ -81,9 +81,9 @@ func floatArrayCalculate() {
 }
 
 func timeValueArray() (time.Time, [3]time.Time) {
-	var dates [3]time.Time //Create an array of three Time values. In go, Time is a type of value.
+	var dates [3]time.Time // Create an array of three Time values. In go, Time is a type of value.
 
-	dates[0] = time.Unix(1257894000, 0) //Assign a value to an element.
+	dates[0] = time.Unix(1257894000, 0) // Assign a value to an element.
 	dates[1] = time.Unix(1447920000, 0)
 	dates[2] = time.Unix(1508632200, 0)
 

@@ -34,4 +34,4 @@ func third(sourceArray []string) {
 	}
 }
 
-//In the second, in the loop range, it prints the address only from elem.
+// In the second, in the loop range, it prints the address only from elem.

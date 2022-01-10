@@ -1095,7 +1095,7 @@ func (s) TestServerConnDecoupledFromApplicationRead(t *testing.T) {
 	if err := client.Write(cstream1, nil, make([]byte, defaultWindowSize), &Options{Last: true}); err != nil {
 		t.Fatalf("Client failed to write data. Err: %v", err)
 	}
-	//Client should be able to create another stream and send data on it.
+	// Client should be able to create another stream and send data on it.
 	cstream2, err := client.NewStream(ctx, &CallHdr{})
 	if err != nil {
 		t.Fatalf("Failed to create 2nd stream. Err: %v", err)
@@ -1757,7 +1757,7 @@ func (s) TestPingPong1MB(t *testing.T) {
 	runPingPongTest(t, 1048576)
 }
 
-//This is a stress-test of flow control logic.
+// This is a stress-test of flow control logic.
 func runPingPongTest(t *testing.T, msgSize int) {
 	server, client, cancel := setUp(t, 0, 0, pingpong)
 	defer cancel()

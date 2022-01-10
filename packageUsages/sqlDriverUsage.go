@@ -28,7 +28,7 @@ func createUsersTable(db *sql.DB) {
 		    );`
 
 	if _, err := db.Exec(query); err != nil {
-		//If the users table has been created, go ahead, don't show the error.
+		// If the users table has been created, go ahead, don't show the error.
 		if err.Error() != "Error 1050: Table 'users' already exists" {
 			log.Fatal(err)
 		}
@@ -66,7 +66,7 @@ func getRowById(db *sql.DB, userId int64) {
 	fmt.Println(id, username, password, createdAt)
 }
 
-//Get all users
+// Get all users
 func getAllRows(db *sql.DB) {
 	rows, err := db.Query(`SELECT id, username, password, created_at FROM users`)
 	if err != nil {
@@ -90,7 +90,7 @@ func getAllRows(db *sql.DB) {
 	fmt.Printf("%#v\n", users)
 }
 
-//Delete user by userId
+// Delete user by userId
 func delRowById(db *sql.DB, userId int64) {
 	_, err := db.Exec(`DELETE FROM users WHERE id = ?`, userId)
 	if err != nil {
@@ -98,7 +98,7 @@ func delRowById(db *sql.DB, userId int64) {
 	}
 }
 
-//Delete all users
+// Delete all users
 func delAllRows(db *sql.DB) {
 	_, err := db.Exec(`DELETE FROM users`)
 	if err != nil {
@@ -107,13 +107,13 @@ func delAllRows(db *sql.DB) {
 }
 
 func main() {
-	//db, err := sql.Open("mysql", "username:password@(127.0.0.1:3306)/dbname?parseTime=true")
+	// db, err := sql.Open("mysql", "username:password@(127.0.0.1:3306)/dbname?parseTime=true")
 	db, err := sql.Open("mysql", "root:123456@(127.0.0.1:3306)/go_web?parseTime=true")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	//Ping verifies a connection to the database is still alive, establishing a connection if necessary.
+	// Ping verifies a connection to the database is still alive, establishing a connection if necessary.
 	if err := db.Ping(); err != nil {
 		log.Fatal(err)
 	}

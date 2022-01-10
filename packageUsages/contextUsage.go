@@ -224,7 +224,7 @@ func withValueUsage() {
 
 	k := favContextKey("color")
 
-	//Define "PHP" is the value of k. It means key: color, value: PHP
+	// Define "PHP" is the value of k. It means key: color, value: PHP
 	ctx := context.WithValue(context.Background(), k, "PHP")
 
 	f(ctx, k)

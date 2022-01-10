@@ -67,7 +67,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	//db.MustExec(schema)  //Only exec when the table needs to create. If the table has been created, it will have an error.
+	// db.MustExec(schema)  //Only exec when the table needs to create. If the table has been created, it will have an error.
 
 	id := insertUser(db)
 	fmt.Printf("Created user with id:%d\n", id)
@@ -83,4 +83,3 @@ func main() {
 
 	fmt.Println(users)
 }
-

@@ -51,7 +51,7 @@ func solution() {
 
 	if killswitch == "" {
 		fmt.Println("kill switch is off")
-		data, err = getData() //Here replace ":=" by "=", then the data scope is changed.
+		data, err = getData() // Here replace ":=" by "=", then the data scope is changed.
 
 		if err != nil {
 			panic("ERROR!")
@@ -65,5 +65,5 @@ func solution() {
 	}
 }
 
-//In the firstone(),  it defines the data at the beginning, and the date is also defined in the if condition,
-//so the scope of data, outside the if condition is the global data, inside the if condition is the partial data.
+// In the firstone(),  it defines the data at the beginning, and the date is also defined in the if condition,
+// so the scope of data, outside the if condition is the global data, inside the if condition is the partial data.

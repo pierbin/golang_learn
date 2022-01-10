@@ -9,24 +9,24 @@ import (
 )
 
 func scanDir(path string) error {
-	fmt.Println(path) //print the current directory.
-	//Get a slice with the directory's contents
+	fmt.Println(path) // print the current directory.
+	// Get a slice with the directory's contents
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		return err
 	}
 
 	for _, file := range files {
-		//Join the directory path and filename with a slash.
+		// Join the directory path and filename with a slash.
 		filePath := filepath.Join(path, file.Name())
-		if file.IsDir() { //If this file is a subdirectory
-			err := scanDir(filePath) //recursively call scanDir(), this time with the subdirectory's path.
+		if file.IsDir() { // If this file is a subdirectory
+			err := scanDir(filePath) // recursively call scanDir(), this time with the subdirectory's path.
 			if err != nil {
 				return err
 			}
 			fmt.Println("Directory:", file.Name())
-		} else { //Otherwise, print File and the filename.
-			fmt.Println(filePath) //If it is a regular file, just print its path.
+		} else { // Otherwise, print File and the filename.
+			fmt.Println(filePath) // If it is a regular file, just print its path.
 		}
 	}
 	return nil

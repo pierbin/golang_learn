@@ -2,7 +2,7 @@ package trisnake
 
 import tl "github.com/JoelOtter/termloop"
 
-//Game Object Variables.
+// Game Object Variables.
 var sg *tl.Game
 var sp *Sidepanel
 var gs *Gamescreen

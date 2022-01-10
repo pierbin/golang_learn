@@ -23,15 +23,15 @@ func encodeUsage() {
 func decodeUsage(str string) {
 	res := response{}
 
-	//While decoding the json byte using unmarshal.
-	//the first argument is the json byte
-	//the second argument is the address of the response type struct where we want the json to be mapped to
+	// While decoding the json byte using unmarshal.
+	// the first argument is the json byte
+	// the second argument is the address of the response type struct where we want the json to be mapped to
 	if err := json.Unmarshal([]byte(str), &res); err != nil {
 		panic(err)
 	}
 
 	fmt.Println("Json decode usage is as below:")
-	fmt.Println(res) //res type is defined in the struct at the top.
+	fmt.Println(res) // res type is defined in the struct at the top.
 	fmt.Printf("Page is %v, fruits are %v", res.PageNumber, res.Fruits)
 }
 

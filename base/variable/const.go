@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-//When define a const, the first char must be uppercase.
+// When define a const, the first char must be uppercase.
 func main() {
 	const LENGTH int = 10
 	const WIDTH int = 5

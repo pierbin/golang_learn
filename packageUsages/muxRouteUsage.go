@@ -8,14 +8,14 @@ import (
 )
 
 func main() {
-	//The router is the main router for your web application and will later be passed as parameter to the server. It will receive all HTTP connections and pass it on to the request handlers you will register on it.
+	// The router is the main router for your web application and will later be passed as parameter to the server. It will receive all HTTP connections and pass it on to the request handlers you will register on it.
 	r := mux.NewRouter()
 
-	//http://localhost:9000/books/kobe/page/1
-	//http://localhost:9000/books/go-programming-blueprint/page/10
-	//register request handlers like usual. The only difference is that instead of calling http.HandleFunc(...), you call HandleFunc on your router like this: r.HandleFunc(...).
+	// http://localhost:9000/books/kobe/page/1
+	// http://localhost:9000/books/go-programming-blueprint/page/10
+	// register request handlers like usual. The only difference is that instead of calling http.HandleFunc(...), you call HandleFunc on your router like this: r.HandleFunc(...).
 	r.HandleFunc("/books/{title}/page/{page}", func(w http.ResponseWriter, r *http.Request) {
-		//The package comes with the function mux.Vars(r) which takes the http.Request as parameter and returns a map of the segments.
+		// The package comes with the function mux.Vars(r) which takes the http.Request as parameter and returns a map of the segments.
 		vars := mux.Vars(r)
 		title := vars["title"] // the book title slug
 		page := vars["page"]   // the page

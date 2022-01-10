@@ -177,15 +177,15 @@ func (s) TestHealthCheckWatchStateChange(t *testing.T) {
 	// The table below shows the expected series of addrConn connectivity transitions when server
 	// updates its health status. As there's only one addrConn corresponds with the ClientConn in this
 	// test, we use ClientConn's connectivity state as the addrConn connectivity state.
-	//+------------------------------+-------------------------------------------+
-	//| Health Check Returned Status | Expected addrConn Connectivity Transition |
-	//+------------------------------+-------------------------------------------+
-	//| NOT_SERVING                  | ->TRANSIENT FAILURE                       |
-	//| SERVING                      | ->READY                                   |
-	//| SERVICE_UNKNOWN              | ->TRANSIENT FAILURE                       |
-	//| SERVING                      | ->READY                                   |
-	//| UNKNOWN                      | ->TRANSIENT FAILURE                       |
-	//+------------------------------+-------------------------------------------+
+	// +------------------------------+-------------------------------------------+
+	// | Health Check Returned Status | Expected addrConn Connectivity Transition |
+	// +------------------------------+-------------------------------------------+
+	// | NOT_SERVING                  | ->TRANSIENT FAILURE                       |
+	// | SERVING                      | ->READY                                   |
+	// | SERVICE_UNKNOWN              | ->TRANSIENT FAILURE                       |
+	// | SERVING                      | ->READY                                   |
+	// | UNKNOWN                      | ->TRANSIENT FAILURE                       |
+	// +------------------------------+-------------------------------------------+
 	ts.SetServingStatus("foo", healthpb.HealthCheckResponse_NOT_SERVING)
 
 	cc, r, deferFunc, err := setupClient(&clientConfig{balancerName: "round_robin"})

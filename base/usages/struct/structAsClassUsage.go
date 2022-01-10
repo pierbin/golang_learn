@@ -18,7 +18,7 @@ How does it work in Go, in this file, I will show them all.
 
 import "fmt"
 
-//This is similar as define a class, the capital variable, it means public, others mean private.
+// This is similar as define a class, the capital variable, it means public, others mean private.
 
 type Employee struct {
 	Name        string
@@ -27,8 +27,8 @@ type Employee struct {
 	Salary      int
 }
 
-//This way, it is similar as define a public function in a class.
-//The public or private function in a class, it depends on the first char is a capital or not.
+// This way, it is similar as define a public function in a class.
+// The public or private function in a class, it depends on the first char is a capital or not.
 
 func (staff Employee) ShowDetails() {
 	fmt.Println("User Name: ", staff.Name)
@@ -37,7 +37,7 @@ func (staff Employee) ShowDetails() {
 // If you create an Employee only by value, you should define all variables in the same order.
 func createStructOnlyByValue() {
 	var employee1 = Employee{"Ramsey", 30, "Developer", 40}
-	//var employee2 = Employee{40, "Mamba", 30, "Developer"} //If not, it will have an error.
+	// var employee2 = Employee{40, "Mamba", 30, "Developer"} //If not, it will have an error.
 	fmt.Println(employee1)
 }
 
@@ -56,11 +56,11 @@ func createStructByKeyValue() {
 func UpdateEmployeeWay1() {
 	employee1 := Employee{"Ramsey", 30, "Developer", 40}
 	fmt.Println("Before update name: ", employee1.Name)
-	updateEmployee(&employee1) //Passing an object as a reference.
+	updateEmployee(&employee1) // Passing an object as a reference.
 	fmt.Println("After update: ", employee1.Name)
 }
 
-func updateEmployee(employee *Employee) { //Passing an object as a reference.
+func updateEmployee(employee *Employee) { // Passing an object as a reference.
 	employee.Name = "Davy"
 }
 

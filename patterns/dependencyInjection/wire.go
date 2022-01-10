@@ -10,31 +10,31 @@ import (
 	"github.com/google/wire"
 )
 
-//In Wire, initializers are known as "providers," functions which provide a particular type.
-//We add a zero value for Event as a return value to satisfy the compiler.
-//Note that even if we add values to Event, Wire will ignore them.
-//In fact, the injector's purpose is to provide information about which providers to use to construct an Event.
+// In Wire, initializers are known as "providers," functions which provide a particular type.
+// We add a zero value for Event as a return value to satisfy the compiler.
+// Note that even if we add values to Event, Wire will ignore them.
+// In fact, the injector's purpose is to provide information about which providers to use to construct an Event.
 
-//Install the tool with:
-//go get github.com/google/wire/cmd/wire
-//Then run "% wire" in CLI, it will generate wire_gen.go automatically.
+// Install the tool with:
+// go get github.com/google/wire/cmd/wire
+// Then run "% wire" in CLI, it will generate wire_gen.go automatically.
 
-//Wire inspects the arguments to the injector, sees that we added a string to the list of arguments (e.g., phrase),
-//and likewise sees that among all the providers, NewMessage takes a string, and so it passes phrase into NewMessage.
+// Wire inspects the arguments to the injector, sees that we added a string to the list of arguments (e.g., phrase),
+// and likewise sees that among all the providers, NewMessage takes a string, and so it passes phrase into NewMessage.
 
-//After wire_gen.go is generated, InitializeEvent will in the wire.go and wire_gen.go,
-//Don't worry. Each time you update in provider.go and wire.go.
-//Then run "% wire" in you CLI, it will regenerate wire_gen.go
+// After wire_gen.go is generated, InitializeEvent will in the wire.go and wire_gen.go,
+// Don't worry. Each time you update in provider.go and wire.go.
+// Then run "% wire" in you CLI, it will regenerate wire_gen.go
 
-//An injector is declared by writing a function declaration whose body is a call to wire.Build.
+// An injector is declared by writing a function declaration whose body is a call to wire.Build.
 
 func InitializeEvent(phrase string) (greeter.Event, error) {
 	wire.Build(greeter.SuperSet)
 	return greeter.Event{}, nil
 }
 
-//An injector is declared by writing a function declaration whose body is a call to wire.Build.
-//The return values don't matter as long as they are of the correct type.
+// An injector is declared by writing a function declaration whose body is a call to wire.Build.
+// The return values don't matter as long as they are of the correct type.
 
 func InitializeBaz(ctx context.Context) (foobarbaz.Baz, error) {
 	wire.Build(foobarbaz.SuperSet)

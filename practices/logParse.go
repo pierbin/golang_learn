@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	const formatTime = "2006-01-02 15:04:05" //magic time in Go, 15 means 0h-23h, if change 15 to 03, mean 1h-12h
+	const formatTime = "2006-01-02 15:04:05" // magic time in Go, 15 means 0h-23h, if change 15 to 03, mean 1h-12h
 
 	// a line of log
 	logsExample := `[2021-08-27T17:39:54.173Z] "GET /healthz HTTP/1.1" 200 - 0 61 225 - "111.114.195.106,10.0.0.11" "okhttp/3.12.1" "0557b0bd-4c1c-4c7a-ab7f-2120d67bee2f" "example.com" "172.16.0.1:8080"`

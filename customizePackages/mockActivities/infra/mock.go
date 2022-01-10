@@ -23,14 +23,14 @@ func (a ApplicationRepoMock) Save(application mockActivities.Application) error 
 	return a.SaveFunc(application)
 }
 
-//emailSenderSuccess := infra.EmailSenderMock{
+// emailSenderSuccess := infra.EmailSenderMock{
 //		SendFunc: func (application mockActivities.Application) error {
 //		return nil
 //	},
-//}
+// }
 
-//emailSenderFail := infra.EmailSenderMock{
+// emailSenderFail := infra.EmailSenderMock{
 //		SendFunc: func (application mockActivities.Application) error {
 //		return mockActivities.ErrInternal
 //	},
-//}
+// }
