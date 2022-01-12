@@ -9,6 +9,9 @@ import (
 )
 
 // Error checking can be simplified by defining an explicit error interface definition with the implementation.
+// The error can occur in any layer and it is necessary to provide the option for each layer to interpret
+// the error and further wrap with additional contextual information without losing the original error value.
+// The GoError can be further decorated with the Causes which will hold the entire error stack.
 type Error interface {
 	error
 
@@ -22,7 +25,7 @@ type Error interface {
 	SetResponseType(r ResponseErrType) Error
 	Component() ErrComponent
 	SetComponent(c ErrComponent) Error
-	Retryable() bool
+	Retryable() bool // The retry component can decide whether to retry for the error by having the flag Retryable.
 	SetRetryable() Error
 }
 
@@ -37,6 +40,10 @@ type GoError struct {
 	appendCause  bool
 }
 
+// ErrComponent will help to identify the layer where the error has occurred, and unnecessary error wraps can be avoided.
+// For example, if the error component of servicetype occurs in the service layer,
+// then the wrapping error might not be required. Component information checks will help to prevent exposing
+// the errors which a user shouldn’t be informed about, like Database errors
 type ErrComponent string
 
 const (
@@ -45,6 +52,7 @@ const (
 	ErrLib     ErrComponent = "library"
 )
 
+// ResponseErrType will support the error categorization for easy interpretation.
 type ResponseErrType string
 
 const (
