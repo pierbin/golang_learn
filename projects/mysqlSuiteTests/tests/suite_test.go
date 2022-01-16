@@ -41,7 +41,7 @@ func (t *SuiteTest) SetupSuite() {
 
 	// Migrate Table
 	for _, val := range getModels() {
-		t.db.AutoMigrate(val)
+		_ = t.db.AutoMigrate(val)
 	}
 }
 
@@ -52,7 +52,7 @@ func (t *SuiteTest) TearDownSuite() {
 
 	// Drop Table
 	for _, val := range getModels() {
-		t.db.Migrator().DropTable(val)
+		_ = t.db.Migrator().DropTable(val)
 	}
 }
 
