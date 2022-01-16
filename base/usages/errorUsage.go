@@ -14,7 +14,7 @@ func main() {
 	fmt.Println(err2)         // The other way outputs an error.
 
 	// Pass a string to the errors package’s New function, which will return a new error value.
-	err1 := errors.New("Height can't be negative")
+	err1 := errors.New("height can't be negative")
 	fmt.Println(err1) // call the Error method on that error value, you’ll get the string which is passed to errors.New.
 	log.Fatal(err1)
 }

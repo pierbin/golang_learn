@@ -20,9 +20,7 @@ var port = "12345"
 var connectionString = "root:123456@tcp(127.0.0.1:3306)/go_web?charset=utf8&parseTime=True&loc=Local"
 
 func main() {
-
-	var router *mux.Router
-	router = mux.NewRouter().StrictSlash(true)
+	router := mux.NewRouter().StrictSlash(true)
 	apiRouter := router.PathPrefix("/api").Subrouter() // /api will give access to all the API endpoints
 	apiRouter.PathPrefix("/health").HandlerFunc(CheckHealth).Methods("GET")
 	apiRouter.PathPrefix("/entries").HandlerFunc(GetEntries).Methods("GET")   // /api/entries returns listing all the entries
@@ -33,8 +31,7 @@ func main() {
 	// apiRouter.PathPrefix("/upload-entries-csv").HandlerFunc(UploadEntriesThroughCSV).Methods("POST") // POST /api/upload-entries-CSV imports CSV into the database
 	// apiRouter.PathPrefix("/download-entries-csv").HandlerFunc(DownloadEntriesToCSV).Methods("GET")   //GET /api/download-entries-CSV exports CSV from the database
 	fmt.Println("Listening on port :12345")
-	http.ListenAndServe(":"+port, router)
-
+	_ = http.ListenAndServe(":"+port, router)
 }
 
 func CheckHealth(writer http.ResponseWriter, req *http.Request) {
@@ -350,7 +347,7 @@ func DownloadEntriesToCSV(w http.ResponseWriter, r *http.Request) {
 	fileName := "address-book-" + strconv.FormatInt(t, 10) + ".csv"
 	writer := csv.NewWriter(b)
 	heading := []string{"id", "first_name", "last_name", "email_address", "phone_number"}
-	writer.Write(heading)
+	_ = writer.Write(heading)
 	for _, eachEntry := range entries {
 		var record []string
 		record = append(record, strconv.Itoa(eachEntry.ID))
@@ -358,7 +355,7 @@ func DownloadEntriesToCSV(w http.ResponseWriter, r *http.Request) {
 		record = append(record, eachEntry.LastName)
 		record = append(record, eachEntry.EmailAddress)
 		record = append(record, eachEntry.PhoneNumber)
-		writer.Write(record)
+		_ = writer.Write(record)
 	}
 	writer.Flush()
 	w.Header().Set("Content-Type", "text/csv") // setting the content type header to text/csv

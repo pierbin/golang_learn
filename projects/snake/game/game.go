@@ -79,14 +79,14 @@ func NewOptionsscreen() *Gameoptionsscreen {
 	}
 
 	gop.DifficultyOptions = []*tl.Text{
-		tl.NewText(6, 7, fmt.Sprintf("Press F1 for Easy (8 speed)"), tl.ColorBlack, tl.ColorWhite),
-		tl.NewText(6, 9, fmt.Sprintf("Press F2 for Normal (12 speed)"), tl.ColorBlack, tl.ColorWhite),
-		tl.NewText(6, 11, fmt.Sprintf("Press F3 for Hard (25 speed)"), tl.ColorBlack, tl.ColorWhite),
+		tl.NewText(6, 7, "Press F1 for Easy (8 speed)", tl.ColorBlack, tl.ColorWhite),
+		tl.NewText(6, 9, "Press F2 for Normal (12 speed)", tl.ColorBlack, tl.ColorWhite),
+		tl.NewText(6, 11, "Press F3 for Hard (25 speed)", tl.ColorBlack, tl.ColorWhite),
 	}
 
 	gop.ColorObjectOptions = []*tl.Text{
-		tl.NewText(6, 16, fmt.Sprintf("Press F4 for Snake (Colors)"), tl.ColorBlack, tl.ColorWhite),
-		tl.NewText(6, 18, fmt.Sprintf("Press F6 for Arena (Colors)"), tl.ColorBlack, tl.ColorWhite),
+		tl.NewText(6, 16, "Press F4 for Snake (Colors)", tl.ColorBlack, tl.ColorWhite),
+		tl.NewText(6, 18, "Press F6 for Arena (Colors)", tl.ColorBlack, tl.ColorWhite),
 	}
 
 	// Add the objects to the screen and return it.

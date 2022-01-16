@@ -16,8 +16,6 @@ func main() {
 	dotenv := godotenv.New()
 	if err := dotenv.Load(path); err != nil {
 		panic(err)
-	} else {
-
 	}
 
 	// You can also load several files
