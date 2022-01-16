@@ -35,6 +35,7 @@ func main() {
 }
 
 func CheckHealth(writer http.ResponseWriter, req *http.Request) {
+	fmt.Println(req)
 	fmt.Fprintf(writer, "health check passed")
 }
 
@@ -72,7 +73,7 @@ func GetEntries(w http.ResponseWriter, r *http.Request) {
 		var emailAddress sql.NullString
 		var phoneNumber sql.NullString
 
-		err = rows.Scan(&id, &firstName, &lastName, &emailAddress, &phoneNumber)
+		_ = rows.Scan(&id, &firstName, &lastName, &emailAddress, &phoneNumber)
 		eachEntry.ID = id
 		eachEntry.FirstName = firstName.String
 		eachEntry.LastName = lastName.String
@@ -233,7 +234,12 @@ func UpdateEntry(w http.ResponseWriter, r *http.Request) {
 // Output: JSON Encoded Address Book Entry object if found & deleted else JSON Encoded Exception.
 func DeleteEntry(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", connectionString)
-	defer db.Close()
+	defer func(db *sql.DB) {
+		err1 := db.Close()
+		if err1 != nil {
+			return
+		}
+	}(db)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Could not connect to the database")
 		return
@@ -377,7 +383,7 @@ func DownloadEntriesToCSV(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Disposition", "attachment;filename="+fileName)
 	w.WriteHeader(http.StatusOK)
 	w.Write(b.Bytes())
-	return
+	// return
 }
 
 // RespondWithError is called on an error to return info regarding error

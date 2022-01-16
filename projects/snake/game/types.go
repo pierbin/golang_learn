@@ -14,7 +14,7 @@ type direction int
 type difficulty int
 type colorobject int
 
-// Game options
+// Difficulty Game options
 var Difficulty = "Normal"
 var ColorObject = "Snake"
 
