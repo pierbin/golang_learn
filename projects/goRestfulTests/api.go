@@ -90,7 +90,12 @@ func GetEntries(w http.ResponseWriter, r *http.Request) {
 // Output: JSON Encoded Address Book Entry object if found else JSON Encoded Exception.
 func GetEntryByID(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", connectionString)
-	defer db.Close()
+	defer func(db *sql.DB) {
+		err1 := db.Close()
+		if err1 != nil {
+			return
+		}
+	}(db)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Could not connect to the database")
 		return
@@ -136,7 +141,12 @@ func GetEntryByID(w http.ResponseWriter, r *http.Request) {
 // Output: JSON Encoded Address Book Entry object if created else JSON Encoded Exception.
 func CreateEntry(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", connectionString)
-	defer db.Close()
+	defer func(db *sql.DB) {
+		err1 := db.Close()
+		if err1 != nil {
+			return
+		}
+	}(db)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Could not connect to the database")
 		return
@@ -182,7 +192,12 @@ func CreateEntry(w http.ResponseWriter, r *http.Request) {
 // Output: JSON Encoded Address Book Entry object if updated else JSON Encoded Exception.
 func UpdateEntry(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", connectionString)
-	defer db.Close()
+	defer func(db *sql.DB) {
+		err1 := db.Close()
+		if err1 != nil {
+			return
+		}
+	}(db)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Could not connect to the database")
 		return
