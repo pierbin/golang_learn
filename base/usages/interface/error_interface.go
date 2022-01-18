@@ -7,9 +7,9 @@ import (
 
 // A type that includes any value with a particular method. It sounds like an interface.
 // You can create your own type that satisfies the error interface and stores the information you want.
-// Compare with interfaceUsage.go, the NoiseMaker interface is satisfied by any type.
+// Compare with example.go, the NoiseMaker interface is satisfied by any type.
 // Here error interface is only satisfied by string type.
-type error interface {
+type errorInstance interface {
 	Error() string
 }
 
@@ -33,7 +33,7 @@ func checkTemperature(actual float64, safe float64) error {
 
 func main() {
 	// Set up a variable with a type of "error"
-	var err error
+	var err errorInstance
 
 	// ComedyError satisfies the error interface, we can assign a ComedyError to the variable.
 	err = ComedyError("What's a programmer's favorite beer? Logger!")

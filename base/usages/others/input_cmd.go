@@ -10,7 +10,10 @@ func main() {
 	a := &input
 
 	// Scanf fills input with the number we enter
-	fmt.Scanf("%f", a)
+	_, err := fmt.Scanf("%f", a)
+	if err != nil {
+		return
+	}
 	output := input * 2
 	fmt.Println(output)
 }

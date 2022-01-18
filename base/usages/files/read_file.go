@@ -20,7 +20,7 @@ func main() {
 
 		The file path can become a variable, then it will easy to read more files.
 	*/
-	file, err := os.Open("./base/usages/fileUsage/data.txt")
+	file, err := os.Open("./base/usages/files/data.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

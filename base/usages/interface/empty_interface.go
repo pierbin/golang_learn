@@ -18,9 +18,9 @@ type Anything interface {
 
 func AcceptAnything(thing interface{}) {
 	fmt.Println(thing)
-	// whistle, ok := thing.(Whistle)	//Use a type assertion to get a Whistle.
+	// whistle, ok := thing.(Whistle)	// Use a type assertion to get a Whistle.
 	// if ok {
-	//	whistle.MakeSound()				//Call the method on the Whistle.
+	// 	whistle.MakeSound()			// Call the method on the Whistle.
 	// }
 }
 

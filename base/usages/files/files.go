@@ -34,8 +34,8 @@ func scanDir(path string) error {
 
 /**
 Using the below command to run this file.
-go run base/usages/files.go base/usages
-go run base/usages/files.go base
+go run base/usages/files/files.go base/usages
+go run base/usages/files/files.go base
 */
 func main() {
 	err := scanDir(os.Args[1])

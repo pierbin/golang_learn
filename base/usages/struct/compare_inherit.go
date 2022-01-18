@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-// The whole file has several examples about parents and children as other languages.
+// The whole file has several examples about parents and children classes as other languages.
 
 // The struct in Go, it is similar as other languages define a class.
 // The address, in the subscriber and employee, belongs to an embedded struct.

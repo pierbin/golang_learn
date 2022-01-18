@@ -15,7 +15,7 @@ func OpenFile(fileName string) (*os.File, error) {
 
 func CloseFile(file *os.File) {
 	fmt.Println("Closing file")
-	file.Close()
+	_ = file.Close()
 }
 
 func GetFloats(fileName string) ([]float64, error) {
@@ -42,21 +42,21 @@ func GetFloats(fileName string) ([]float64, error) {
 
 /**
 Using this command to run correct result.
-go run base/usages/fileUsage/readFileDeferUsage.go base/usages/fileUsage/data.txt
+go run base/usages/files/read_file_defer.go base/usages/files/data.txt
 The correct result is as below:
 
 /Users/jiangdawei/go/src/learnGo
-Opening base/usages/fileUsage/data.txt
+Opening base/usages/files/data.txt
 Closing file
 Sum: 252.80
 
 
 Using this command to run incorrect result.
-go run base/usages/fileUsage/readFileDeferUsage.go base/usages/fileUsage/badData.txt
+go run base/usages/files/read_file_defer.go base/usages/files/badData.txt
 The incorrect result is as below:
 
 /Users/jiangdawei/go/src/learnGo
-Opening base/usages/fileUsage/badData.txt
+Opening base/usages/files/badData.txt
 Closing file
 2021/12/05 23:22:24 strconv.ParseFloat: parsing "hello": invalid syntax
 exit status 1

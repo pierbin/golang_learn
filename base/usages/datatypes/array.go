@@ -118,14 +118,14 @@ func arrayCompare() {
 // Otherwise, you can use interface to define a type by yourself.
 func multiDimensionalArray() ([3][2]int, [3][2]int) {
 	a := [3][2]int{
-		[2]int{1, 2},
-		[2]int{3, 4},
+		{1, 2},
+		{3, 4},
 	}
 
 	b := [...][2]int{
-		[...]int{1, 2},
-		[...]int{3, 4},
-		[...]int{5, 6},
+		{1, 2},
+		{3, 4},
+		{5, 6},
 	}
 
 	return a, b

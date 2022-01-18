@@ -15,7 +15,7 @@ func def(channel chan string) {
 }
 
 /**
-go run base/usages/channel/channelBlock.go, result is: "adbecf".
+go run base/usages/channel/block.go, result is: "adbecf".
 
 It is not abcdef, because the channel block is used in this case.
 

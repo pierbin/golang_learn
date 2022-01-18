@@ -10,7 +10,6 @@ func main() {
 	var quantity = 32
 	var length, width = 1.2, 2.4
 	bookName := "head first go"
-	trueFlag := true
 	trueString := "True"
 	area := length * width
 
@@ -24,7 +23,7 @@ func main() {
 	fmt.Println("Length is ", length, reflect.TypeOf(length)) // float64
 	fmt.Println("Width is ", width, reflect.TypeOf(width))    // float64
 	fmt.Println("Area is ", area, reflect.TypeOf(area))       // float64
-	fmt.Println(reflect.TypeOf(trueFlag))                     // bool
+	fmt.Println(reflect.TypeOf(true))                         // bool
 	fmt.Println(reflect.TypeOf(trueString))                   // string
 	fmt.Println(reflect.TypeOf(bookName))                     // string
 
@@ -35,5 +34,5 @@ func main() {
 	fmt.Println(reflect.TypeOf(float64(myInt))) // int convert to float64
 	fmt.Println(reflect.TypeOf(myFloat))        // float64
 	fmt.Println(reflect.TypeOf(int(myInt)))     // float64 convert to int
-	// int and float convert to string, go to typeConvert.go
+	// int and float convert to string, go to type_convert.go
 }
