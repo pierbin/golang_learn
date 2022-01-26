@@ -52,11 +52,11 @@ Sum: 252.80
 
 
 Using this command to run incorrect result.
-go run base/usages/files/read_file_defer.go base/usages/files/badData.txt
+go run base/usages/files/read_file_defer.go base/usages/files/bad_data.txt
 The incorrect result is as below:
 
 /Users/jiangdawei/go/src/learnGo
-Opening base/usages/files/badData.txt
+Opening base/usages/files/bad_data.txt
 Closing file
 2021/12/05 23:22:24 strconv.ParseFloat: parsing "hello": invalid syntax
 exit status 1
