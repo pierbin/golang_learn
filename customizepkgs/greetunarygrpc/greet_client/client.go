@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"google.golang.org/grpc"
-	"learnGo/customizePackages/greetUnaryGrpc/greetpb"
+	"learnGo/customizepkgs/greetunarygrpc/greetpb"
 )
 
 func main() {

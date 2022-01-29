@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package greet;
-option go_package = "greetUnaryGrpc/greetpb";
+option go_package = "greetunarygrpc/greetpb";
 
 // model
 message Greeting {

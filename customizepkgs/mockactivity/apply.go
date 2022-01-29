@@ -1,4 +1,4 @@
-package mockActivities
+package mockactivity
 
 import (
 	"fmt"

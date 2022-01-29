@@ -1,9 +1,8 @@
-package mockActivities_test
+package mockactivity_test
 
 import (
-	"learnGo/customizePackages/mockActivities/infra"
-
-	"learnGo/customizePackages/mockActivities"
+	"learnGo/customizepkgs/mockactivity"
+	"learnGo/customizepkgs/mockactivity/infra"
 
 	"reflect"
 	"testing"
@@ -11,19 +10,19 @@ import (
 
 func TestApp_Apply(t *testing.T) {
 	type deps struct {
-		applicationRepo mockActivities.ApplicationRepo
-		emailSender     mockActivities.EmailSender
+		applicationRepo mockactivity.ApplicationRepo
+		emailSender     mockactivity.EmailSender
 	}
 
 	// mock applicationRepo interface
 	applicationRepoEmpty := infra.ApplicationRepoMock{
-		FindAllFunc: func(tutor string) ([]mockActivities.Application, error) { return nil, nil },
-		SaveFunc:    func(application mockActivities.Application) error { return nil },
+		FindAllFunc: func(tutor string) ([]mockactivity.Application, error) { return nil, nil },
+		SaveFunc:    func(application mockactivity.Application) error { return nil },
 	}
 
 	// mock emailSender interface
 	emailSenderSuccess := infra.EmailSenderMock{
-		SendFunc: func(application mockActivities.Application) error { return nil },
+		SendFunc: func(application mockactivity.Application) error { return nil },
 	}
 
 	tests := []struct {
@@ -32,7 +31,7 @@ func TestApp_Apply(t *testing.T) {
 		tutor   string
 		student string
 		what    string
-		want    mockActivities.Application
+		want    mockactivity.Application
 		wantErr bool
 	}{
 		{
@@ -41,7 +40,7 @@ func TestApp_Apply(t *testing.T) {
 			tutor:   "some@tutor.com",
 			student: "Student Full name",
 			what:    "soccer",
-			want:    mockActivities.Application{TutorEmail: "some@tutor.com", Cost: 10, ActivityName: "soccer", Student: "Student Full name"},
+			want:    mockactivity.Application{TutorEmail: "some@tutor.com", Cost: 10, ActivityName: "soccer", Student: "Student Full name"},
 			wantErr: false,
 		},
 		{
@@ -56,7 +55,7 @@ func TestApp_Apply(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			a := &mockActivities.App{ApplicationRepo: tt.deps.applicationRepo, EmailSender: tt.deps.emailSender}
+			a := &mockactivity.App{ApplicationRepo: tt.deps.applicationRepo, EmailSender: tt.deps.emailSender}
 			got, err := a.Apply(tt.tutor, tt.student, tt.what)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Apply() error = %v, wantErr %v", err, tt.wantErr)

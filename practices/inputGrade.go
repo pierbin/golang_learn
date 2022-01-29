@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"learnGo/customizePackages/keyboard"
+	"learnGo/customizepkgs/keyboard"
 	"log"
 	"reflect"
 )

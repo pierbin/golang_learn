@@ -1,4 +1,4 @@
-package joinStr
+package joinstr
 
 import (
 	"strings"

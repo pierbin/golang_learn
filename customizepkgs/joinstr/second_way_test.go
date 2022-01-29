@@ -1,21 +1,22 @@
-package joinStr
+package joinstr_test
 
 import (
 	"fmt"
+	"learnGo/customizepkgs/joinstr"
 	"testing"
 )
 
 // In comments, it includes three ways to run tests.
 
-// The first way, run tests: go test base/tests/joinstr_usual_test.go
+// The first way, run tests: go test second_way_test.go
 // You can use Errorf to include additional information in your test’s failure messages, such as the
 // arguments you passed to a function, the return value you got, and the value you were expecting.
 // If tests are not passed, the result is following:
 /**
 --- FAIL: TestTwoElements (0.00s)				//Function name of failing test
-    joinstr_usual_test.go:24: no test written yet		//Filaname and line number
+    second_way_test.go:24: no test written yet		//Filaname and line number
 --- FAIL: TestThreeElements (0.00s)				//Function name of failing test
-    joinstr_usual_test.go:34: JoinWithCommas([]string{"apple", "orange", "pear"}) = "apple, orange and pear", want "apple and orange"
+    second_way_test.go:34: JoinWithCommas([]string{"apple", "orange", "pear"}) = "apple, orange and pear", want "apple and orange"
     //Filaname and line number
 FAIL
 FAIL    command-line-arguments  0.006s			//Status for the example_test package overall
@@ -29,7 +30,7 @@ ok      command-line-arguments  0.007s
 
 // The second way, run all tests is as following:
 /**
- go test base/tests/joinstr_usual_test.go -v
+ go test second_way_test.go -v
 === RUN   TestOneElement
 --- PASS: TestOneElement (0.00s)
 === RUN   TestTwoElements
@@ -42,7 +43,7 @@ ok      command-line-arguments  0.008s
 
 // The third way, run all tests is as below:
 /**
-go test base/tests/joinstr_usual_test.go -v -run Two
+go test second_way_test.go -v -run Two
 
 === RUN   TestOneElement
 --- PASS: TestOneElement (0.00s)
@@ -60,7 +61,7 @@ ok      command-line-arguments  0.007s
 
 // The fourth way, run all tests is below:
 /**
-go test base/tests/joinstr_usual_test.go -v -run Elements
+go test second_way_test.go -v -run Elements
 
 === RUN   TestTwoElements
 --- PASS: TestTwoElements (0.00s)
@@ -73,7 +74,7 @@ ok      command-line-arguments  0.007s
 func TestOneElement(t *testing.T) {
 	list := []string{"apple"}
 	want := "apple"
-	got := JoinWithCommas(list)
+	got := joinstr.JoinWithCommas(list)
 	if got != want {
 		t.Error(errorString(list, got, want))
 	} else {
@@ -86,8 +87,8 @@ func TestOneElement(t *testing.T) {
 // Test functions must accept a single parameter: a pointer to a testing.T value.
 func TestTwoElements(t *testing.T) { // Function will be passed a  pointer to a testing.T value.
 	list := []string{"apple", "orange"}
-	want := "apple and orange"  // want is the return value we want.
-	got := JoinWithCommas(list) // git is the return value we actually got.
+	want := "apple and orange"          // want is the return value we want.
+	got := joinstr.JoinWithCommas(list) // git is the return value we actually got.
 	if got != want {
 		// Instead of calling t.Errorf(), call errorStirng(), it's an error helper function.
 		t.Error(errorString(list, got, want))
@@ -102,8 +103,8 @@ func TestTwoElements(t *testing.T) { // Function will be passed a  pointer to a 
 // Most methods accept a string with a message explaining the reason the test failed.
 func TestThreeElements(t *testing.T) {
 	list := []string{"apple", "orange", "pear"}
-	want := "apple, orange, and pear" // want is the return value we want.
-	got := JoinWithCommas(list)       // git is the return value we actually got.
+	want := "apple, orange, and pear"   // want is the return value we want.
+	got := joinstr.JoinWithCommas(list) // git is the return value we actually got.
 
 	if got != want {
 		// Instead of calling t.Errorf(), call errorStirng(), it's an error helper function.
