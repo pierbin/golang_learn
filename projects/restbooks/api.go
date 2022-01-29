@@ -6,12 +6,14 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
+	"mime/multipart"
 	"net/http"
 	"strconv"
 	"time"
 
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql"	// It is used when connect db, but it is not used as mysql directly.
 	"github.com/gorilla/mux"
 )
 
@@ -19,39 +21,66 @@ var host = "http://localhost"
 var port = "12345"
 var connectionString = "root:123456@tcp(127.0.0.1:3306)/go_web?charset=utf8&parseTime=True&loc=Local"
 
+type addressBook struct {
+	ID           int    `json:"id,omitempty"`
+	FirstName    string `json:"first_name,omitempty"`
+	LastName     string `json:"last_name,omitempty"`
+	EmailAddress string `json:"email_address,omitempty"`
+	PhoneNumber  string `json:"phone_number,omitempty"`
+}
+
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	apiRouter := router.PathPrefix("/api").Subrouter() // /api will give access to all the API endpoints
+
+	// /api/health returns "health check passed"
 	apiRouter.PathPrefix("/health").HandlerFunc(CheckHealth).Methods("GET")
-	apiRouter.PathPrefix("/entries").HandlerFunc(GetEntries).Methods("GET")   // /api/entries returns listing all the entries
-	apiRouter.PathPrefix("/entry").HandlerFunc(GetEntryByID).Methods("GET")   // GET /api/entry?id=1 returns the entry with id 1.
-	apiRouter.PathPrefix("/entry").HandlerFunc(CreateEntry).Methods("POST")   // POST /api/entry creates an entry
-	apiRouter.PathPrefix("/entry").HandlerFunc(UpdateEntry).Methods("PUT")    // PUT /api/entry updates an entry
-	apiRouter.PathPrefix("/entry").HandlerFunc(DeleteEntry).Methods("DELETE") // DELETE /api/entry deletes an entry
-	// apiRouter.PathPrefix("/upload-entries-csv").HandlerFunc(UploadEntriesThroughCSV).Methods("POST") // POST /api/upload-entries-CSV imports CSV into the database
-	// apiRouter.PathPrefix("/download-entries-csv").HandlerFunc(DownloadEntriesToCSV).Methods("GET")   //GET /api/download-entries-CSV exports CSV from the database
+
+	// /api/entries returns listing all the address book
+	apiRouter.PathPrefix("/books").HandlerFunc(GetBooks).Methods("GET")
+
+	// GET /api/book?id=1 returns the book with id 1.
+	apiRouter.PathPrefix("/book").HandlerFunc(GetBookByID).Methods("GET")
+
+	// POST /api/book creates an book
+	apiRouter.PathPrefix("/book").HandlerFunc(CreateBook).Methods("POST")
+
+	// PUT /api/book updates an book
+	apiRouter.PathPrefix("/book").HandlerFunc(UpdateBook).Methods("PUT")
+
+	// DELETE /api/book deletes an book
+	apiRouter.PathPrefix("/book").HandlerFunc(DeleteBook).Methods("DELETE")
+
+	// POST /api/upload-entries-CSV imports CSV into the database
+	// apiRouter.PathPrefix("/upload-entries-csv").HandlerFunc(UploadEntriesThroughCSV).Methods("POST")
+
+	// GET /api/download-entries-CSV exports CSV from the database
+	// apiRouter.PathPrefix("/download-entries-csv").HandlerFunc(DownloadEntriesToCSV).Methods("GET")
 	fmt.Println("Listening on port :12345")
 	_ = http.ListenAndServe(":"+port, router)
 }
 
 func CheckHealth(writer http.ResponseWriter, req *http.Request) {
 	fmt.Println(req)
-	fmt.Fprintf(writer, "health check passed")
+	_, err := fmt.Fprintf(writer, "health check passed")
+	if err != nil {
+		return 
+	}
 }
 
-// GetEntries : Get All Entries
+// GetBooks : Get All Books
 // URL : /entries
-// Parameters: none
 // Method: GET
 // Output: JSON Encoded Entries object if found else JSON Encoded Exception.
-func GetEntries(w http.ResponseWriter, r *http.Request) {
+func GetBooks(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", connectionString)
 	// defer db.Close()
 	if err != nil {
+		fmt.Println(err)
 		respondWithError(w, http.StatusInternalServerError, "Could not connect to the database")
 		return
 	}
-	var entries []entry
+	var books []addressBook
 	rows, err := db.Query("SELECT * from address_book;")
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Something went wrong.")
@@ -66,7 +95,7 @@ func GetEntries(w http.ResponseWriter, r *http.Request) {
 	}(rows)
 
 	for rows.Next() {
-		var eachEntry entry
+		var book addressBook
 		var id int
 		var firstName sql.NullString
 		var lastName sql.NullString
@@ -74,22 +103,22 @@ func GetEntries(w http.ResponseWriter, r *http.Request) {
 		var phoneNumber sql.NullString
 
 		_ = rows.Scan(&id, &firstName, &lastName, &emailAddress, &phoneNumber)
-		eachEntry.ID = id
-		eachEntry.FirstName = firstName.String
-		eachEntry.LastName = lastName.String
-		eachEntry.EmailAddress = emailAddress.String
-		eachEntry.PhoneNumber = phoneNumber.String
-		entries = append(entries, eachEntry)
+		book.ID = id
+		book.FirstName = firstName.String
+		book.LastName = lastName.String
+		book.EmailAddress = emailAddress.String
+		book.PhoneNumber = phoneNumber.String
+		books = append(books, book)
 	}
-	respondWithJSON(w, http.StatusOK, entries)
+	respondWithJSON(w, http.StatusOK, books)
 }
 
-// GetEntryByID - Get Entry By ID
-// URL : /entry?id=1
+// GetBookByID - Get Book By ID
+// URL : /book?id=1
 // Parameters: int id
 // Method: GET
-// Output: JSON Encoded Address Book Entry object if found else JSON Encoded Exception.
-func GetEntryByID(w http.ResponseWriter, r *http.Request) {
+// Output: JSON Encoded Address Book Book object if found else JSON Encoded Exception.
+func GetBookByID(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", connectionString)
 	defer func(db *sql.DB) {
 		err1 := db.Close()
@@ -110,25 +139,25 @@ func GetEntryByID(w http.ResponseWriter, r *http.Request) {
 
 	switch {
 	case err == sql.ErrNoRows:
-		respondWithError(w, http.StatusBadRequest, "No entry found with the id="+id)
+		respondWithError(w, http.StatusBadRequest, "No book found with the id="+id)
 		return
 	case err != nil:
 		respondWithError(w, http.StatusInternalServerError, "Some problem occurred.")
 		return
 	default:
-		var eachEntry entry
-		eachEntry.ID, _ = strconv.Atoi(id)
-		eachEntry.FirstName = firstName.String
-		eachEntry.LastName = lastName.String
-		eachEntry.EmailAddress = emailAddress.String
-		eachEntry.PhoneNumber = phoneNumber.String
-		respondWithJSON(w, http.StatusOK, eachEntry)
+		var book addressBook
+		book.ID, _ = strconv.Atoi(id)
+		book.FirstName = firstName.String
+		book.LastName = lastName.String
+		book.EmailAddress = emailAddress.String
+		book.PhoneNumber = phoneNumber.String
+		respondWithJSON(w, http.StatusOK, book)
 	}
 
 }
 
-// CreateEntry - Create Entry
-// URL : /entry
+// CreateBook - Create Book
+// URL : /book
 // Method: POST
 // Body:
 /*
@@ -139,8 +168,8 @@ func GetEntryByID(w http.ResponseWriter, r *http.Request) {
  "phone_number":"1234567890",
  }
 */
-// Output: JSON Encoded Address Book Entry object if created else JSON Encoded Exception.
-func CreateEntry(w http.ResponseWriter, r *http.Request) {
+// Output: JSON Encoded Address Book Book object if created else JSON Encoded Exception.
+func CreateBook(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", connectionString)
 	defer func(db *sql.DB) {
 		err1 := db.Close()
@@ -153,8 +182,8 @@ func CreateEntry(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	decoder := json.NewDecoder(r.Body)
-	var entry entry
-	err = decoder.Decode(&entry)
+	var book addressBook
+	err = decoder.Decode(&book)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Some problem occurred.")
 		return
@@ -164,21 +193,26 @@ func CreateEntry(w http.ResponseWriter, r *http.Request) {
 		respondWithError(w, http.StatusInternalServerError, "Some problem occurred.")
 		return
 	}
-	defer statement.Close()
-	res, err := statement.Exec(entry.FirstName, entry.LastName, entry.EmailAddress, entry.PhoneNumber)
+	defer func(statement *sql.Stmt) {
+		err1 := statement.Close()
+		if err1 != nil {
+			return
+		}
+	}(statement)
+	res, err := statement.Exec(book.FirstName, book.LastName, book.EmailAddress, book.PhoneNumber)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, "There was problem entering the entry.")
+		respondWithError(w, http.StatusInternalServerError, "There was problem entering the book.")
 		return
 	}
 	if rowsAffected, _ := res.RowsAffected(); rowsAffected == 1 {
 		id, _ := res.LastInsertId()
-		entry.ID = int(id)
-		respondWithJSON(w, http.StatusOK, entry)
+		book.ID = int(id)
+		respondWithJSON(w, http.StatusOK, book)
 	}
 }
 
-// UpdateEntry - Update Entry
-// URL : /entry
+// UpdateBook - Update Book
+// URL : /book
 // Method: PUT
 // Body:
 /*
@@ -190,8 +224,8 @@ func CreateEntry(w http.ResponseWriter, r *http.Request) {
  "phone_number":"7798775575"
  }
 */
-// Output: JSON Encoded Address Book Entry object if updated else JSON Encoded Exception.
-func UpdateEntry(w http.ResponseWriter, r *http.Request) {
+// Output: JSON Encoded Address Book Book object if updated else JSON Encoded Exception.
+func UpdateBook(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", connectionString)
 	defer func(db *sql.DB) {
 		err1 := db.Close()
@@ -204,8 +238,8 @@ func UpdateEntry(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	decoder := json.NewDecoder(r.Body)
-	var entry entry
-	err = decoder.Decode(&entry)
+	var book addressBook
+	err = decoder.Decode(&book)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Some problem occurred.")
 		return
@@ -216,23 +250,28 @@ func UpdateEntry(w http.ResponseWriter, r *http.Request) {
 		respondWithError(w, http.StatusInternalServerError, "Some problem occurred.")
 		return
 	}
-	defer statement.Close()
-	res, err := statement.Exec(entry.FirstName, entry.LastName, entry.EmailAddress, entry.PhoneNumber, entry.ID)
+	defer func(statement *sql.Stmt) {
+		err2 := statement.Close()
+		if err2 != nil {
+			return
+		}
+	}(statement)
+	res, err := statement.Exec(book.FirstName, book.LastName, book.EmailAddress, book.PhoneNumber, book.ID)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError, "There was problem entering the entry.")
+		respondWithError(w, http.StatusInternalServerError, "There was problem entering the book.")
 		return
 	}
 	if rowsAffected, _ := res.RowsAffected(); rowsAffected == 1 {
-		respondWithJSON(w, http.StatusOK, entry)
+		respondWithJSON(w, http.StatusOK, book)
 	}
 }
 
-// DeleteEntry -  Delete Entry By ID
-// URL : /entry?id=1
+// DeleteBook -  Delete Book By ID
+// URL : /book?id=1
 // Parameters: int id
 // Method: DELETE
-// Output: JSON Encoded Address Book Entry object if found & deleted else JSON Encoded Exception.
-func DeleteEntry(w http.ResponseWriter, r *http.Request) {
+// Output: JSON Encoded Address Book object if found & deleted else JSON Encoded Exception.
+func DeleteBook(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", connectionString)
 	defer func(db *sql.DB) {
 		err1 := db.Close()
@@ -253,7 +292,7 @@ func DeleteEntry(w http.ResponseWriter, r *http.Request) {
 	err = db.QueryRow("SELECT first_name, last_name, email_address, phone_number from address_book where id=?", id).Scan(&firstName, &lastName, &emailAddress, &phoneNumber)
 	switch {
 	case err == sql.ErrNoRows:
-		respondWithError(w, http.StatusBadRequest, "No entry found with the id="+id)
+		respondWithError(w, http.StatusBadRequest, "No book found with the id="+id)
 		return
 	case err != nil:
 		respondWithError(w, http.StatusInternalServerError, "Some problem occurred.")
@@ -271,14 +310,14 @@ func DeleteEntry(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		if count == 1 {
-			var eachEntry entry
-			eachEntry.ID, _ = strconv.Atoi(id)
-			eachEntry.FirstName = firstName.String
-			eachEntry.LastName = lastName.String
-			eachEntry.EmailAddress = emailAddress.String
-			eachEntry.PhoneNumber = phoneNumber.String
+			var book addressBook
+			book.ID, _ = strconv.Atoi(id)
+			book.FirstName = firstName.String
+			book.LastName = lastName.String
+			book.EmailAddress = emailAddress.String
+			book.PhoneNumber = phoneNumber.String
 
-			respondWithJSON(w, http.StatusOK, eachEntry)
+			respondWithJSON(w, http.StatusOK, book)
 			return
 		}
 
@@ -293,7 +332,12 @@ func UploadEntriesThroughCSV(w http.ResponseWriter, r *http.Request) {
 		respondWithError(w, http.StatusBadRequest, "Something went wrong while opening the CSV.")
 		return
 	}
-	defer file.Close()
+	defer func(file multipart.File) {
+		err3 := file.Close()
+		if err3 != nil {
+			return
+		}
+	}(file)
 
 	reader := csv.NewReader(file)
 	reader.FieldsPerRecord = 5
@@ -303,28 +347,28 @@ func UploadEntriesThroughCSV(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var entry entry
+	var book addressBook
 
-	for _, eachEntry := range csvData {
-		if eachEntry[1] != "first_name" {
-			entry.FirstName = eachEntry[1]
+	for _, row := range csvData {
+		if row[1] != "first_name" {
+			book.FirstName = row[1]
 		}
-		if eachEntry[2] != "last_name" {
-			entry.LastName = eachEntry[2]
+		if row[2] != "last_name" {
+			book.LastName = row[2]
 		}
-		if eachEntry[3] != "email_address" {
-			entry.EmailAddress = eachEntry[3]
+		if row[3] != "email_address" {
+			book.EmailAddress = row[3]
 		}
-		if eachEntry[4] != "phone_number" {
-			entry.PhoneNumber = eachEntry[4]
+		if row[4] != "phone_number" {
+			book.PhoneNumber = row[4]
 		}
-		if entry.FirstName != "" && entry.LastName != "" && entry.EmailAddress != "" && entry.PhoneNumber != "" {
-			jsonString, err := json.Marshal(entry)
+		if book.FirstName != "" && book.LastName != "" && book.EmailAddress != "" && book.PhoneNumber != "" {
+			jsonString, err := json.Marshal(book)
 			if err != nil {
 				respondWithError(w, http.StatusBadRequest, "Something went wrong while parsing the CSV.")
 				return
 			}
-			req, err := http.NewRequest("POST", host+":"+port+"/api/entry", bytes.NewBuffer(jsonString))
+			req, err := http.NewRequest("POST", host+":"+port+"/api/book", bytes.NewBuffer(jsonString))
 			if err != nil {
 				respondWithError(w, http.StatusBadRequest, "Something went wrong while requesting to the Creation endpoint.")
 				return
@@ -336,7 +380,12 @@ func UploadEntriesThroughCSV(w http.ResponseWriter, r *http.Request) {
 				respondWithError(w, http.StatusBadRequest, "Something went wrong while requesting to the Creation endpoint.")
 				return
 			}
-			defer resp.Body.Close()
+			defer func(Body io.ReadCloser) {
+				err4 := Body.Close()
+				if err4 != nil {
+					return
+				}
+			}(resp.Body)
 			if resp.Status == strconv.Itoa(http.StatusBadRequest) {
 				respondWithError(w, http.StatusBadRequest, "Something went wrong while inserting.")
 				return
@@ -357,8 +406,8 @@ func DownloadEntriesToCSV(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	data, _ := ioutil.ReadAll(response.Body)
-	var entries []entry
-	err = json.Unmarshal(data, &entries)
+	var books []addressBook
+	err = json.Unmarshal(data, &books)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Unable to unmarshal data.")
 		return
@@ -369,20 +418,23 @@ func DownloadEntriesToCSV(w http.ResponseWriter, r *http.Request) {
 	writer := csv.NewWriter(b)
 	heading := []string{"id", "first_name", "last_name", "email_address", "phone_number"}
 	_ = writer.Write(heading)
-	for _, eachEntry := range entries {
+	for _, book := range books {
 		var record []string
-		record = append(record, strconv.Itoa(eachEntry.ID))
-		record = append(record, eachEntry.FirstName)
-		record = append(record, eachEntry.LastName)
-		record = append(record, eachEntry.EmailAddress)
-		record = append(record, eachEntry.PhoneNumber)
+		record = append(record, strconv.Itoa(book.ID))
+		record = append(record, book.FirstName)
+		record = append(record, book.LastName)
+		record = append(record, book.EmailAddress)
+		record = append(record, book.PhoneNumber)
 		_ = writer.Write(record)
 	}
 	writer.Flush()
 	w.Header().Set("Content-Type", "text/csv") // setting the content type header to text/csv
 	w.Header().Set("Content-Disposition", "attachment;filename="+fileName)
 	w.WriteHeader(http.StatusOK)
-	w.Write(b.Bytes())
+	_, err1 := w.Write(b.Bytes())
+	if err1 != nil {
+		return
+	}
 	// return
 }
 
@@ -399,5 +451,8 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	// set headers and write response
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
-	w.Write(response)
+	_, err := w.Write(response)
+	if err != nil {
+		return 
+	}
 }
