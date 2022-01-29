@@ -26,7 +26,7 @@ func logDirectoryCheck() {
 }
 
 func createLogDirectory(dir string, dateTimeFormat string) {
-	logDirectory := filepath.Join(dir, "log")
+	logDirectory := filepath.Join(dir, "logs")
 	_, checkPathError := os.Stat(logDirectory)
 	logDirectoryExists := checkPathError == nil
 	if logDirectoryExists {
@@ -81,7 +81,7 @@ func checkEnvType(dateTimeFormat string) string {
 func appendDataToLog(logLevel string, reference string, data string) {
 	dateTimeFormat := "2006-01-02 15:04:05.000"
 	logNameDateTimeFormat := "2006-01-02"
-	logDirectory := filepath.Join(".", "log")
+	logDirectory := filepath.Join(".", "logs")
 	logFileName := reference + " " + time.Now().Format(logNameDateTimeFormat) + ".log"
 	logFullPath := strings.Join([]string{logDirectory, logFileName}, "/")
 	logData := time.Now().Format("2006-01-02 15:04:05.000 ") + reference + " " + logLevel + " " + data

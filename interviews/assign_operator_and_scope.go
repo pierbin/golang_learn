@@ -21,9 +21,9 @@ me
 func example() {
 	var data []string
 
-	killswitch := os.Getenv("KILLSWITCH")
+	killSwitch := os.Getenv("KILLSWITCH")
 
-	if killswitch == "" {
+	if killSwitch == "" {
 		fmt.Println("kill switch is off")
 		data, err := getData()
 
@@ -47,9 +47,9 @@ func solution() {
 	var data []string
 	var err error // Declaring err to make sure we can use = instead of :=
 
-	killswitch := os.Getenv("KILLSWITCH")
+	killSwitch := os.Getenv("KILLSWITCH")
 
-	if killswitch == "" {
+	if killSwitch == "" {
 		fmt.Println("kill switch is off")
 		data, err = getData() // Here replace ":=" by "=", then the data scope is changed.
 
