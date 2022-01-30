@@ -6,8 +6,11 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"sync"
 	"time"
 )
+
+var writingSync sync.Mutex
 
 func main() {
 	logDirectoryCheck()
@@ -85,11 +88,11 @@ func appendDataToLog(logLevel string, reference string, data string) {
 	logFileName := reference + " " + time.Now().Format(logNameDateTimeFormat) + ".log"
 	logFullPath := strings.Join([]string{logDirectory, logFileName}, "/")
 	logData := time.Now().Format("2006-01-02 15:04:05.000 ") + reference + " " + logLevel + " " + data
-	// writingSync.Lock()
+	writingSync.Lock()
 	f, err := os.OpenFile(logFullPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		fmt.Println(time.Now().Format(dateTimeFormat) + " [" + reference + "] --ERR-- Cannot open file: " + err.Error())
-		// writingSync.Unlock()
+		writingSync.Unlock()
 		return
 	}
 	_, err = f.WriteString(logData + "\r\n")
@@ -100,5 +103,5 @@ func appendDataToLog(logLevel string, reference string, data string) {
 	if err != nil {
 		fmt.Println(time.Now().Format(dateTimeFormat) + " [" + reference + "] --ERR-- Cannot close file: " + err.Error())
 	}
-	// writingSync.Unlock()
+	writingSync.Unlock()
 }
