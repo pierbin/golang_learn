@@ -7,7 +7,7 @@ import (
 )
 
 // It is the net/http package usage.
-// Access http://localhost:9000/
+// Access http://localhost:9009/
 func main() {
 	baseUsage()
 }
@@ -19,7 +19,7 @@ func baseUsage() {
 
 	// After defining our server, we finally "listen and serve" on port 9000
 	// The second argument is the handler, which we will come to later on, but for now it is left as nil,
-	err := http.ListenAndServe(":9000", nil) // Listen for browser requests, and respond to them.
+	err := http.ListenAndServe(":9009", nil) // Listen for browser requests, and respond to them.
 	log.Fatal(err)
 }
 

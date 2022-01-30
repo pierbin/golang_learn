@@ -11,8 +11,8 @@ func main() {
 	// The router is the main router for your web application and will later be passed as parameter to the server. It will receive all HTTP connections and pass it on to the request handlers you will register on it.
 	r := mux.NewRouter()
 
-	// http://localhost:9000/books/kobe/page/1
-	// http://localhost:9000/books/go-programming-blueprint/page/10
+	// http://localhost:9009/books/kobe/page/1
+	// http://localhost:9009/books/go-programming-blueprint/page/10
 	// register request handlers like usual. The only difference is that instead of calling http.HandleFunc(...), you call HandleFunc on your router like this: r.HandleFunc(...).
 	r.HandleFunc("/books/{title}/page/{page}", func(w http.ResponseWriter, r *http.Request) {
 		// The package comes with the function mux.Vars(r) which takes the http.Request as parameter and returns a map of the segments.
@@ -23,7 +23,7 @@ func main() {
 		fmt.Fprintf(w, "You've requested the book: %s on page %s\n", title, page)
 	})
 
-	http.ListenAndServe(":9000", r)
+	http.ListenAndServe(":9009", r)
 
 	/*
 		Features of the gorilla/mux Router

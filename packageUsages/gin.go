@@ -14,7 +14,7 @@ type ResponseParams struct {
 }
 
 // gin is a go framework, response of all get and post requests usage are under below.
-// In command line, go run packageUsages/ginUsage.go.
+// In command line, go run packageUsages/gin.go.
 // It will monitor all requests from browser.
 // r means router
 func main() {

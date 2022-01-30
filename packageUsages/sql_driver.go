@@ -11,8 +11,8 @@ import (
 
 type user struct {
 	id        int
-	username  string
-	password  string
+	name  string
+	email  string
 	createdAt time.Time
 }
 
@@ -21,8 +21,8 @@ func createUsersTable(db *sql.DB) {
 	query := `
 		    CREATE TABLE users (
 		        id INT AUTO_INCREMENT,
-		        username TEXT NOT NULL,
-		        password TEXT NOT NULL,
+		        name varchar(255) NOT NULL,
+		        email varchar(255) NOT NULL,
 		        created_at DATETIME,
 		        PRIMARY KEY (id)
 		    );`
@@ -37,11 +37,11 @@ func createUsersTable(db *sql.DB) {
 
 // Insert a new user
 func insertRow(db *sql.DB) (int64, error) {
-	username := "john doe"
-	password := "secret"
+	name := "john doe"
+	email := "john@gmail.com"
 	createdAt := time.Now()
 
-	result, err := db.Exec(`INSERT INTO users (username, password, created_at) VALUES (?, ?, ?)`, username, password, createdAt)
+	result, err := db.Exec(`INSERT INTO users (name, email, created_at) VALUES (?, ?, ?)`, name, email, createdAt)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -53,22 +53,22 @@ func insertRow(db *sql.DB) (int64, error) {
 func getRowById(db *sql.DB, userId int64) {
 	var (
 		id        int
-		username  string
-		password  string
+		name  string
+		email  string
 		createdAt time.Time
 	)
 
-	query := "SELECT id, username, password, created_at FROM users WHERE id = ?"
-	if err := db.QueryRow(query, userId).Scan(&id, &username, &password, &createdAt); err != nil {
+	query := "SELECT id, name, email, created_at FROM users WHERE id = ?"
+	if err := db.QueryRow(query, userId).Scan(&id, &name, &email, &createdAt); err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(id, username, password, createdAt)
+	fmt.Println(id, name, email, createdAt)
 }
 
 // Get all users
 func getAllRows(db *sql.DB) {
-	rows, err := db.Query(`SELECT id, username, password, created_at FROM users`)
+	rows, err := db.Query(`SELECT id, name, email, created_at FROM users`)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -77,7 +77,7 @@ func getAllRows(db *sql.DB) {
 	for rows.Next() {
 		var u user
 
-		err := rows.Scan(&u.id, &u.username, &u.password, &u.createdAt)
+		err := rows.Scan(&u.id, &u.name, &u.email, &u.createdAt)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -125,7 +125,7 @@ func main() {
 	fmt.Printf("Last insert user id is %v \n", id)
 
 	getRowById(db, id)
-	delRowById(db, id)
-	delAllRows(db)
+	// delRowById(db, id)
+	// delAllRows(db)
 	getAllRows(db)
 }
