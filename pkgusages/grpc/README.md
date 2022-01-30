@@ -16,10 +16,6 @@ RPC framework that puts mobile and HTTP/2 first. For more information see the
 
 With [Go module][] support (Go 1.11+), simply add the following import
 
-```go
-import "google.golang.org/grpc"
-```
-
 to your code, and then `go [build|run|test]` will automatically fetch the
 necessary dependencies.
 
@@ -85,14 +81,6 @@ To build Go code, there are several options:
 Ensure your gRPC-Go version is `require`d at the appropriate version in
 the same module containing the generated `.pb.go` files.  For example,
 `SupportPackageIsVersion6` needs `v1.27.0`, so in your `go.mod` file:
-
-```go
-module <your module name>
-
-require (
-    google.golang.org/grpc v1.27.0
-)
-```
 
 #### If you are *not* using Go modules:
 
