@@ -1,8 +1,8 @@
 package tests
 
 import (
-	"learnGo/projects/mysqlSuiteTests/entity"
-	"learnGo/projects/mysqlSuiteTests/service"
+	"learnGo/projects/users/entity"
+	"learnGo/projects/users/service"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -4,8 +4,8 @@ import (
 	"errors"
 	"strings"
 
-	"learnGo/projects/mysqlSuiteTests/config"
-	"learnGo/projects/mysqlSuiteTests/entity"
+	"learnGo/projects/users/config"
+	"learnGo/projects/users/entity"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"

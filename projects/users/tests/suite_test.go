@@ -1,8 +1,8 @@
 package tests
 
 import (
-	"learnGo/projects/mysqlSuiteTests/config"
-	"learnGo/projects/mysqlSuiteTests/entity"
+	"learnGo/projects/users/config"
+	"learnGo/projects/users/entity"
 	"os"
 	"testing"
 

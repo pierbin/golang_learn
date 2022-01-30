@@ -5,15 +5,15 @@ import (
 	"net/http"
 	"os"
 
-	"learnGo/projects/mysqlSuiteTests/config"
-	"learnGo/projects/mysqlSuiteTests/controllers"
-	"learnGo/projects/mysqlSuiteTests/migrations"
+	"learnGo/projects/users/config"
+	"learnGo/projects/users/controllers"
+	"learnGo/projects/users/migrations"
 
 	"github.com/Valgard/godotenv"
 	"github.com/gin-gonic/gin"
 )
 
-var defaultPort = "8080"
+var defaultPort = "8088"
 var path = ".env"
 
 func init() {
@@ -25,17 +25,17 @@ func init() {
 }
 
 /**
-	In mysqlSuiteTests folder, run.
+	In users folder, run.
 
 	% go test ./tests
-	ok      learnGo/projects/mysqlSuiteTests/tests  0.122s
+	ok      learnGo/projects/users/tests  0.122s
 
 	% go test -v ./tests
 	...
 	--- PASS: TestSuite (0.11s)
     --- PASS: TestSuite/TestCreateUser (0.01s)
 	PASS
-	ok      learnGo/projects/mysqlSuiteTests/tests  0.131s
+	ok      learnGo/projects/users/tests  0.131s
 
 	% go run server.go
 	...
@@ -44,8 +44,8 @@ func init() {
 	 - using code:  gin.SetMode(gin.ReleaseMode)
 
 	[GIN-debug] GET    /                         --> main.main.func1 (2 handlers)
-	[GIN-debug] GET    /users                    --> learnGo/projects/mysqlSuiteTests/controllers.userControllerInterface.GetAll-fm (2 handlers)
-	[GIN-debug] POST   /users                    --> learnGo/projects/mysqlSuiteTests/controllers.userControllerInterface.Create-fm (2 handlers)
+	[GIN-debug] GET    /users                    --> learnGo/projects/users/controllers.userControllerInterface.GetAll-fm (2 handlers)
+	[GIN-debug] POST   /users                    --> learnGo/projects/users/controllers.userControllerInterface.Create-fm (2 handlers)
 	[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 	Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 	[GIN-debug] Listening and serving HTTP on :8080
