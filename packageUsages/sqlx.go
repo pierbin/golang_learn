@@ -10,14 +10,16 @@ import (
 type User struct {
 	ID   int    `db:"id"`
 	Name string `db:"name"`
+	Email string `db:"email"`
 }
 
-var schema string = "CREATE TABLE `users` (" +
+var schema = "CREATE TABLE `users` (" +
 	"`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY," +
-	"`name` varchar(255) NOT NULL)"
+	"`name` varchar(255) NOT NULL," +
+	"`email` varchar(255) NOT NULL)"
 
 func insertUser(db *sqlx.DB) int64 {
-	res, err := db.Exec("INSERT INTO users (name) VALUES(\"Peter\")")
+	res, err := db.Exec("INSERT INTO users (name, email) VALUES(\"Peter\", \"davy@gmail.com\")")
 	if err != nil {
 		panic(err)
 	}
@@ -31,17 +33,17 @@ func insertUser(db *sqlx.DB) int64 {
 }
 
 func getUserById(db *sqlx.DB, id int64) {
-	var user User
-	err := db.Get(&user, "select * from users where id=?", id)
+	var users User
+	err := db.Get(&users, "select * from users where id=?", id)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println(user)
+	fmt.Println(users)
 }
 
 func updateUserById(db *sqlx.DB, id int64) {
-	_, err := db.Exec("UPDATE users set name=\"Test\" where id=?", id)
+	_, err := db.Exec("UPDATE users set email=\"Test@gmail.com\" where id=?", id)
 	if err != nil {
 		panic(err)
 	}
@@ -62,12 +64,13 @@ func getAllUsers(db *sqlx.DB) ([]User, error) {
 }
 
 func main() {
-	db, err := sqlx.Connect("mysql", "root:123456@(localhost:3306)/tests")
+	db, err := sqlx.Connect("mysql", "root:123456@(localhost:3306)/go_web")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	// db.MustExec(schema)  //Only exec when the table needs to create. If the table has been created, it will have an error.
+	// Only exec when the table needs to create. If the table has been created, it will have an error.
+	// db.MustExec(schema)
 
 	id := insertUser(db)
 	fmt.Printf("Created user with id:%d\n", id)

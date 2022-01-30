@@ -20,7 +20,7 @@ func TestSuite(t *testing.T) {
 	os.Setenv("DB_PORT", "3306")
 	os.Setenv("DB_USER", "root")
 	os.Setenv("DB_PASSWORD", "123456")
-	os.Setenv("DB_DATABASE", "mysqlGoSuite")
+	os.Setenv("DB_DATABASE", "go_web")
 	defer os.Unsetenv("DB_HOST")
 	defer os.Unsetenv("DB_PORT")
 	defer os.Unsetenv("DB_USER")
