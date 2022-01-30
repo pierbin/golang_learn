@@ -6,11 +6,11 @@ import (
 
 /*
 	The path should from the current run code path.
-	If you run the path is at the learnGo path, the path is "./packageUsages/godotenvUsage/.env"
-	If you run the path is at the godotenvUsage path, the path is ".env"
+	If you run the path is at the learnGo path, the path is "./packageUsages/godotenv/.env"
+	If you run the path is at the godotenv path, the path is ".env"
 */
-var path = "./packageUsages/godotenvUsage/.env"
-var extraPath = "./packageUsages/godotenvUsage/.env.dev"
+var path = "./packageUsages/godotenv/.env"
+var extraPath = "./packageUsages/godotenv/.env.dev"
 
 func main() {
 	dotenv := godotenv.New()
