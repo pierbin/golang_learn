@@ -11,8 +11,8 @@ import (
 
 type user struct {
 	id        int
-	name  string
-	email  string
+	name      string
+	email     string
 	createdAt time.Time
 }
 
@@ -53,8 +53,8 @@ func insertRow(db *sql.DB) (int64, error) {
 func getRowById(db *sql.DB, userId int64) {
 	var (
 		id        int
-		name  string
-		email  string
+		name      string
+		email     string
 		createdAt time.Time
 	)
 
