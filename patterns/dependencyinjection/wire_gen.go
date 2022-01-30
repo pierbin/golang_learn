@@ -8,9 +8,9 @@ package main
 
 import (
 	"context"
-	"learnGo/patterns/dependencyInjection/foobarbaz"
-	"learnGo/patterns/dependencyInjection/greeter"
-	"learnGo/patterns/dependencyInjection/shapes"
+	"learnGo/patterns/dependencyinjection/foobarbaz"
+	"learnGo/patterns/dependencyinjection/greeter"
+	"learnGo/patterns/dependencyinjection/shapes"
 )
 
 // Injectors from wire.go:
