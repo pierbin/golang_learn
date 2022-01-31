@@ -166,7 +166,7 @@ func (s) TestFromErrorImplementsInterface(t *testing.T) {
 	code, message := codes.Internal, "test description"
 	details := []*apb.Any{{
 		TypeUrl: "testUrl",
-		Value:   []byte("testValue"),
+		Value:   []byte("value2"),
 	}}
 	err := customError{
 		Code:    code,
