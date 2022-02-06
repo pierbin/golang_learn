@@ -14,10 +14,12 @@ import (
 
 // Using buffered channels and for range, we can read from closed channels. Since for closed channels,
 // data lives in the buffer, we can still extract that data.
+// When the buffer size is non-zero n, goroutine is not blocked until after buffer is full.
 func channelCapacity() {
 	fmt.Println("channelCapacity start")
 
-	c := make(chan string, 2) // Creating a channel with a buffer.
+	// Creating a channel with a buffer. A channel buffer size is 0 also called as unbuffered channel.
+	c := make(chan string, 2)
 	go sender(c)
 
 	fmt.Printf("Length of channel c is %v and capacity of channel c is %v\n", len(c), cap(c))
@@ -51,6 +53,13 @@ func sender(dataChannel chan string) {
 // however, this operation is not always blocking.
 // This is where the squares goroutine wake up again, runs the last iteration, prints the value in the channel
 // using fmt.Println (again, this could be blocking), and dies.
+
+/** When the buffer is full, any value sent to the channel is added to the buffer by throwing out last value
+in the buffer which is available to read.
+But there is a catch, read operation on buffered is thirsty.
+That means, once read operation starts, it will continue until the buffer is empty.
+Technically, that means goroutine that reads buffer channel will not block until the buffer is empty.
+*/
 func channelBufferFullBlock() {
 	fmt.Println("channelBufferFullBlock start")
 
@@ -82,7 +91,7 @@ func channelBufferFullBlock() {
 
 // The for loop inside squares goroutine runs 4 iterations.
 // On the fourth iteration, it blocks since the buffer is empty at that point.
-// Hence, Go scheduler schedules main goroutine, and we feed another value to the buffer (st
+// Hence, Go scheduler schedules main goroutine, and we feed another value to the buffer.
 func squares(c chan int) {
 	for i := 0; i <= 3; i++ {
 		num := <-c
