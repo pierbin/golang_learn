@@ -90,7 +90,7 @@ func timeValueArray() (time.Time, [3]time.Time) {
 	return dates[1], dates
 }
 
-// Using "%#v" in Printf(), it will formats values as they'd appear in Go code.
+// Using "%#v" in Printf() , it will formats values as they'd appear in Go code.
 func returnMultipleArrayTypes() ([3]string, [5]int) {
 	var notes = [3]string{"do", "re", "mi"}
 	primes := [5]int{2, 3, 5, 7, 11}
