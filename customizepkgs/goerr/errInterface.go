@@ -153,8 +153,8 @@ var templates = map[string]string{
 
 func localize(id, template string, data map[string]interface{}) string {
 	bundle := i18n.NewBundle(language.English)
-	localizer := i18n.NewLocalizer(bundle, "en")
-	return localizer.MustLocalize(&i18n.LocalizeConfig{
+	localized := i18n.NewLocalizer(bundle, "en")
+	return localized.MustLocalize(&i18n.LocalizeConfig{
 		DefaultMessage: &i18n.Message{
 			ID:    id,
 			Other: template,

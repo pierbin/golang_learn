@@ -18,7 +18,7 @@ ok      learnGo/customizepkgs/greet 0.006s
 
 func TestSayHi(t *testing.T) {
 	result := SayHi()
-	want := "Hi, welcome to local package."
+	want := "Hey, good morning, welcome to local package."
 
 	if result != want {
 		t.Errorf(`Failure, SayHi() = %q, want is: %v`, want, result)
