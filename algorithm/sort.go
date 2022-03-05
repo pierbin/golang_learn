@@ -10,10 +10,10 @@ func main() {
 	n, numMax := 7, 100
 	arr := generateUnsortedArr(n, numMax)
 	fmt.Println("Initial array is:", arr)
-	fmt.Println("Bubble sorted array is: ", BubbleSort(arr))
-	fmt.Println("Quick sorted array is: ", QuickSort(arr))
-	fmt.Println("Merge sorted array is: ", MergeSort(arr))
-	fmt.Println("Selection sorted array is: ", SelectionQuick(arr))
+	fmt.Println("Bubble sorted array is: ", bubbleSort(arr))
+	fmt.Println("Quick sorted array is: ", quickSort(arr))
+	fmt.Println("merge sorted array is: ", mergeSort(arr))
+	fmt.Println("Selection sorted array is: ", selectionQuick(arr))
 	fmt.Println("Insertion sorted array is: ", insertionSort(arr))
 }
 
@@ -21,13 +21,13 @@ func generateUnsortedArr(n int, numMax int) []int {
 	rand.Seed(time.Now().Unix()) // It is used to confirm rand() will generate a random number each run time.
 	arr := make([]int, n)
 	for i := 0; i <= n-1; i++ {
-		arr[i] = rand.Intn(int(numMax))
+		arr[i] = rand.Intn(numMax)
 	}
 	return arr
 }
 
-// Time complexity is O(n*n)
-func BubbleSort(arr []int) []int {
+// bubbleSort Time complexity is O(n*n)
+func bubbleSort(arr []int) []int {
 	for i := 0; i < len(arr); i++ {
 		for j := len(arr) - 1; j > i; j-- {
 			if arr[j] < arr[j-1] {
@@ -39,8 +39,8 @@ func BubbleSort(arr []int) []int {
 	return arr
 }
 
-// Time complexity is O(nlogn), the best is O(nlogn), the worst is O(n*n)
-func QuickSort(arr []int) []int {
+// quickSort Time complexity is O(nlogn), the best is O(nlogn), the worst is O(n*n)
+func quickSort(arr []int) []int {
 	if len(arr) <= 1 {
 		return arr
 	}
@@ -61,26 +61,26 @@ func QuickSort(arr []int) []int {
 	}
 
 	arr[head] = mid
-	QuickSort(arr[:head])
-	QuickSort(arr[head+1:])
+	quickSort(arr[:head])
+	quickSort(arr[head+1:])
 
 	return arr
 }
 
-func MergeSort(arr []int) []int {
+func mergeSort(arr []int) []int {
 	length := len(arr)
 	if length <= 1 {
 		return arr
 	}
 	num := length / 2
-	left := MergeSort(arr[:num])
-	right := MergeSort(arr[num:])
+	left := mergeSort(arr[:num])
+	right := mergeSort(arr[num:])
 
-	return Merge(left, right)
+	return merge(left, right)
 }
 
-// Time complexity is O(nlogn), the best and the worst are the same, it is O(nlogn)
-func Merge(left, right []int) (result []int) {
+// merge Time complexity is O(nlogn), the best and the worst are the same, it is O(nlogn)
+func merge(left, right []int) (result []int) {
 	lIndex, rIndex := 0, 0
 	for lIndex < len(left) && rIndex < len(right) {
 		if left[lIndex] < right[rIndex] {
@@ -97,8 +97,8 @@ func Merge(left, right []int) (result []int) {
 	return result
 }
 
-// Time complexity is O(n*n), the best is O(n*n), the worst is O(n*n)
-func SelectionQuick(arr []int) []int {
+// selectionQuick Time complexity is O(n*n), the best is O(n*n), the worst is O(n*n)
+func selectionQuick(arr []int) []int {
 	if len(arr) <= 1 {
 		return arr
 	}

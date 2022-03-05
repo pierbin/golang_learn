@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="go_web@localhost" uuid="fb06a945-223c-4e37-b129-5e4f0060e255">
+    <data-source source="LOCAL" name="go_web@localhost" uuid="058549e1-e0a8-4476-a90d-6685c2de36e9">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
