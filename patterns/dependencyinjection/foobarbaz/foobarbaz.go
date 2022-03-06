@@ -7,6 +7,7 @@ import (
 )
 
 // In DI, only the providers need to be specified, the rest is abstracted away.
+// Provider functions must be exported in order to be used from other packages, just like ordinary functions.
 
 type Foo struct {
 	X int
@@ -16,8 +17,6 @@ type Foo struct {
 func ProvideFoo() Foo {
 	return Foo{X: 42}
 }
-
-// Provider functions must be exported in order to be used from other packages, just like ordinary functions.
 
 type Bar struct {
 	X int
