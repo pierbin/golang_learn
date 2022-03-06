@@ -1,13 +1,13 @@
+//go:build wireinject
+// +build wireinject
+
 package main
 
 import (
-	"context"
-
-	"learnGo/patterns/dependencyinjection/foobarbaz"
-	"learnGo/patterns/dependencyinjection/greeter"
-	"learnGo/patterns/dependencyinjection/shapes"
-
 	"github.com/google/wire"
+
+	"golang_learn/patterns/dependencyinjection/foobarbaz"
+	"golang_learn/patterns/dependencyinjection/greeter"
 )
 
 // In Wire, initializers are known as "providers," functions which provide a particular type.
@@ -28,7 +28,7 @@ import (
 
 // An injector is declared by writing a function declaration whose body is a call to wire.Build.
 
-func InitializeEvent(phrase string) (greeter.Event, error) {
+func InitializeEvent() (greeter.Event, error) {
 	wire.Build(greeter.SuperSet)
 	return greeter.Event{}, nil
 }
@@ -36,7 +36,7 @@ func InitializeEvent(phrase string) (greeter.Event, error) {
 // An injector is declared by writing a function declaration whose body is a call to wire.Build.
 // The return values don't matter as long as they are of the correct type.
 
-func InitializeBaz(ctx context.Context) (foobarbaz.Baz, error) {
+func InitializeBaz() (foobarbaz.Baz, error) {
 	wire.Build(foobarbaz.SuperSet)
 	return foobarbaz.Baz{}, nil
 }
@@ -59,6 +59,6 @@ As long as we tell Wire how to provide (i.e., initialize) a component,
 we may add that component anywhere in the dependency graph and Wire will handle the rest.
 */
 
-func ProvideShape() float64 {
-	panic(wire.Build(shapes.ShapeSet, shapes.ProvideArea))
-}
+// func ProvideShape() {
+// 	panic(wire.Build(shapes.ShapeSet, shapes.ProvideArea))
+// }

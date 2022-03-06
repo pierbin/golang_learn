@@ -1,6 +1,21 @@
-Dependency Injection means to inject your dependencies. A dependency can be anything that effects the behavior
-or outcome of your logic. Some common examples are:
+Dependency Injection is one of the most important design principles for keeping software “loose-coupling and easy to maintain”.
+This principle is widely used in all kind of development platforms and there are many excellent tools related to it.
 
+Benefits of Using Wire:
+1. Because wire uses code generation, the resulting container code is obvious and readable.
+2. Easy debug. If any dependency is missing or being unused, an error will be reported during compiling.
+
+If wire is not installed, when you run "wire", it will have error "could not import github.com/google/wire (invalid package name: "")".
+
+So, firstly, please install wire:
+% go get github.com/google/wire/cmd/wire
+
+The last and an important one, you should add "// +build wireinject" at the top of wire.go.
+If not, you will see a "redeclared" issue.
+After you add "// +build wireinject", it will generate a line "//go:build wireinject" above on the line "// +build wireinject", if you
+use GoLand.
+
+Some common examples are:
 1. Other services. Making your code more modular, less duplicate code and more testable.
 
 2. Configuration. Such as a database passwords, API URL endpoints, etc.

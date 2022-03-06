@@ -7,23 +7,21 @@
 package main
 
 import (
-	"context"
-	"learnGo/patterns/dependencyinjection/foobarbaz"
-	"learnGo/patterns/dependencyinjection/greeter"
-	"learnGo/patterns/dependencyinjection/shapes"
+	"golang_learn/patterns/dependencyinjection/foobarbaz"
+	"golang_learn/patterns/dependencyinjection/greeter"
 )
 
 // Injectors from wire.go:
 
-func InitializeEvent(phrase string) (greeter.Event, error) {
-	event, err := greeter.ProvideEvent(phrase)
+func InitializeEvent() (greeter.Event, error) {
+	event, err := greeter.ProvideEvent()
 	if err != nil {
 		return greeter.Event{}, err
 	}
 	return event, nil
 }
 
-func InitializeBaz(ctx context.Context) (foobarbaz.Baz, error) {
+func InitializeBaz() (foobarbaz.Baz, error) {
 	foo := foobarbaz.ProvideFoo()
 	bar := foobarbaz.ProvideBar(foo)
 	baz, err := foobarbaz.ProvideBaz(bar)
@@ -31,10 +29,4 @@ func InitializeBaz(ctx context.Context) (foobarbaz.Baz, error) {
 		return foobarbaz.Baz{}, err
 	}
 	return baz, nil
-}
-
-func ProvideShape() float64 {
-	square := shapes.ProvideSquare()
-	float64_2 := shapes.ProvideArea(square)
-	return float64_2
 }
