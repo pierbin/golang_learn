@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"time"
 
+	"golang_learn/customizepkgs/greetunarygrpc/greetpb"
 	"google.golang.org/grpc"
-	"learnGo/customizepkgs/greetunarygrpc/greetpb"
 )
 
 type server struct{}

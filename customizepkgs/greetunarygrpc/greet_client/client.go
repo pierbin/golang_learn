@@ -7,8 +7,8 @@ import (
 	"log"
 	"time"
 
+	"golang_learn/customizepkgs/greetunarygrpc/greetpb"
 	"google.golang.org/grpc"
-	"learnGo/customizepkgs/greetunarygrpc/greetpb"
 )
 
 func main() {

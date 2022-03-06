@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"learnGo/customizepkgs/greet"
+	"golang_learn/customizepkgs/greet"
 )
 
 func main() {

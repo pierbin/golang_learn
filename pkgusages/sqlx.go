@@ -65,7 +65,7 @@ func getAllUsers(db *sqlx.DB) ([]User, error) {
 }
 
 func main() {
-	db, err := sqlx.Connect("mysql", "root:123456@(localhost:3306)/go_web")
+	db, err := sqlx.Connect("mysql", "root:12345678@(localhost:3306)/go_web")
 	if err != nil {
 		log.Fatalln(err)
 	}

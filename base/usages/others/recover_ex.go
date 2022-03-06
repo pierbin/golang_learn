@@ -21,9 +21,9 @@ panic: Program panic is triggered.
 
 goroutine 1 [running]:
 main.freakOut()
-        /Users/jiangdawei/go/src/apps/learn/base/usages/recover_ex.go:18 +0x49
+        /Users/daweijiang/go/src/apps/learn/base/usages/recover_ex.go:18 +0x49
 main.main()
-        /Users/jiangdawei/go/src/apps/learn/base/usages/recover_ex.go:30 +0x19
+        /Users/daweijiang/go/src/apps/learn/base/usages/recover_ex.go:30 +0x19
 exit status 2
 */
 

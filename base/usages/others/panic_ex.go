@@ -23,13 +23,13 @@ panic: oh, no, the program is stopped. This call stack's too deep for me
 
 goroutine 1 [running]:
 main.three(...)
-        /Users/jiangdawei/go/src/apps/learn/base/usages/panic_ex.go:18
+        /Users/daweijiang/go/src/apps/learn/base/usages/panic_ex.go:18
 main.two(...)
-        /Users/jiangdawei/go/src/apps/learn/base/usages/panic_ex.go:14
+        /Users/daweijiang/go/src/apps/learn/base/usages/panic_ex.go:14
 main.one(...)
-        /Users/jiangdawei/go/src/apps/learn/base/usages/panic_ex.go:10
+        /Users/daweijiang/go/src/apps/learn/base/usages/panic_ex.go:10
 main.main()
-        /Users/jiangdawei/go/src/apps/learn/base/usages/panic_ex.go:6 +0x29
+        /Users/daweijiang/go/src/apps/learn/base/usages/panic_ex.go:6 +0x29
 exit status 2
 */
 func three() {

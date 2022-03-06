@@ -1,4 +1,4 @@
-In the learnGo folder,
+In the golang_learn folder,
 
 How to run files.go?
 % go run base/usages/files/files.go ./base/usages

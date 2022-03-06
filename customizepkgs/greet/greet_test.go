@@ -6,13 +6,13 @@ import "testing"
 greet % go test -cover
 PASS
 coverage: 100.0% of statements
-ok      learnGo/customizepkgs/greet 0.009s
+ok      golang_learn/customizepkgs/greet 0.009s
 */
 
 /**
 greet % go test
 PASS
-ok      learnGo/customizepkgs/greet 0.006s
+ok      golang_learn/customizepkgs/greet 0.006s
 
 */
 

@@ -105,7 +105,7 @@ func main() {
 	If the below code run with close on the above, it will have the error as following:
 	goroutine 1 [running]:
 	main.main()
-	        /Users/jiangdawei/go/src/learnGo/base/usages/channel/goroutine.go:86 +0x486
+	        /Users/daweijiang/go/src/golang_learn/base/usages/channel/goroutine.go:86 +0x486
 	exit status 2
 	*/
 	thirdChannel <- "close"

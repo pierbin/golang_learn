@@ -1,8 +1,8 @@
 package mockactivity_test
 
 import (
-	"learnGo/customizepkgs/mockactivity"
-	"learnGo/customizepkgs/mockactivity/infra"
+	"golang_learn/customizepkgs/mockactivity"
+	"golang_learn/customizepkgs/mockactivity/infra"
 
 	"reflect"
 	"testing"

@@ -20,7 +20,7 @@ go test -v -run TestCheckHealth
 --- PASS: TestCheckHealth (0.00s)
     --- PASS: TestCheckHealth/Check_health_status (0.00s)
 PASS
-ok      learnGo/projects/restbooks 0.011s
+ok      golang_learn/projects/restbooks 0.011s
 
 go test -v -run TestGetEntryByID
 === RUN   TestGetEntryByID
@@ -28,7 +28,7 @@ go test -v -run TestGetEntryByID
 === RUN   TestGetEntryByIDNotFound
 --- PASS: TestGetEntryByIDNotFound (0.00s)
 PASS
-ok      learnGo/projects/restbooks 0.014s
+ok      golang_learn/projects/restbooks 0.014s
 */
 func TestCheckHealth(t *testing.T) {
 	t.Run("Check health status", func(t *testing.T) {

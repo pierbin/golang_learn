@@ -23,7 +23,7 @@ func createUsersTable(db *sql.DB) {
 		        id INT AUTO_INCREMENT,
 		        name varchar(255) NOT NULL,
 		        email varchar(255) NOT NULL,
-		        created_at DATETIME,
+		        created_at DATETIME DEFAULT NULL,
 		        PRIMARY KEY (id)
 		    );`
 
@@ -108,7 +108,7 @@ func delAllRows(db *sql.DB) {
 
 func main() {
 	// db, err := sql.Open("mysql", "username:password@(127.0.0.1:3306)/dbname?parseTime=true")
-	db, err := sql.Open("mysql", "root:123456@(127.0.0.1:3306)/go_web?parseTime=true")
+	db, err := sql.Open("mysql", "root:12345678@(127.0.0.1:3306)/go_web?parseTime=true")
 	if err != nil {
 		log.Fatal(err)
 	}

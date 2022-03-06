@@ -2,7 +2,7 @@ package joinstr_test
 
 import (
 	"fmt"
-	"learnGo/customizepkgs/joinstr"
+	"golang_learn/customizepkgs/joinstr"
 	"testing"
 )
 

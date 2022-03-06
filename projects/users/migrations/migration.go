@@ -1,8 +1,8 @@
 package migrations
 
 import (
-	"learnGo/projects/users/config"
-	"learnGo/projects/users/entity"
+	"golang_learn/projects/users/config"
+	"golang_learn/projects/users/entity"
 )
 
 func getModels() []interface{} {

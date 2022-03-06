@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"learnGo/customizepkgs/keyboard"
+	"golang_learn/customizepkgs/keyboard"
 	"log"
 )
 

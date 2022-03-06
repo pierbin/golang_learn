@@ -45,7 +45,7 @@ Using this command to run correct result.
 go run base/usages/files/read_file_defer.go base/usages/files/data.txt
 The correct result is as below:
 
-/Users/jiangdawei/go/src/learnGo
+/Users/daweijiang/go/src/golang_learn
 Opening base/usages/files/data.txt
 Closing file
 Sum: 252.80
@@ -55,7 +55,7 @@ Using this command to run incorrect result.
 go run base/usages/files/read_file_defer.go base/usages/files/bad_data.txt
 The incorrect result is as below:
 
-/Users/jiangdawei/go/src/learnGo
+/Users/daweijiang/go/src/golang_learn
 Opening base/usages/files/bad_data.txt
 Closing file
 2021/12/05 23:22:24 strconv.ParseFloat: parsing "hello": invalid syntax

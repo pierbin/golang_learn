@@ -1,8 +1,8 @@
 package tests
 
 import (
-	"learnGo/projects/users/entity"
-	"learnGo/projects/users/service"
+	"golang_learn/projects/users/entity"
+	"golang_learn/projects/users/service"
 
 	"github.com/stretchr/testify/assert"
 )

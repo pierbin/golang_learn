@@ -31,7 +31,7 @@ fatal error: all goroutines are asleep - deadlock!
 
 goroutine 1 [chan receive]:
 main.main()
-        /Users/jiangdawei/go/src/learnGo/base/usages/channel/deadlock.go:6 +0x36
+        /Users/daweijiang/go/src/golang_learn/base/usages/channel/deadlock.go:6 +0x36
 exit status 2
 */
 // These errors seem like all goroutines are asleep or simply no other goroutines are available to schedule.
