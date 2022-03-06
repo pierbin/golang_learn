@@ -6,9 +6,11 @@ import (
 	"time"
 )
 
+const arrayNum = 7
+const arrayMaxNum = 100
+
 func main() {
-	n, numMax := 7, 100
-	arr := generateUnsortedArr(n, numMax)
+	arr := generateUnsortedArr()
 	fmt.Println("Initial array is:", arr)
 	fmt.Println("Bubble sorted array is: ", bubbleSort(arr))
 	fmt.Println("Quick sorted array is: ", quickSort(arr))
@@ -17,11 +19,11 @@ func main() {
 	fmt.Println("Insertion sorted array is: ", insertionSort(arr))
 }
 
-func generateUnsortedArr(n int, numMax int) []int {
+func generateUnsortedArr() []int {
 	rand.Seed(time.Now().Unix()) // It is used to confirm rand() will generate a random number each run time.
-	arr := make([]int, n)
-	for i := 0; i <= n-1; i++ {
-		arr[i] = rand.Intn(numMax)
+	arr := make([]int, arrayNum)
+	for i := 0; i <= arrayNum-1; i++ {
+		arr[i] = rand.Intn(arrayMaxNum)
 	}
 	return arr
 }
