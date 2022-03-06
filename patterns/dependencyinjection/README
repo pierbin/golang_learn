@@ -8,7 +8,7 @@ Benefits of Using Wire:
 If wire is not installed, when you run "wire", it will have error "could not import github.com/google/wire (invalid package name: "")".
 
 So, firstly, please install wire:
-% go get github.com/google/wire/cmd/wire
+% go get -d github.com/google/wire/cmd/wire
 
 The last and an important one, you should add "// +build wireinject" at the top of wire.go.
 If not, you will see a "redeclared" issue.
