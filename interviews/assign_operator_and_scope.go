@@ -20,13 +20,12 @@ me
 */
 func example() {
 	var data []string
+	var err error
 
 	killSwitch := os.Getenv("KILLSWITCH")
-
 	if killSwitch == "" {
 		fmt.Println("kill switch is off")
 		data, err := getData()
-
 		if err != nil {
 			panic("ERROR!")
 		}
@@ -37,6 +36,7 @@ func example() {
 	for _, item := range data {
 		fmt.Println(item)
 	}
+	fmt.Println(err)
 }
 
 func getData() ([]string, error) {
@@ -63,7 +63,11 @@ func solution() {
 	for _, item := range data {
 		fmt.Println(item)
 	}
+	fmt.Println(err)
 }
 
-// In the firstone(),  it defines the data at the beginning, and the date is also defined in the if condition,
-// so the scope of data, outside the if condition is the global data, inside the if condition is the partial data.
+// In the example(), the data and err are defined both at the beginning and in the if condition.
+// Outside the if condition is the global data, inside the if condition is the partial data.
+// The partial one and the global one won't influence each other.
+
+// In the solution, the data and err are defined only at the beginning, so the data in the if condition also is the global data.
