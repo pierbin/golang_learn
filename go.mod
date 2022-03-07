@@ -9,10 +9,12 @@ require (
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-martini/martini v0.0.0-20170121215854-22fa46961aab
 	github.com/go-redis/redis/v8 v8.11.4
+	github.com/go-resty/resty/v2 v2.7.0
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/google/uuid v1.3.0
 	github.com/google/wire v0.5.0
 	github.com/gorilla/mux v1.8.0
+	github.com/jarcoal/httpmock v1.1.0
 	github.com/jmoiron/sqlx v1.3.4
 	github.com/nicksnyder/go-i18n/v2 v2.2.0
 	github.com/nsf/termbox-go v1.1.1
@@ -59,7 +61,7 @@ require (
 	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/ugorji/go/codec v1.1.7 // indirect
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
-	golang.org/x/net v0.0.0-20210813160813-60bc85c4be6d // indirect
+	golang.org/x/net v0.0.0-20211029224645-99673261e6eb // indirect
 	golang.org/x/sys v0.0.0-20211210111614-af8b64212486 // indirect
 	google.golang.org/genproto v0.0.0-20211208223120-3a66f561d7aa // indirect
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
