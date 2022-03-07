@@ -58,6 +58,9 @@ func home(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r)
 }
 
+/**
+Send requests to localhost:8080/ and localhost:8080/socket, it will show differences print in terminal.
+*/
 func main() {
 	http.HandleFunc("/socket", socketHandler)
 	http.HandleFunc("/", home)
