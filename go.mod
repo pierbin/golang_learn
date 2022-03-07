@@ -14,6 +14,7 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/google/wire v0.5.0
 	github.com/gorilla/mux v1.8.0
+	github.com/gorilla/websocket v1.5.0
 	github.com/jarcoal/httpmock v1.1.0
 	github.com/jmoiron/sqlx v1.3.4
 	github.com/nicksnyder/go-i18n/v2 v2.2.0

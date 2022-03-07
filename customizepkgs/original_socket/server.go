@@ -12,7 +12,7 @@ func main() {
 	fmt.Println("Server started...")
 	ln, err := net.Listen("tcp", ":8000")
 	if err != nil {
-		fmt.Println("Error starting socket server: " + err.Error())
+		fmt.Println("Error starting original_socket server: " + err.Error())
 	}
 	for {
 		conn, err := ln.Accept()
@@ -44,7 +44,10 @@ func receiveClientData(conn net.Conn) {
 		message, err := bufio.NewReader(conn).ReadString('\n')
 		if err != nil {
 			fmt.Println(conn.RemoteAddr().String() + ": client disconnected")
-			conn.Close()
+			err1 := conn.Close()
+			if err1 != nil {
+				return
+			}
 			fmt.Println(conn.RemoteAddr().String() + ": end receiving data")
 			return
 		}
