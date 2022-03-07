@@ -1,3 +1,6 @@
+//go:build wireinject
+// +build wireinject
+
 package shapes
 
 import "github.com/google/wire"
@@ -22,4 +25,5 @@ func ProvideArea(g Geometry) float64 {
 
 func ProvideShape() float64 {
 	panic(wire.Build(ShapeSet, ProvideArea))
+	return 1
 }

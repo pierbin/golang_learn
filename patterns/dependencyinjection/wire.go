@@ -8,6 +8,7 @@ import (
 
 	"golang_learn/patterns/dependencyinjection/foobarbaz"
 	"golang_learn/patterns/dependencyinjection/greeter"
+	"golang_learn/patterns/dependencyinjection/shapes"
 )
 
 // In Wire, initializers are known as "providers," functions which provide a particular type.
@@ -59,6 +60,7 @@ As long as we tell Wire how to provide (i.e., initialize) a component,
 we may add that component anywhere in the dependency graph and Wire will handle the rest.
 */
 
-// func ProvideShape() {
-// 	panic(wire.Build(shapes.ShapeSet, shapes.ProvideArea))
-// }
+func ProvideShape() float64 {
+	panic(wire.Build(shapes.ShapeSet, shapes.ProvideArea))
+	return 1
+}

@@ -9,6 +9,7 @@ package main
 import (
 	"golang_learn/patterns/dependencyinjection/foobarbaz"
 	"golang_learn/patterns/dependencyinjection/greeter"
+	"golang_learn/patterns/dependencyinjection/shapes"
 )
 
 // Injectors from wire.go:
@@ -29,4 +30,10 @@ func InitializeBaz() (foobarbaz.Baz, error) {
 		return foobarbaz.Baz{}, err
 	}
 	return baz, nil
+}
+
+func ProvideShape() float64 {
+	square := shapes.ProvideSquare()
+	float64_2 := shapes.ProvideArea(square)
+	return float64_2
 }
