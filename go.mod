@@ -6,6 +6,7 @@ require (
 	github.com/JoelOtter/termloop v0.0.0-20210806173944-5f7c38744afb
 	github.com/Valgard/godotenv v0.0.0-20200511222744-8873b92a09c5
 	github.com/asmcos/requests v0.0.0-20210319030608-c839e8ae4946
+	github.com/gin-contrib/static v0.0.1
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-martini/martini v0.0.0-20170121215854-22fa46961aab
 	github.com/go-redis/redis/v8 v8.11.4

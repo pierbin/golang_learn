@@ -15,7 +15,7 @@ If not, you will see a "redeclared" issue.
 After you add "// +build wireinject", it will generate a line "//go:build wireinject" above on the line "// +build wireinject", if you
 use GoLand.
 
-Some common examples are:
+Some common advantages are:
 1. Other services. Making your code more modular, less duplicate code and more testable.
 
 2. Configuration. Such as a database passwords, API URL endpoints, etc.
@@ -26,15 +26,41 @@ Such as the clock or file system. This comes in extremely important when writing
 4. Stubs of external APIs.
 So that API requests can be mocked within the system during tests to keep things stable and quick.
 
+There are some kinds of dependency injection, and each one has its own use case.
+For example, Constructor, Property and, Method (or Setter).
+
+The most common kind is the Constructor Injection. It allows you to make your implementation immutable,
+nothing can change the dependencies (if your properties are private). Also, it requires all dependencies to be ready to create something.
+If they aren’t, it usually will generate an error.
+
+// Constructor Injection
+func NewMyInjection(logger MyLogger, repo MyRepository, broker MyMessageBroker) *MyService {
+    return &MyService{
+        logger: logger,
+        broker: broker,
+        repository: repo,
+    }
+}
+
+Property and Method injection are pretty similar, their adoption is a question of a language feature.
+
+These kinds allow you to change dependencies in runtime, so by design, they aren’t immutable.
+But if you need to change the implementation of some dependency, you don’t need to recreate everything. You can just override what you need.
+
+// Method Injection
+type MyService struct {
+    logger      MyLogger
+    broker      MyMessageBroker
+    repository  MyRepository
+}
+
+func(s *MyService) SetLogger(logger MyLogger) {
+    s.logger = logger
+}
 
 Some terminology:
 1. A service is an instance of a class.
-It’s called a service because its often referred to by name rather than type.
-For example Emailer is the name of a service, but it is an instance of a SendEmail.
-We can change the underlying implementation of a service.
-As long as it has the same interface we need not rename the service.
 
 2. A container is a collection of services.
-Services are lazy-loaded and only initialized when they are requested from the container.
 
 3. A singleton is an instance that is initialised once, but can be reused many times.
